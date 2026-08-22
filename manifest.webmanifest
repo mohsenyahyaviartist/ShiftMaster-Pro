@@ -1,0 +1,20 @@
+{
+  "name": "ShiftMaster Pro",
+  "short_name": "ShiftMaster",
+  "description": "سیستم مدیریت، طراحی و کنترل هوشمند شیفت",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1d4ed8",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

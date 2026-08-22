@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ShiftMaster Pro">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<title>ShiftMaster Pro</title>
+<style>
+:root{--b:#f4f7fb;--c:#fff;--t:#172033;--p:#2563eb;--l:#dbe3ef;--d:#dc2626;--w:#d97706;--g:#15803d}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial;background:var(--b);color:var(--t)}button,input,select{font:inherit}
+.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#0f172a,#2563eb);padding:16px}.loginbox{background:#fff;padding:28px;border-radius:18px;width:min(420px,100%);box-shadow:0 20px 60px #0005}.loginbox input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;margin:6px 0 12px}
+.app{display:none;min-height:100vh}.side{position:fixed;right:0;top:0;bottom:0;width:250px;background:#111827;color:#fff;padding:18px;z-index:20;overflow:auto}.brand{font-size:20px;font-weight:bold}.brand small{display:block;color:#94a3b8;font-size:10px;margin-top:5px}.nav button{display:block;width:100%;text-align:right;background:transparent;color:#d1d5db;border:0;border-radius:9px;padding:12px;margin:5px 0;cursor:pointer}.nav button.active,.nav button:hover{background:#1f2937;color:#fff}
+.main{margin-right:250px}.top{height:64px;background:#fff;border-bottom:1px solid var(--l);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:10}.hamb{display:none}.content{padding:18px;max-width:1700px;margin:auto}.page{display:none}.page.active{display:block}.card{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:17px;margin-bottom:15px;box-shadow:0 4px 15px #0f172a0a}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.field label{display:block;font-size:12px;font-weight:bold;margin-bottom:5px}.field input,.field select{width:100%;min-height:42px;border:1px solid #cbd5e1;border-radius:8px;padding:9px}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:bold;cursor:pointer}.primary{background:var(--p);color:#fff}.secondary{background:#e8eefc;color:#1e3a8a}.danger{background:#fee2e2;color:#991b1b}.success{background:#dcfce7;color:#166534}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.stat{padding:13px;border:1px solid var(--l);border-radius:10px;background:#f8fafc}.stat span{font-size:11px;color:#64748b}.stat b{display:block;font-size:20px;margin-top:5px}.tablewrap{overflow:auto;border:1px solid var(--l);border-radius:9px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:1050px}th,td{padding:6px;border-left:1px solid var(--l);border-bottom:1px solid var(--l);text-align:center;white-space:nowrap;font-size:11px}th{background:#eef3f9;position:sticky;top:0;z-index:3}.sticky{position:sticky;right:0;background:#fff;z-index:4;min-width:135px}.holiday{background:#fff1f2!important;color:#991b1b}.thu{background:#fffbeb!important}.shift select{padding:5px;border:1px solid #d5dce7;border-radius:6px;font-size:10px}.badge{padding:3px 6px;border-radius:15px;font-size:9px}.male{background:#dbeafe;color:#1e40af}.female{background:#fce7f3;color:#9d174d}.row{display:grid;grid-template-columns:1fr 120px 100px 60px;gap:7px;margin-bottom:7px;align-items:center}.row input,.row select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.shiftrow{display:grid;grid-template-columns:1fr 110px 110px 110px 120px 70px 55px;gap:7px;align-items:end;margin-bottom:8px}.shiftrow input,.shiftrow select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.tip{position:relative}.tip:after{content:attr(data-tip);position:absolute;right:0;top:100%;margin-top:7px;width:235px;padding:8px;background:#111827;color:#fff;border-radius:8px;font-size:10px;line-height:1.8;opacity:0;pointer-events:none;z-index:50}.tip:hover:after{opacity:1}.ok{border-right:4px solid var(--g);background:#f3fff6}.warn{border-right:4px solid var(--w);background:#fffaf2}.err{border-right:4px solid var(--d);background:#fff7f7}.footer{text-align:center;color:#64748b;font-size:11px;padding:25px}.toast{position:fixed;left:18px;bottom:18px;background:#111827;color:#fff;padding:10px 14px;border-radius:9px;display:none;z-index:100}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(3,1fr)}.shiftrow{grid-template-columns:1fr 1fr}.shiftrow:first-child{grid-column:1/-1}}
+@media(max-width:700px){.side{transform:translateX(110%);transition:.2s;width:270px}.side.open{transform:translateX(0)}.main{margin:0}.hamb{display:block;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px}.top{padding:0 12px}.content{padding:11px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.card{padding:12px}.row{grid-template-columns:1fr 90px 55px}.row .active{grid-column:1/-1}.actions .btn{flex:1 1 140px}.tip:after{display:none}}
+@media print{body{background:#fff}.side,.top,.no-print,.footer{display:none!important}.main{margin:0}.content{padding:0}.printonly{display:block!important}.print-card{display:block!important;border:0;box-shadow:none;padding:0}.tablewrap{overflow:visible;border:0}table{min-width:0;font-size:7px}.sticky{position:static}.shift select{appearance:none;border:0;background:transparent}.shift select option{display:none}}
+.printonly{display:none}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+<div class="loginbox">
+<h1>ShiftMaster Pro</h1><p style="color:#64748b;font-size:12px">پنل مدیریت هوشمند شیفت</p>
+<label>نام کاربری</label><input id="user" autocomplete="username" placeholder="نام کاربری">
+<label>رمز عبور</label><input id="pass" type="password" autocomplete="current-password" placeholder="رمز عبور">
+<button class="btn primary" style="width:100%" onclick="login()">ورود</button>
+
+</div></div>
+
+<div id="app" class="app">
+<aside id="side" class="side">
+<div class="brand">ShiftMaster Pro<small>Smart Shift Management</small></div>
+<div class="nav">
+<button class="active tip" data-tip="نمای کلی وضعیت برنامه، نیروها، ساعات و خطاهای ماه جاری." onclick="page('dash',this)">🏠 داشبورد</button>
+<button class="tip" data-tip="مدیریت نام، جنسیت، وضعیت و ورود نیروها از Excel." onclick="page('emps',this)">👥 مدیریت نیروها</button>
+<button class="tip" data-tip="انتخاب سال و ماه و کنترل ساعات موظفی و تقویم واقعی." onclick="page('cal',this)">📅 تقویم و موظفی</button>
+<button class="tip" data-tip="ساخت و ویرایش شیفت با ساعت و دقیقه دلخواه." onclick="page('shifts',this)">⏰ مدیریت شیفت‌ها</button>
+<button class="tip" data-tip="تنظیم محدودیت‌های جنسیت، تعطیلات و ساعات." onclick="page('rules',this)">🧩 قوانین شیفت</button>
+<button class="tip" data-tip="تولید خودکار برنامه ماهانه و ویرایش دستی آن." onclick="page('builder',this)">🗓️ سازنده شیفت</button>
+<button class="tip" data-tip="بررسی خطاها و هشدارهای برنامه." onclick="page('check',this)">🔍 کنترل و خطایابی</button>
+<button class="tip" data-tip="خروجی CSV، Excel و چاپ/PDF فقط از جدول شیفت." onclick="page('reports',this)">📊 گزارش‌ها</button>
+<button class="tip" data-tip="ذخیره و بازیابی کل اطلاعات برنامه." onclick="page('backup',this)">💾 پشتیبان‌گیری</button>
+<button onclick="logout()">🚪 خروج</button>
+</div></aside>
+
+<div class="main"><header class="top"><div><button class="hamb" onclick="toggleSide()">☰</button> <b id="title">داشبورد</b></div><small>کاربر: admin</small></header>
+<main class="content">
+
+<section id="dash" class="page active"><div class="card"><h2>داشبورد مدیریت شیفت</h2><p>ماه فعال: <b id="dashMonth"></b></p><div class="stats">
+<div class="stat"><span>تعداد نیرو</span><b id="sEmp">0</b></div><div class="stat"><span>موظفی</span><b id="sReq">0</b></div><div class="stat"><span>ساعات برنامه</span><b id="sHours">0</b></div><div class="stat"><span>شیفت شب</span><b id="sNight">0</b></div><div class="stat"><span>خطا</span><b id="sErr">0</b></div></div></div><div id="dashStatus" class="card ok"></div></section>
+
+<section id="emps" class="page"><div class="card"><h2>مدیریت نیروها</h2><div class="actions">
+<button class="btn primary" onclick="addEmp()">➕ افزودن نیرو</button><button class="btn danger" onclick="removeEmp()">➖ کاهش نیرو</button>
+<label class="btn secondary tip" data-tip="فایل Excel با ستون‌های نام و جنسیت را انتخاب کنید. تشخیص ستون‌ها خودکار انجام می‌شود.">📥 ورود از Excel<input id="excel" type="file" accept=".xlsx,.xls,.csv" hidden onchange="importExcel(event)"></label>
+</div><p style="font-size:11px;color:#64748b">برای ورود Excel بهتر است نام ستون‌ها «نام» و «جنسیت» باشند.</p><div id="empList"></div></div></section>
+
+<section id="cal" class="page"><div class="card"><h2>تقویم و ساعات موظفی</h2><div class="grid">
+<div class="field"><label>سال</label><input id="year" type="number" value="1405" onchange="refresh()"></div>
+<div class="field"><label>ماه</label><select id="month" onchange="refresh()"></select></div>
+<div class="field"><label>ساعات موظفی ماه</label><input id="req" type="number" step=".25" onchange="save()"></div>
+<div class="field"><label>روزهای ماه</label><input id="days" disabled></div></div><div id="calInfo" class="card" style="margin-top:12px;background:#f8fafc"></div></div></section>
+
+<section id="shifts" class="page"><div class="card"><h2>مدیریت شیفت‌ها</h2><p style="font-size:11px;color:#64748b">ساعت و دقیقه را انتخاب کنید. شیفت‌های عبوری از نیمه‌شب نیز پشتیبانی می‌شوند.</p><div id="shiftList"></div><button class="btn primary" onclick="addShift()">➕ ساخت شیفت جدید</button></div></section>
+
+<section id="rules" class="page"><div class="card"><h2>قوانین قابل تنظیم</h2><div class="grid">
+<div class="field"><label>حداکثر ساعت پایان خانم‌ها</label><input id="femaleEnd" type="number"></div>
+<div class="field"><label>درصد نیرو در جمعه/تعطیل</label><input id="holidayPct" type="number"></div>
+</div><p><label><input id="nightMale" type="checkbox"> شیفت شب فقط آقایان</label></p><p><label><input id="malePriority" type="checkbox"> اولویت آقایان در تعطیلات</label></p><p><label><input id="thuAlt" type="checkbox"> آف یک‌درمیان خانم‌ها در پنجشنبه</label></p><p><label><input id="maxH" type="checkbox"> جلوگیری از عبور از ساعات موظفی</label></p><button class="btn primary" onclick="saveRules()">ذخیره قوانین</button></div></section>
+
+<section id="builder" class="page"><div class="card"><h2>سازنده هوشمند شیفت</h2><p style="font-size:11px;color:#64748b">برنامه با تقویم واقعی، جنسیت، ساعات موظفی و قوانین تنظیم‌شده ساخته می‌شود.</p><button class="btn primary" onclick="generate()">🧠 تولید بهترین برنامه</button></div>
+<div class="card print-card"><div class="printonly"><h2>برنامه شیفت <span id="printMonth"></span></h2></div><div class="tablewrap"><table id="table"></table></div></div></section>
+
+<section id="check" class="page"><div id="checkBox" class="card"></div></section>
+<section id="reports" class="page"><div class="card"><h2>گزارش و خروجی</h2><p style="font-size:11px;color:#64748b">چاپ/PDF فقط جدول شیفت را چاپ می‌کند.</p><div class="actions"><button class="btn secondary" onclick="csv()">📄 CSV</button><button class="btn success" onclick="xlsx()">📊 Excel</button><button class="btn primary" onclick="printOnly()">🖨️ چاپ / PDF</button></div></div><div class="card"><div class="tablewrap"><table id="report"></table></div></div></section>
+
+<section id="backup" class="page"><div class="card"><h2>پشتیبان‌گیری</h2><button class="btn primary" onclick="backup()">💾 دریافت پشتیبان</button><label class="btn secondary">📥 بازیابی<input type="file" accept=".json" hidden onchange="restore(event)"></label></div></section>
+
+<div class="footer">طراح و توسعه‌دهنده: <b>محسن یحیوی</b><br><span>نسخه ۱.۱</span></div>
+</main></div></div><div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const M=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"],W=["شنبه","یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه"];
+const defaultReq={1:176,2:176,3:176,4:176,5:176,6:191,7:176,8:176,9:176,10:176,11:176,12:176};
+let E=[["همکار ۱","male",1],["همکار ۲","male",1],["همکار ۳","male",1],["همکار ۴","male",1],["همکار ۵","male",1],["همکار ۶","male",1],["همکار ۷","female",1],["همکار ۸","female",1],["همکار ۹","female",1],["همکار ۱۰","female",1],["همکار ۱۱","female",1],["همکار ۱۲","female",1],["همکار ۱۳","female",1],["همکار ۱۴","female",1],["همکار ۱۵","female",1]];
+let S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];
+let R={femaleEnd:19,holidayPct:60,nightMale:1,malePriority:1,thuAlt:1,maxH:1},G={},locked={};
+
+function mins(t){let a=t.split(":");return +a[0]*60+(+a[1])} function dur(a,b){if(a==="00:00"&&b==="00:00")return 0;let x=mins(b)-mins(a);if(x<=0)x+=1440;return x/60}
+function leap(y){let r=((y-474)%2820+2820)%2820+474;return ((r+38)*682%2816)<682}
+function jdn(y,m,d){let e=y-(y>=0?474:473),p=474+(e%2820+2820)%2820;return d+(m<=7?(m-1)*31:(m-1)*30+6)+Math.floor((p*682-110)/2816)+(p-1)*365+Math.floor(e/2820)*1029983+1948319}
+function wd(y,m,d){return (jdn(y,m,d)+1)%7} function days(y,m){return m<=6?31:m<=11?30:(leap(y)?30:29)}
+function friday(y,m,d){return wd(y,m,d)==6} function thursday(y,m,d){return wd(y,m,d)==5}
+function reqVal(){let k=year.value+"-"+month.value, q=JSON.parse(localStorage.getItem("shift_required")||"{}");return q[k]??(year.value==1405&&month.value==6?191:defaultReq[month.value]||176)}
+function saveReq(){let q=JSON.parse(localStorage.getItem("shift_required")||"{}");q[year.value+"-"+month.value]=+req.value;localStorage.setItem("shift_required",JSON.stringify(q))}
+function get(id){return S.find(x=>x[0]===id)||S.find(x=>x[0]==="OFF")}
+function page(id,b){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");title.textContent=b?b.textContent.replace(/[^؀-ۿ\s]+/g,"").trim():"";side.classList.remove("open")}
+function toggleSide(){side.classList.toggle("open")}
+function login(){
+  const username=document.getElementById("user").value.trim();
+  const password=document.getElementById("pass").value;
+  if(username==="admin" && password==="1234"){
+    sessionStorage.setItem("login","1");
+    openApp();
+  }else{
+    alert("نام کاربری یا رمز عبور اشتباه است.");
+  }
+}
+function logout(){sessionStorage.removeItem("login");location.reload()}
+function openApp(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("app").style.display="flex";
+  const monthEl=document.getElementById("month");
+  monthEl.innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");
+  load();
+  document.getElementById("req").value=reqVal();
+  document.getElementById("days").value=days(+document.getElementById("year").value,+document.getElementById("month").value);
+  render();
+}
+function refresh(){req.value=reqVal();days.value=days(year.value,month.value);G={};locked={};save();render()}
+function addEmp(){E.push(["همکار "+(E.length+1),"male",1]);render()} function removeEmp(){if(E.length>1)E.pop();render()} function delEmp(i){E.splice(i,1);render()}
+function renderEmp(){empList.innerHTML=E.map((e,i)=>`<div class="row"><input value="${esc(e[0])}" onchange="E[${i}][0]=this.value;save()"><select onchange="E[${i}][1]=this.value;save()"><option value="male" ${e[1]=="male"?"selected":""}>آقا</option><option value="female" ${e[1]=="female"?"selected":""}>خانم</option></select><button class="btn danger" onclick="delEmp(${i})">حذف</button><label class="active"><input type="checkbox" ${e[2]?"checked":""} onchange="E[${i}][2]=this.checked;save()"> فعال</label></div>`).join("")}
+function importExcel(ev){let f=ev.target.files[0];if(!f)return;if(!window.XLSX){alert("برای ورود Excel اتصال اینترنت لازم است.");return}let r=new FileReader();r.onload=e=>{try{let wb=XLSX.read(e.target.result,{type:"array"}),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:""}),keys=Object.keys(rows[0]||{}),nk=keys.find(k=>/نام|name/i.test(k))||keys[0],gk=keys.find(k=>/جنس|gender|sex/i.test(k));E=rows.map(x=>[String(x[nk]||"").trim(),/زن|خانم|female|woman/i.test(String(gk?x[gk]:""))?"female":"male",1]).filter(x=>x[0]);render();toast(E.length+" نیرو وارد شد")}catch(x){alert("فایل Excel نامعتبر است")}};r.readAsArrayBuffer(f);ev.target.value=""}
+function renderShifts(){shiftList.innerHTML=S.map((s,i)=>`<div class="shiftrow"><div><label>کد/نام</label><input value="${esc(s[1])}" onchange="S[${i}][1]=this.value;save()"></div><div><label>شروع</label><input type="time" value="${s[2]}" onchange="S[${i}][2]=this.value;render()"></div><div><label>پایان</label><input type="time" value="${s[3]}" onchange="S[${i}][3]=this.value;render()"></div><div><label>مدت</label><input disabled value="${dur(s[2],s[3])} ساعت"></div><div><label>مجاز برای</label><select onchange="S[${i}][4]=this.value;save()"><option value="both" ${s[4]=="both"?"selected":""}>همه</option><option value="male" ${s[4]=="male"?"selected":""}>فقط آقایان</option><option value="female" ${s[4]=="female"?"selected":""}>فقط خانم‌ها</option></select></div><label><input type="checkbox" ${s[5]?"checked":""} onchange="S[${i}][5]=this.checked;save()"> فعال</label><button class="btn danger" onclick="delShift(${i})" ${s[0]=="OFF"?"disabled":""}>حذف</button></div>`).join("")}
+function addShift(){let n=S.filter(x=>x[0]!="OFF").length+1;S.push(["S"+n,"S"+n,"08:00","16:00","both",1]);render()}function delShift(i){if(S[i][0]!="OFF"){S.splice(i,1);render()}}
+function saveRules(){R={femaleEnd:+femaleEnd.value,holidayPct:+holidayPct.value,nightMale:nightMale.checked,malePriority:malePriority.checked,thuAlt:thuAlt.checked,maxH:maxH.checked};save();render()}
+function renderRules(){femaleEnd.value=R.femaleEnd;holidayPct.value=R.holidayPct;nightMale.checked=R.nightMale;malePriority.checked=R.malePriority;thuAlt.checked=R.thuAlt;maxH.checked=R.maxH}
+function allowed(s,e){if(e[1]=="female"&&s[4]=="male")return false;if(e[1]=="male"&&s[4]=="female")return false;if(R.nightMale&&dur(s[2],s[3])>=11&&e[1]!="male")return false;if(e[1]=="female"&&s[2]!="00:00"&&mins(s[3])>R.femaleEnd*60&&mins(s[3])>mins(s[2]))return false;return true}
+function hours(i){return (G[i]||[]).reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0)}
+function generate(){let y=+year.value,m=+month.value,n=days(y,m);G={};locked={};E.forEach((e,i)=>{G[i]=Array(n).fill("OFF");locked[i]=Array(n).fill(0)});for(let d=1;d<=n;d++){let active=E.map((e,i)=>i).filter(i=>E[i][2]);let need=Math.max(1,Math.ceil(active.length*((friday(y,m,d)?R.holidayPct:100)/100)));let pool=active.filter(i=>!friday(y,m,d)||E[i][1]=="male");if(pool.length<need)pool=active;pool.sort((a,b)=>G[a].filter(x=>x!="OFF").length-G[b].filter(x=>x!="OFF").length).slice(0,need).forEach(i=>{if(thursday(y,m,d)&&E[i][1]=="female"&&R.thuAlt&&((i+d)%2==0))return;let c=S.filter(s=>s[5]&&s[0]!="OFF"&&allowed(s,E[i]));let s=c[(i+d)%Math.max(c.length,1)];if(s&&(!R.maxH||hours(i)+dur(s[2],s[3])<=+req.value))G[i][d-1]=s[0]})}render();toast("برنامه تولید شد")}
+function renderTable(id){let y=+year.value,m=+month.value,n=days(y,m),t=document.getElementById(id),h="<thead><tr><th class='sticky'>نام</th>";for(let d=1;d<=n;d++){let c=friday(y,m,d)?"holiday":thursday(y,m,d)?"thu":"";h+=`<th class="${c}">${d}<br>${W[wd(y,m,d)]}</th>`}h+="<th>ساعات</th></tr></thead><tbody>";E.forEach((e,i)=>{h+=`<tr><td class='sticky'><b>${esc(e[0])}</b><br><span class='badge ${e[1]}'>${e[1]=="male"?"آقا":"خانم"}</span></td>`;(G[i]||Array(n).fill("OFF")).forEach((id2,d)=>{let s=get(id2),c=friday(y,m,d+1)?"holiday":thursday(y,m,d+1)?"thu":"";h+=`<td class="shift ${c}"><select onchange="G[${i}][${d}]=this.value;save();render()">${S.filter(x=>x[5]).map(x=>`<option value="${x[0]}" ${x[0]==id2?"selected":""}>${esc(x[1])} | ${x[2]}-${x[3]}</option>`).join("")}</select></td>`});h+=`<td><b>${hours(i)}</b></td></tr>`});t.innerHTML=h+"</tbody>"}
+function validate(){let er=[],wa=[],y=+year.value,m=+month.value;E.forEach((e,i)=>{let h=hours(i);if(h>+req.value)er.push(`${e[0]}: ${h} ساعت، بیشتر از موظفی ${req.value} ساعت.`);if(h<+req.value-8)wa.push(`${e[0]}: ${h} ساعت، کمتر از موظفی است.`);(G[i]||[]).forEach((id,d)=>{let s=get(id);if(e[1]=="female"&&s[4]=="male")er.push(`${e[0]}: شیفت ${s[1]} برای خانم مجاز نیست.`);if(e[1]=="female"&&s[2]!="00:00"&&mins(s[3])>R.femaleEnd*60&&mins(s[3])>mins(s[2]))er.push(`${e[0]}: پایان شیفت ${s[1]} بعد از ساعت مجاز است.`)})});checkBox.className="card "+(er.length?"err":wa.length?"warn":"ok");checkBox.innerHTML=`<h2>کنترل و خطایابی</h2>${er.length?`<b>خطاها (${er.length})</b><ul>${er.map(x=>"<li>"+x+"</li>").join("")}</ul>`:"<p>خطای اصلی شناسایی نشد.</p>"}${wa.length?`<b>هشدارها (${wa.length})</b><ul>${wa.map(x=>"<li>"+x+"</li>").join("")}</ul>`:""}`;return er}
+function render(){renderEmp();renderShifts();renderRules();renderTable("table");renderTable("report");let er=validate();let total=Object.values(G).flat().reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0),night=Object.values(G).flat().filter(id=>dur(get(id)[2],get(id)[3])>=11).length;dashMonth.textContent=M[month.value-1]+" "+year.value;sEmp.textContent=E.length;sReq.textContent=req.value;sHours.textContent=total;sNight.textContent=night;sErr.textContent=er.length;dashStatus.className="card "+(er.length?"err":"ok");dashStatus.innerHTML=er.length?"برنامه دارای خطا است و باید اصلاح شود.":"برنامه از کنترل‌های اصلی عبور کرده است.";printMonth.textContent=M[month.value-1]+" "+year.value;calInfo.innerHTML=`روز اول ${M[month.value-1]} ${year.value}: <b>${W[wd(+year.value,+month.value,1)]}</b><br>تعداد روز: <b>${days(+year.value,+month.value)}</b><br>ساعات موظفی: <b>${req.value}</b> ساعت`;save()}
+function save(){saveReq();localStorage.setItem("shiftmaster",JSON.stringify({E,S,R,G,year:+year.value,month:+month.value}))}
+function load(){let x=JSON.parse(localStorage.getItem("shiftmaster")||"null");if(x){E=x.E||E;S=x.S||S;R={...R,...x.R};G=x.G||{};year.value=x.year||1405;month.value=x.month||6;req.value=x.required||reqVal()}else{G={}}}
+function csv(){let y=+year.value,m=+month.value,n=days(y,m),a=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>a.push([e[0],e[1],...(G[i]||[]).map(id=>{let s=get(id);return id=="OFF"?"OFF":`${s[1]} (${s[2]}-${s[3]})`}),hours(i)]));let b=new Blob(["\ufeff"+a.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n")],{type:"text/csv;charset=utf-8"}),a2=document.createElement("a");a2.href=URL.createObjectURL(b);a2.download=`ShiftMaster_${y}_${String(m).padStart(2,"0")}.csv`;a2.click()}
+function xlsx(){if(!window.XLSX){alert("کتابخانه Excel در دسترس نیست.");return}let y=+year.value,m=+month.value,n=days(y,m),a=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>a.push([e[0],e[1],...(G[i]||[]).map(id=>{let s=get(id);return id=="OFF"?"OFF":`${s[1]} ${s[2]}-${s[3]}`}),hours(i)]));let ws=XLSX.utils.aoa_to_sheet(a);ws["!cols"]=a[2].map((_,i)=>({wch:i<2?16:12}));let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Shift");XLSX.writeFile(wb,`ShiftMaster_${y}_${String(m).padStart(2,"0")}.xlsx`)}
+function printOnly(){page("builder",document.querySelector('.nav button:nth-child(6)'));setTimeout(()=>window.print(),100)}
+function backup(){let b=new Blob([JSON.stringify({version:"1.1",E,S,R,G,year:+year.value,month:+month.value,required:+req.value},null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=`ShiftMaster_Backup_${year.value}_${month.value}.json`;a.click()}
+function restore(ev){let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);E=x.E;S=x.S;R=x.R;G=x.G;year.value=x.year;month.value=x.month;req.value=x.required;render()}catch(e){alert("فایل پشتیبان نامعتبر است")}};r.readAsText(ev.target.files[0])}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(x){toastEl.textContent=x;toastEl.style.display="block";clearTimeout(window.t);window.t=setTimeout(()=>toastEl.style.display="none",2000)}
+if(sessionStorage.getItem("login")==="1")openApp();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
+</script>
+</body></html>
