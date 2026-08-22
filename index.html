@@ -1,11 +1,6 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="ShiftMaster Pro">
-<link rel="apple-touch-icon" href="icon.svg">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1d4ed8">
@@ -20,6 +15,7 @@
 @media(max-width:700px){.side{transform:translateX(110%);transition:.2s;width:270px}.side.open{transform:translateX(0)}.main{margin:0}.hamb{display:block;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px}.top{padding:0 12px}.content{padding:11px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.card{padding:12px}.row{grid-template-columns:1fr 90px 55px}.row .active{grid-column:1/-1}.actions .btn{flex:1 1 140px}.tip:after{display:none}}
 @media print{body{background:#fff}.side,.top,.no-print,.footer{display:none!important}.main{margin:0}.content{padding:0}.printonly{display:block!important}.print-card{display:block!important;border:0;box-shadow:none;padding:0}.tablewrap{overflow:visible;border:0}table{min-width:0;font-size:7px}.sticky{position:static}.shift select{appearance:none;border:0;background:transparent}.shift select option{display:none}}
 .printonly{display:none}
+.profile{position:relative}.profile-btn{background:#f1f5f9;color:#172033;border:1px solid #dbe3ef;border-radius:9px;padding:7px 12px;font-weight:700;cursor:pointer}.profile-menu{display:none;position:absolute;left:0;top:calc(100% + 7px);background:#fff;border:1px solid #dbe3ef;border-radius:10px;min-width:180px;box-shadow:0 12px 30px #0002;z-index:50;padding:6px}.profile-menu.open{display:block}.profile-menu button{display:block;width:100%;text-align:right;background:#fff;border:0;padding:9px;border-radius:7px;cursor:pointer}.profile-menu button:hover{background:#f1f5f9}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick{border:1px solid var(--l);background:#f8fafc;border-radius:11px;padding:14px;cursor:pointer}.quick:hover{background:#eef4ff}@media(max-width:700px){.quick-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -48,11 +44,11 @@
 <button onclick="logout()">🚪 خروج</button>
 </div></aside>
 
-<div class="main"><header class="top"><div><button class="hamb" onclick="toggleSide()">☰</button> <b id="title">داشبورد</b></div><small>کاربر: admin</small></header>
+<div class="main"><header class="top"><div><button class="hamb" onclick="toggleSide()">☰</button> <b id="title">داشبورد</b></div><div class="profile"><button class="profile-btn" onclick="toggleProfile()">👤 <span id="profileName">admin</span> ▾</button><div id="profileMenu" class="profile-menu"><button onclick="alert('پروفایل کاربری')">👤 پروفایل</button><button onclick="alert('تغییر رمز عبور از حساب کاربری انجام می‌شود.')">🔑 تغییر رمز</button><button onclick="logout()">🚪 خروج</button></div></div></header>
 <main class="content">
 
 <section id="dash" class="page active"><div class="card"><h2>داشبورد مدیریت شیفت</h2><p>ماه فعال: <b id="dashMonth"></b></p><div class="stats">
-<div class="stat"><span>تعداد نیرو</span><b id="sEmp">0</b></div><div class="stat"><span>موظفی</span><b id="sReq">0</b></div><div class="stat"><span>ساعات برنامه</span><b id="sHours">0</b></div><div class="stat"><span>شیفت شب</span><b id="sNight">0</b></div><div class="stat"><span>خطا</span><b id="sErr">0</b></div></div></div><div id="dashStatus" class="card ok"></div></section>
+<div class="stat"><span>تعداد نیرو</span><b id="sEmp">0</b></div><div class="stat"><span>موظفی</span><b id="sReq">0</b></div><div class="stat"><span>ساعات برنامه</span><b id="sHours">0</b></div><div class="stat"><span>شیفت شب</span><b id="sNight">0</b></div><div class="stat"><span>خطا</span><b id="sErr">0</b></div></div></div><div id="dashStatus" class="card ok"></div><div class="card"><h3>دسترسی سریع</h3><div class="quick-grid"><div class="quick" onclick="page('builder',document.querySelector('.nav button:nth-child(6)'))">🗓️ ساخت برنامه</div><div class="quick" onclick="page('emps',document.querySelector('.nav button:nth-child(2)'))">👥 مدیریت نیروها</div><div class="quick" onclick="page('check',document.querySelector('.nav button:nth-child(7)'))">🔍 کنترل خطاها</div><div class="quick" onclick="page('reports',document.querySelector('.nav button:nth-child(8)'))">📊 گزارش ماهانه</div></div></div></section>
 
 <section id="emps" class="page"><div class="card"><h2>مدیریت نیروها</h2><div class="actions">
 <button class="btn primary" onclick="addEmp()">➕ افزودن نیرو</button><button class="btn danger" onclick="removeEmp()">➖ کاهش نیرو</button>
@@ -65,7 +61,7 @@
 <div class="field"><label>ساعات موظفی ماه</label><input id="req" type="number" step=".25" onchange="save()"></div>
 <div class="field"><label>روزهای ماه</label><input id="days" disabled></div></div><div id="calInfo" class="card" style="margin-top:12px;background:#f8fafc"></div></div></section>
 
-<section id="shifts" class="page"><div class="card"><h2>مدیریت شیفت‌ها</h2><p style="font-size:11px;color:#64748b">ساعت و دقیقه را انتخاب کنید. شیفت‌های عبوری از نیمه‌شب نیز پشتیبانی می‌شوند.</p><div id="shiftList"></div><button class="btn primary" onclick="addShift()">➕ ساخت شیفت جدید</button></div></section>
+<section id="shifts" class="page"><div class="card"><h2>مدیریت شیفت‌ها</h2><p style="font-size:11px;color:#64748b">ساعت و دقیقه را انتخاب کنید. شیفت‌های عبوری از نیمه‌شب نیز پشتیبانی می‌شوند.</p><div id="shiftList"></div><button class="btn primary" onclick="addShift()">➕ ساخت شیفت جدید</button><button class="btn secondary" onclick="resetShifts()">♻️ بازگردانی شیفت‌های اولیه</button></div></section>
 
 <section id="rules" class="page"><div class="card"><h2>قوانین قابل تنظیم</h2><div class="grid">
 <div class="field"><label>حداکثر ساعت پایان خانم‌ها</label><input id="femaleEnd" type="number"></div>
@@ -80,7 +76,7 @@
 
 <section id="backup" class="page"><div class="card"><h2>پشتیبان‌گیری</h2><button class="btn primary" onclick="backup()">💾 دریافت پشتیبان</button><label class="btn secondary">📥 بازیابی<input type="file" accept=".json" hidden onchange="restore(event)"></label></div></section>
 
-<div class="footer">طراح و توسعه‌دهنده: <b>محسن یحیوی</b><br><span>نسخه ۱.۱</span></div>
+<div class="footer"><b>طراح و توسعه‌دهنده: محسن یحیوی</b><br>تلفن پشتیبانی: 09010227717<br><span>نسخه ۱.۲</span></div>
 </main></div></div><div id="toast" class="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -96,32 +92,15 @@ function leap(y){let r=((y-474)%2820+2820)%2820+474;return ((r+38)*682%2816)<682
 function jdn(y,m,d){let e=y-(y>=0?474:473),p=474+(e%2820+2820)%2820;return d+(m<=7?(m-1)*31:(m-1)*30+6)+Math.floor((p*682-110)/2816)+(p-1)*365+Math.floor(e/2820)*1029983+1948319}
 function wd(y,m,d){return (jdn(y,m,d)+1)%7} function days(y,m){return m<=6?31:m<=11?30:(leap(y)?30:29)}
 function friday(y,m,d){return wd(y,m,d)==6} function thursday(y,m,d){return wd(y,m,d)==5}
-function reqVal(){let k=year.value+"-"+month.value, q=JSON.parse(localStorage.getItem("shift_required")||"{}");return q[k]??(year.value==1405&&month.value==6?191:defaultReq[month.value]||176)}
+const official1405={1:147,2:191,3:176,4:183,5:169,6:191,7:191,8:183,9:191,10:176,11:169,12:154};
+function reqVal(){let k=year.value+"-"+month.value,q=JSON.parse(localStorage.getItem("shift_required")||"{}");return q[k]??(String(year.value)==="1405"?official1405[+month.value]:(defaultReq[month.value]||176))}
 function saveReq(){let q=JSON.parse(localStorage.getItem("shift_required")||"{}");q[year.value+"-"+month.value]=+req.value;localStorage.setItem("shift_required",JSON.stringify(q))}
 function get(id){return S.find(x=>x[0]===id)||S.find(x=>x[0]==="OFF")}
 function page(id,b){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");title.textContent=b?b.textContent.replace(/[^؀-ۿ\s]+/g,"").trim():"";side.classList.remove("open")}
 function toggleSide(){side.classList.toggle("open")}
-function login(){
-  const username=document.getElementById("user").value.trim();
-  const password=document.getElementById("pass").value;
-  if(username==="admin" && password==="1234"){
-    sessionStorage.setItem("login","1");
-    openApp();
-  }else{
-    alert("نام کاربری یا رمز عبور اشتباه است.");
-  }
-}
-function logout(){sessionStorage.removeItem("login");location.reload()}
-function openApp(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("app").style.display="flex";
-  const monthEl=document.getElementById("month");
-  monthEl.innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");
-  load();
-  document.getElementById("req").value=reqVal();
-  document.getElementById("days").value=days(+document.getElementById("year").value,+document.getElementById("month").value);
-  render();
-}
+async function login(){const username=document.getElementById("user").value.trim().toLowerCase(),password=document.getElementById("pass").value;if(!username||!password){alert("نام کاربری و رمز عبور را وارد کنید.");return}const {data:email,error:le}=await onlineDB.rpc("get_login_email",{p_username:username});if(le||!email){alert("نام کاربری یا رمز عبور اشتباه است.");return}const {data,error}=await onlineDB.auth.signInWithPassword({email,password});if(error){alert("نام کاربری یا رمز عبور اشتباه است.");return}sessionStorage.setItem("login","1");await openApp(data.user)}
+async function logout(){await onlineDB.auth.signOut();sessionStorage.removeItem("login");location.reload()}
+async function openApp(user){document.getElementById("login").style.display="none";document.getElementById("app").style.display="flex";document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");load();if(user){const {data:p}=await onlineDB.from("profiles").select("username,display_name,role").eq("id",user.id).maybeSingle();if(p){document.getElementById("profileName").textContent=p.display_name||p.username||"کاربر";window.currentProfile=p}}await loadOnlineState();document.getElementById("req").value=reqVal();document.getElementById("days").value=days(+year.value,+month.value);render()}
 function refresh(){req.value=reqVal();days.value=days(year.value,month.value);G={};locked={};save();render()}
 function addEmp(){E.push(["همکار "+(E.length+1),"male",1]);render()} function removeEmp(){if(E.length>1)E.pop();render()} function delEmp(i){E.splice(i,1);render()}
 function renderEmp(){empList.innerHTML=E.map((e,i)=>`<div class="row"><input value="${esc(e[0])}" onchange="E[${i}][0]=this.value;save()"><select onchange="E[${i}][1]=this.value;save()"><option value="male" ${e[1]=="male"?"selected":""}>آقا</option><option value="female" ${e[1]=="female"?"selected":""}>خانم</option></select><button class="btn danger" onclick="delEmp(${i})">حذف</button><label class="active"><input type="checkbox" ${e[2]?"checked":""} onchange="E[${i}][2]=this.checked;save()"> فعال</label></div>`).join("")}
@@ -135,21 +114,19 @@ function hours(i){return (G[i]||[]).reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),
 function generate(){let y=+year.value,m=+month.value,n=days(y,m);G={};locked={};E.forEach((e,i)=>{G[i]=Array(n).fill("OFF");locked[i]=Array(n).fill(0)});for(let d=1;d<=n;d++){let active=E.map((e,i)=>i).filter(i=>E[i][2]);let need=Math.max(1,Math.ceil(active.length*((friday(y,m,d)?R.holidayPct:100)/100)));let pool=active.filter(i=>!friday(y,m,d)||E[i][1]=="male");if(pool.length<need)pool=active;pool.sort((a,b)=>G[a].filter(x=>x!="OFF").length-G[b].filter(x=>x!="OFF").length).slice(0,need).forEach(i=>{if(thursday(y,m,d)&&E[i][1]=="female"&&R.thuAlt&&((i+d)%2==0))return;let c=S.filter(s=>s[5]&&s[0]!="OFF"&&allowed(s,E[i]));let s=c[(i+d)%Math.max(c.length,1)];if(s&&(!R.maxH||hours(i)+dur(s[2],s[3])<=+req.value))G[i][d-1]=s[0]})}render();toast("برنامه تولید شد")}
 function renderTable(id){let y=+year.value,m=+month.value,n=days(y,m),t=document.getElementById(id),h="<thead><tr><th class='sticky'>نام</th>";for(let d=1;d<=n;d++){let c=friday(y,m,d)?"holiday":thursday(y,m,d)?"thu":"";h+=`<th class="${c}">${d}<br>${W[wd(y,m,d)]}</th>`}h+="<th>ساعات</th></tr></thead><tbody>";E.forEach((e,i)=>{h+=`<tr><td class='sticky'><b>${esc(e[0])}</b><br><span class='badge ${e[1]}'>${e[1]=="male"?"آقا":"خانم"}</span></td>`;(G[i]||Array(n).fill("OFF")).forEach((id2,d)=>{let s=get(id2),c=friday(y,m,d+1)?"holiday":thursday(y,m,d+1)?"thu":"";h+=`<td class="shift ${c}"><select onchange="G[${i}][${d}]=this.value;save();render()">${S.filter(x=>x[5]).map(x=>`<option value="${x[0]}" ${x[0]==id2?"selected":""}>${esc(x[1])} | ${x[2]}-${x[3]}</option>`).join("")}</select></td>`});h+=`<td><b>${hours(i)}</b></td></tr>`});t.innerHTML=h+"</tbody>"}
 function validate(){let er=[],wa=[],y=+year.value,m=+month.value;E.forEach((e,i)=>{let h=hours(i);if(h>+req.value)er.push(`${e[0]}: ${h} ساعت، بیشتر از موظفی ${req.value} ساعت.`);if(h<+req.value-8)wa.push(`${e[0]}: ${h} ساعت، کمتر از موظفی است.`);(G[i]||[]).forEach((id,d)=>{let s=get(id);if(e[1]=="female"&&s[4]=="male")er.push(`${e[0]}: شیفت ${s[1]} برای خانم مجاز نیست.`);if(e[1]=="female"&&s[2]!="00:00"&&mins(s[3])>R.femaleEnd*60&&mins(s[3])>mins(s[2]))er.push(`${e[0]}: پایان شیفت ${s[1]} بعد از ساعت مجاز است.`)})});checkBox.className="card "+(er.length?"err":wa.length?"warn":"ok");checkBox.innerHTML=`<h2>کنترل و خطایابی</h2>${er.length?`<b>خطاها (${er.length})</b><ul>${er.map(x=>"<li>"+x+"</li>").join("")}</ul>`:"<p>خطای اصلی شناسایی نشد.</p>"}${wa.length?`<b>هشدارها (${wa.length})</b><ul>${wa.map(x=>"<li>"+x+"</li>").join("")}</ul>`:""}`;return er}
-function render(){renderEmp();renderShifts();renderRules();renderTable("table");renderTable("report");let er=validate();let total=Object.values(G).flat().reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0),night=Object.values(G).flat().filter(id=>dur(get(id)[2],get(id)[3])>=11).length;dashMonth.textContent=M[month.value-1]+" "+year.value;sEmp.textContent=E.length;sReq.textContent=req.value;sHours.textContent=total;sNight.textContent=night;sErr.textContent=er.length;dashStatus.className="card "+(er.length?"err":"ok");dashStatus.innerHTML=er.length?"برنامه دارای خطا است و باید اصلاح شود.":"برنامه از کنترل‌های اصلی عبور کرده است.";printMonth.textContent=M[month.value-1]+" "+year.value;calInfo.innerHTML=`روز اول ${M[month.value-1]} ${year.value}: <b>${W[wd(+year.value,+month.value,1)]}</b><br>تعداد روز: <b>${days(+year.value,+month.value)}</b><br>ساعات موظفی: <b>${req.value}</b> ساعت`;save()}
-function save(){saveReq();localStorage.setItem("shiftmaster",JSON.stringify({E,S,R,G,year:+year.value,month:+month.value}))}
-function load(){let x=JSON.parse(localStorage.getItem("shiftmaster")||"null");if(x){E=x.E||E;S=x.S||S;R={...R,...x.R};G=x.G||{};year.value=x.year||1405;month.value=x.month||6;req.value=x.required||reqVal()}else{G={}}}
+function render(){renderEmp();renderShifts();renderRules();renderTable("table");renderReport();let er=validate();let total=Object.values(G).flat().reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0),night=Object.values(G).flat().filter(id=>dur(get(id)[2],get(id)[3])>=11).length;dashMonth.textContent=M[month.value-1]+" "+year.value;sEmp.textContent=E.length;sReq.textContent=req.value;sHours.textContent=total;sNight.textContent=night;sErr.textContent=er.length;dashStatus.className="card "+(er.length?"err":"ok");dashStatus.innerHTML=er.length?"برنامه دارای خطا است و باید اصلاح شود.":"برنامه از کنترل‌های اصلی عبور کرده است.";printMonth.textContent=M[month.value-1]+" "+year.value;calInfo.innerHTML=`روز اول ${M[month.value-1]} ${year.value}: <b>${W[wd(+year.value,+month.value,1)]}</b><br>تعداد روز: <b>${days(+year.value,+month.value)}</b><br>ساعات موظفی: <b>${req.value}</b> ساعت`;save()}
+function save(){saveReq();localStorage.setItem("shiftmaster",JSON.stringify({E,S,R,G,year:+year.value,month:+month.value}));scheduleOnlineSave()}
+function load(){let x=JSON.parse(localStorage.getItem("shiftmaster")||"null");if(x){E=x.E||E;S=x.S||S;R={...R,...x.R};G=x.G||{};year.value=x.year||1405;month.value=x.month||6;req.value=reqVal()}else G={}}
+async function loadOnlineState(){if(!onlineDB)return;const {data:{user}}=await onlineDB.auth.getUser();if(!user)return;const {data,error}=await onlineDB.from("shift_states").select("payload").eq("user_id",user.id).eq("year",+year.value).eq("month",+month.value).maybeSingle();if(!error&&data?.payload){E=data.payload.E||E;S=data.payload.S||S;R={...R,...(data.payload.R||{})};G=data.payload.G||{}}}
+let onlineSaveTimer;function scheduleOnlineSave(){clearTimeout(onlineSaveTimer);onlineSaveTimer=setTimeout(saveOnlineState,700)}
+async function saveOnlineState(){if(!onlineDB)return;const {data:{user}}=await onlineDB.auth.getUser();if(!user)return;await onlineDB.from("shift_states").upsert({user_id:user.id,year:+year.value,month:+month.value,payload:{E,S,R,G},updated_at:new Date().toISOString()},{onConflict:"user_id,year,month"})}
 function csv(){let y=+year.value,m=+month.value,n=days(y,m),a=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>a.push([e[0],e[1],...(G[i]||[]).map(id=>{let s=get(id);return id=="OFF"?"OFF":`${s[1]} (${s[2]}-${s[3]})`}),hours(i)]));let b=new Blob(["\ufeff"+a.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n")],{type:"text/csv;charset=utf-8"}),a2=document.createElement("a");a2.href=URL.createObjectURL(b);a2.download=`ShiftMaster_${y}_${String(m).padStart(2,"0")}.csv`;a2.click()}
 function xlsx(){if(!window.XLSX){alert("کتابخانه Excel در دسترس نیست.");return}let y=+year.value,m=+month.value,n=days(y,m),a=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>a.push([e[0],e[1],...(G[i]||[]).map(id=>{let s=get(id);return id=="OFF"?"OFF":`${s[1]} ${s[2]}-${s[3]}`}),hours(i)]));let ws=XLSX.utils.aoa_to_sheet(a);ws["!cols"]=a[2].map((_,i)=>({wch:i<2?16:12}));let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Shift");XLSX.writeFile(wb,`ShiftMaster_${y}_${String(m).padStart(2,"0")}.xlsx`)}
-function printOnly(){page("builder",document.querySelector('.nav button:nth-child(6)'));setTimeout(()=>window.print(),100)}
+function printOnly(){let w=window.open("","_blank","width=1400,height=900");if(!w){alert("پنجره چاپ توسط مرورگر مسدود شده است.");return}let y=+year.value,m=+month.value,n=days(y,m),rows="";E.forEach((e,i)=>{rows+=`<tr><td>${esc(e[0])}</td><td>${e[1]=="male"?"آقا":"خانم"}</td>`;(G[i]||[]).forEach(id=>{let z=get(id);rows+=`<td>${id=="OFF"?"OFF":esc(z[1])+"<br>"+z[2]+"-"+z[3]}</td>`});rows+=`<td>${hours(i)}</td></tr>`});let heads=`<tr><th>نام</th><th>جنسیت</th>${Array.from({length:n},(_,i)=>`<th>${i+1}<br>${W[wd(y,m,i+1)]}</th>`).join("")}<th>ساعات</th></tr>`;w.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>ShiftMaster Pro</title><style>body{font-family:Tahoma;direction:rtl}table{border-collapse:collapse;width:100%;font-size:8px}th,td{border:1px solid #999;padding:4px;text-align:center}th{background:#dbeafe}</style></head><body><h2 style="text-align:center">برنامه شیفت ${M[m-1]} ${y}</h2><table>${heads}${rows}</table><p style="text-align:center">طراح و توسعه‌دهنده: محسن یحیوی<br>تلفن پشتیبانی: 09010227717<br>نسخه ۱.۲</p></body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),300)}
 function backup(){let b=new Blob([JSON.stringify({version:"1.1",E,S,R,G,year:+year.value,month:+month.value,required:+req.value},null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=`ShiftMaster_Backup_${year.value}_${month.value}.json`;a.click()}
 function restore(ev){let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);E=x.E;S=x.S;R=x.R;G=x.G;year.value=x.year;month.value=x.month;req.value=x.required;render()}catch(e){alert("فایل پشتیبان نامعتبر است")}};r.readAsText(ev.target.files[0])}
 function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function toast(x){toastEl.textContent=x;toastEl.style.display="block";clearTimeout(window.t);window.t=setTimeout(()=>toastEl.style.display="none",2000)}
-if(sessionStorage.getItem("login")==="1")openApp();
+
 </script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
-}
-</script>
-</body></html>
+<script>function toggleProfile(){document.getElementById("profileMenu")?.classList.toggle("open")}document.addEventListener("click",e=>{if(!e.target.closest(".profile"))document.getElementById("profileMenu")?.classList.remove("open")});document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.getElementById("login")?.style.display!=="none")login()});function resetShifts(){if(!confirm("شیفت‌ها و برنامه ماه جاری به حالت اولیه برگردد؟"))return;S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];G={};save();render();toast("شیفت‌ها به حالت اولیه برگشتند")}function renderReport(){let y=+year.value,m=+month.value,n=days(y,m),t=document.getElementById("report"),h="<thead><tr><th>نام</th><th>جنسیت</th>";for(let d=1;d<=n;d++)h+=`<th>${d}<br>${W[wd(y,m,d)]}</th>`;h+="<th>ساعات</th></tr></thead><tbody>";E.forEach((e,i)=>{h+=`<tr><td>${esc(e[0])}</td><td>${e[1]=="male"?"آقا":"خانم"}</td>`;(G[i]||Array(n).fill("OFF")).forEach(id=>{let z=get(id);h+=`<td>${id=="OFF"?"OFF":esc(z[1])+"<br>"+z[2]+"-"+z[3]}</td>`});h+=`<td>${hours(i)}</td></tr>`});t.innerHTML=h+"</tbody>"}</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>const SUPABASE_URL="https://prffpkzkjrktbdfnediz.supabase.co",SUPABASE_PUBLISHABLE_KEY="sb_publishable_D_Eg1YgthsNknnwbjHtTyA_APtjmJ2e";const onlineDB=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});(async()=>{const {data:{session}}=await onlineDB.auth.getSession();if(session?.user)await openApp(session.user)})();</script></body></html>
