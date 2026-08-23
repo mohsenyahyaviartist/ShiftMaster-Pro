@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<link rel="manifest" href="manifest.webmanifest">
+<title>ShiftMaster Pro</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--primary:#2563eb;--primary2:#1d4ed8;--line:#dbe3ef;--danger:#dc2626;--warn:#d97706;--ok:#15803d;--dark:#111827}
+*{box-sizing:border-box}html{overflow-y:scroll}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}
+.login{min-height:100vh;display:grid;place-items:center;padding:16px;background:linear-gradient(135deg,#0f172a,#2563eb)}
+.loginbox{width:min(430px,100%);background:#fff;border-radius:20px;padding:28px;box-shadow:0 24px 70px #0006}.loginbox h1{margin:0 0 8px}.loginbox p{color:var(--muted);font-size:12px}.loginbox label{display:block;font-size:12px;font-weight:700;margin-top:12px}.loginbox input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;margin-top:6px}.login-footer{text-align:center;color:#64748b;font-size:11px;margin-top:24px;line-height:1.9}
+.app{display:none;min-height:100vh}.side{position:fixed;right:0;top:0;bottom:0;width:255px;background:var(--dark);color:#fff;padding:18px;z-index:30;overflow:auto}.brand{font-size:20px;font-weight:800}.brand small{display:block;color:#94a3b8;font-size:10px;margin-top:5px}.nav{margin-top:15px}.nav button{display:block;width:100%;border:0;background:transparent;color:#cbd5e1;text-align:right;padding:11px;border-radius:9px;margin:4px 0}.nav button:hover,.nav button.active{background:#1f2937;color:#fff}.main{margin-right:255px;min-height:100vh}.top{height:64px!important;min-height:64px!important;max-height:64px!important;background:linear-gradient(135deg,#173f8a,#2563eb);color:#fff;border-bottom:1px solid #173f8a;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:fixed;top:0;left:255px;right:0;width:auto!important;box-sizing:border-box;z-index:50;box-shadow:0 3px 14px #0f172a22;overflow:hidden}.top-title{font-weight:800;font-size:18px;line-height:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:70vw}.profile{position:relative}.profile-btn{background:#f1f5f9;color:#172033;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:700}.profile-menu{display:none;position:absolute;left:0;top:calc(100% + 8px);width:210px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 15px 40px #0002;padding:6px;z-index:100}.profile-menu.open{display:block}.profile-menu button{width:100%;border:0;background:#fff;text-align:right;padding:10px;border-radius:8px}.profile-menu button:hover{background:#f1f5f9}.hamb{display:none;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px;margin-left:8px}
+.content{padding:82px 18px 18px;max-width:1800px;margin:auto;min-height:calc(100vh - 64px)}.page{display:none}.page.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:15px;box-shadow:0 4px 18px #0f172a0a}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.field input,.field select{width:100%;min-height:42px;padding:9px;border:1px solid #cbd5e1;border-radius:9px;background:#fff}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:800}.primary{background:var(--primary);color:#fff}.secondary{background:#e8eefc;color:#1e3a8a}.danger{background:#fee2e2;color:#991b1b}.success{background:#dcfce7;color:#166534}.muted{color:var(--muted);font-size:11px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stat{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:13px}.stat span{font-size:11px;color:var(--muted)}.stat b{display:block;font-size:20px;margin-top:5px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:15px;font-weight:800}.quick:hover{background:#eef4ff}.row{display:grid;grid-template-columns:1fr 120px 70px 70px;gap:7px;align-items:center;margin-bottom:8px}.row input,.row select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.shiftrow{display:grid;grid-template-columns:1.1fr 90px 90px 90px 90px 120px 65px 65px;gap:7px;align-items:end;margin-bottom:8px}.shiftrow input,.shiftrow select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.timebox{display:flex;gap:5px}.time-input{width:100%;min-width:110px;height:36px;min-height:36px;padding:5px 8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:var(--text);font-size:12px}.time-input::-webkit-calendar-picker-indicator{width:15px;height:15px;cursor:pointer}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:1050px}th,td{padding:7px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;white-space:nowrap;font-size:11px}th{background:#eef3f9;position:sticky;top:0;z-index:3}.sticky{position:sticky;right:0;background:#fff;z-index:4;min-width:145px}.holiday{background:#fff1f2!important;color:#991b1b}.thu{background:#fffbeb!important}.off{background:#f1f5f9!important;color:#64748b}.badge{padding:3px 7px;border-radius:15px;font-size:9px}.male{background:#dbeafe;color:#1e40af}.female{background:#fce7f3;color:#9d174d}.shift-select{padding:5px;border:1px solid #d5dce7;border-radius:6px;font-size:10px}.ok{border-right:4px solid var(--ok);background:#f3fff6}.warn{border-right:4px solid var(--warn);background:#fffaf2}.err{border-right:4px solid var(--danger);background:#fff7f7}.tip{position:relative}.tip:after{content:attr(data-tip);position:absolute;right:0;top:100%;margin-top:7px;width:250px;padding:8px;background:#111827;color:#fff;border-radius:8px;font-size:10px;line-height:1.8;opacity:0;pointer-events:none;z-index:100}.tip:hover:after{opacity:1}.footer{text-align:center;color:var(--muted);font-size:11px;padding:25px;line-height:1.9}.toast{position:fixed;left:18px;bottom:18px;background:#111827;color:#fff;padding:10px 14px;border-radius:9px;display:none;z-index:200}.source-note{font-size:10px;color:#64748b;margin-top:8px}.readonly table select{pointer-events:none;background:transparent;border:0;appearance:none}.hidden{display:none!important}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(3,1fr)}.quick-grid{grid-template-columns:repeat(2,1fr)}.shiftrow{grid-template-columns:1fr 1fr 1fr 1fr}}
+@media(max-width:700px){.top{left:0!important;right:0!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;padding:0 10px}.content{padding-top:78px}.side{transform:translateX(110%);transition:.2s;width:275px}.side.open{transform:translateX(0)}.main{margin:0}.hamb{display:inline-block}.top{height:64px;min-height:64px;max-height:64px;padding:0 10px}.top-title{font-size:14px}.content{padding:10px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.quick-grid{grid-template-columns:1fr 1fr}.card{padding:12px}.row{grid-template-columns:1fr 90px 60px 55px}.shiftrow{grid-template-columns:1fr 1fr}.actions .btn{flex:1 1 140px}.profile-btn{font-size:11px;padding:7px 9px}.tip:after{display:none}.footer{padding:18px}}
+@media print{body{background:#fff}.side,.top,.no-print,.footer{display:none!important}.main{margin:0}.content{padding:0}.page{display:none!important}.print-page{display:block!important}.print-page .card{border:0;box-shadow:none}.tablewrap{overflow:visible;border:0}table{min-width:0;font-size:7px}.sticky{position:static}.print-page select{appearance:none;border:0;background:transparent}}
+.sm-about p{line-height:2}.sm-features{display:flex;flex-wrap:wrap;gap:8px}.sm-features span{background:#eef4ff;border:1px solid #dbe7ff;border-radius:10px;padding:7px 10px;font-size:11px}.access-disabled{opacity:.45!important;cursor:not-allowed!important}.access-disabled:disabled{opacity:.45!important;cursor:not-allowed!important}.coverage-item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:9px;border-radius:9px;margin:6px 0}.coverage-item button{border:0;background:#fee2e2;color:#991b1b;border-radius:7px;padding:5px 8px}.top{background:linear-gradient(135deg,#173f8a,#2563eb);color:#fff}.top .profile-btn{background:#fff;color:#172033;border-color:#fff}.top-title{color:#fff}.hamb{background:#eef4ff}.nav button.active,.nav button:hover{background:#2563eb;color:#fff}.top,.top *{flex-shrink:0}.top{box-sizing:border-box}.time-input{accent-color:var(--primary)}
+</style>
+
+<style id="sm-header-stable">
+.top > div:first-child{min-width:0;display:flex;align-items:center;gap:8px}
+.top .profile{flex:0 0 auto}
+@media(min-width:701px){
+  .top{left:255px!important;right:0!important;width:calc(100% - 255px)!important}
+}
+@media(max-width:700px){
+  .top{left:0!important;right:0!important;width:100%!important}
+}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+  <div class="loginbox">
+    <h1>ShiftMaster Pro</h1>
+    <p>پنل حرفه‌ای طراحی، مدیریت و کنترل شیفت</p>
+    <label for="user">نام کاربری</label><input id="user" autocomplete="username" placeholder="نام کاربری">
+    <label for="pass">رمز عبور</label><input id="pass" type="password" autocomplete="current-password" placeholder="رمز عبور">
+    <button class="btn primary" style="width:100%;margin-top:12px" onclick="login()">ورود</button>
+    <div id="loginMsg" class="muted" style="margin-top:10px"></div>
+    <div class="login-footer"><b>طراح و توسعه‌دهنده: محسن یحیوی</b><br>تلفن پشتیبانی: 09010227717<br>نسخه ۱.۰</div>
+  </div>
+</div>
+
+<div id="app" class="app">
+<aside id="side" class="side">
+  <div class="brand">ShiftMaster Pro<small>Smart Shift Management</small></div>
+  <div class="nav">
+    <button class="active tip" data-tip="نمای کلی وضعیت برنامه، نیروها، ساعات و خطاهای ماه جاری." onclick="page('dash',this)">🏠 داشبورد</button>
+    <button class="tip" data-tip="افزودن، حذف، ویرایش و ورود نیروها از فایل Excel." onclick="page('emps',this)">👥 مدیریت نیروها</button>
+    <button class="tip" data-tip="انتخاب سال و ماه، مشاهده تقویم واقعی و ساعات موظفی قابل ویرایش." onclick="page('cal',this)">📅 تقویم و موظفی</button>
+    <button class="tip" data-tip="ساخت و ویرایش شیفت با ساعت و دقیقه دلخواه." onclick="page('shifts',this)">⏰ ساخت شیفت</button>
+    <button class="tip" data-tip="تنظیم محدودیت‌های جنسیت، تعطیلات، پنجشنبه‌ها و سقف ساعات." onclick="page('rules',this)">🧩 قوانین شیفت</button>
+    <button class="tip" data-tip="تولید خودکار برنامه ماهانه و ویرایش دستی آن." onclick="page('builder',this)">🧠 ساخت هوشمند شیفت</button>
+    <button class="tip" data-tip="نمایش خطاها و هشدارهای برنامه بدون تغییر مستقیم شیفت." onclick="page('check',this)">🔍 کنترل و خطایابی</button>
+    <button class="tip" data-tip="گزارش نهایی فقط‌خواندنی، خروجی Excel/CSV و چاپ PDF." onclick="page('reports',this)">📊 گزارش‌ها</button>
+    <button class="tip" data-tip="دانلود و بازیابی نسخه پشتیبان برنامه." onclick="page('backup',this)">💾 پشتیبان‌گیری</button>
+    <button class="tip" data-tip="مدیریت کاربران فقط برای مدیر سیستم." onclick="page('users',this)">👤 مدیریت کاربران</button>
+  </div>
+</aside>
+<div class="main">
+<header class="top"><div><button class="hamb" onclick="toggleSide()">☰</button><span id="title" class="top-title">داشبورد</span></div><div class="profile"><button class="profile-btn" onclick="toggleProfile()">👤 <span id="profileName">admin</span> ▾</button><div id="profileMenu" class="profile-menu"><button onclick="showProfile()">👤 پروفایل کاربری</button><button onclick="changePassword()">🔑 تغییر رمز عبور</button><button onclick="logout()">🚪 خروج</button></div></div></header>
+<main class="content">
+<section id="dash" class="page active">
+ <div class="card"><h2>داشبورد مدیریت شیفت</h2><p>ماه فعال: <b id="dashMonth"></b></p><div class="stats"><div class="stat"><span>تعداد نیرو</span><b id="sEmp">0</b></div><div class="stat"><span>موظفی</span><b id="sReq">0</b></div><div class="stat"><span>ساعات برنامه</span><b id="sHours">0</b></div><div class="stat"><span>شیفت شب</span><b id="sNight">0</b></div><div class="stat"><span>خطا</span><b id="sErr">0</b></div></div></div>
+ <div id="dashStatus" class="card ok"></div><div id="userScopeNotice" class="card" style="background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a">اطلاعات این حساب به‌صورت جداگانه ذخیره و بازیابی می‌شود.</div><div class="card sm-about"><h2>درباره ShiftMaster Pro</h2><p>ShiftMaster Pro برای طراحی، مدیریت و کنترل برنامه شیفت ماهانه کارکنان طراحی شده است و قوانین و محدودیت‌های قانون کار و همچنین قوانین و محدودیت‌های تعریف‌شده در برنامه را در طراحی و کنترل شیفت لحاظ می‌کند.</p><div class="sm-features"><span>📅 تقویم شمسی و تشخیص روز هفته</span><span>⏱️ محاسبه ساعات موظفی</span><span>👥 مدیریت نیروها</span><span>⚖️ اعمال قوانین و محدودیت‌های قانون کار در شیفت</span><span>🧠 تولید متعادل برنامه</span><span>📊 Excel / CSV / PDF</span><span>💾 پشتیبان‌گیری</span><span>🔐 سطح دسترسی کاربران</span></div></div>
+ <div class="card"><h3>دسترسی سریع</h3><div class="quick-grid"><button class="quick" onclick="goto('builder',6)">🗓️ ساخت برنامه جدید</button><button class="quick" onclick="goto('emps',2)">👥 مدیریت نیروها</button><button class="quick" onclick="goto('check',7)">🔍 کنترل خطاها</button><button class="quick" onclick="goto('reports',8)">📊 گزارش ماهانه</button></div></div>
+</section>
+
+<section id="emps" class="page"><div class="card"><h2>مدیریت نیروها</h2><div class="actions"><button class="btn primary" onclick="addEmp()">➕ افزودن نیرو</button><button class="btn danger" onclick="removeEmp()">➖ کاهش نیرو</button><label class="btn secondary tip" data-tip="فایل Excel با ستون‌های نام و جنسیت را انتخاب کنید.">📥 ورود از Excel<input id="excel" type="file" accept=".xlsx,.xls,.csv" hidden onchange="importExcel(event)"></label></div></div><div class="card"><div id="empList"></div></div></section>
+
+<section id="cal" class="page"><div class="card"><h2>تقویم و موظفی</h2><div class="grid"><div class="field"><label>سال</label><select id="year"><option>1404</option><option selected>1405</option><option>1406</option><option>1407</option><option>1408</option></select></div><div class="field"><label>ماه</label><select id="month"></select></div><div class="field"><label>تعداد روزهای ماه</label><input id="days" readonly></div><div class="field"><label>ساعات موظفی ماه</label><input id="req" type="number" min="0" step="1"></div></div><div class="actions"><button class="btn primary" onclick="refreshMonth()">🔄 اعمال ماه</button><button class="btn secondary" onclick="saveRequired()">💾 ذخیره موظفی دستی</button></div><div id="calInfo" class="card" style="margin-top:12px"></div><div class="source-note">مقادیر پیش‌فرض ۱۴۰۵ از جدول‌های منتشرشده ساعات موظفی سال ۱۴۰۵ گرفته شده‌اند و مقدار هر ماه قابل ویرایش است.</div></div></section>
+
+<section id="shifts" class="page"><div class="card"><h2>ساخت شیفت</h2><p class="muted">برای هر شیفت ساعت و دقیقه شروع و پایان را از منو انتخاب کنید. شیفت‌های تعریف‌شده قابل ویرایش هستند.</p><button class="btn primary" onclick="addShift()">➕ افزودن شیفت</button></div><div class="card"><div id="shiftList"></div></div></section>
+
+<section id="rules" class="page"><div class="card"><h2>قوانین شیفت</h2><div class="grid"><div class="field"><label>حداکثر پایان شیفت خانم‌ها</label><input id="femaleEnd" type="number" min="0" max="23"></div><div class="field"><label>درصد نیرو در جمعه و تعطیل</label><input id="holidayPct" type="number" min="1" max="100"></div><div class="field"><label>حداکثر موظفی</label><select id="maxH"><option value="1">کنترل شود</option><option value="0">کنترل نشود</option></select></div><div class="field"><label>شب فقط آقایان</label><select id="nightMale"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div><div class="field"><label>اولویت آقایان در تعطیلات</label><select id="malePriority"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div><div class="field"><label>پنجشنبه یک‌درمیان خانم‌ها</label><select id="thuAlt"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div></div><button class="btn primary" onclick="saveRules()" style="margin-top:12px">💾 ذخیره قوانین</button></div><div class="card"><h3>حداقل و حداکثر نیرو در هر بازه زمانی</h3><p class="muted">این تنظیمات مستقیماً در تولید بهترین برنامه استفاده می‌شوند. برای بازه‌های عبوری از نیمه‌شب نیز می‌توانید زمان پایان کمتر از زمان شروع وارد کنید.</p><div class="grid"><div class="field"><label>از</label><input id="covStart" class="time-input" type="time" value="19:00"></div><div class="field"><label>تا</label><input id="covEnd" class="time-input" type="time" value="07:00"></div><div class="field"><label>حداقل نیرو</label><input id="covMin" type="number" min="0" value="1"></div><div class="field"><label>حداکثر نیرو</label><input id="covMax" type="number" min="0" value="2"></div></div><div class="actions"><button class="btn primary" onclick="addCoverage()">➕ افزودن بازه</button></div><div id="coverageList" style="margin-top:12px"></div></div></section>
+
+<section id="builder" class="page"><div class="card"><h2>ساخت هوشمند شیفت</h2><p class="muted">برنامه با تقویم واقعی، جنسیت، ساعات موظفی و قوانین تنظیم‌شده ساخته می‌شود.</p><div class="actions"><button id="autoGenerateBtn" class="btn primary" onclick="generate()" title="تولید خودکار فقط برای مدیر سیستم فعال است.">🧠 تولید بهترین برنامه</button><button class="btn secondary" onclick="resetShifts()">♻️ بازگردانی شیفت‌های اولیه</button></div></div><div class="card"><div class="tablewrap"><table id="table"></table></div></div></section>
+
+<section id="check" class="page"><div id="checkBox" class="card"></div></section>
+
+<section id="reports" class="page"><div class="card"><h2>گزارش‌ها</h2><p class="muted">گزارش نهایی فقط‌خواندنی است و تغییر شیفت در این صفحه امکان‌پذیر نیست.</p><div class="actions"><button class="btn secondary" onclick="downloadCSV()">📄 CSV</button><button class="btn success" onclick="downloadXLSX()">📊 Excel رنگی</button><button class="btn primary" onclick="printReport()">🖨️ چاپ / PDF</button></div></div><div class="card readonly"><div class="tablewrap"><table id="report"></table></div></div></section>
+
+<section id="backup" class="page"><div class="card"><h2>پشتیبان‌گیری</h2><p class="muted">یک نسخه از اطلاعات نیروها، شیفت‌ها، قوانین و برنامه ماهانه ذخیره کنید.</p><div class="actions"><button class="btn success" onclick="backup()">⬇️ دریافت پشتیبان</button><label class="btn secondary">⬆️ بازیابی پشتیبان<input type="file" accept="application/json" hidden onchange="restore(event)"></label></div></div></section>
+
+<section id="users" class="page"><div class="card"><h2>مدیریت کاربران</h2><p class="muted"></p><div class="actions"><button class="btn primary" onclick="openSupabaseUsers()">👥 مدیریت کاربران در Supabase</button></div><div id="userInfo" class="card" style="margin-top:12px"></div></div></section>
+
+<div class="footer"><b>طراح و توسعه‌دهنده: محسن یحیوی</b><br>تلفن پشتیبانی: 09010227717<br>نسخه ۱.۰</div>
+</main></div></div><div id="toast" class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<script id="supabase-cdn" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const M=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"],W=["شنبه","یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه"];
+const REQUIRED_1405={1:147,2:191,3:176,4:183,5:169,6:191,7:191,8:183,9:191,10:176,11:169,12:154};
+let E=[...Array(15)].map((_,i)=>["همکار "+(i+1),i<6?"male":"female",1]);
+let S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];
+let R={femaleEnd:19,holidayPct:60,nightMale:true,malePriority:true,thuAlt:true,maxH:true,coverageRanges:[]},G={},onlineDB=null,currentUser=null,currentProfile=null;
+const SUPABASE_URL="https://prffpkzkjrktbdfnediz.supabase.co",SUPABASE_PUBLISHABLE_KEY="sb_publishable_D_Eg1YgthsNknnwbjHtTyA_APtjmJ2e";
+function setLoginStatus(text,ok=false){const el=document.getElementById("loginMsg");if(el){el.textContent=text;el.style.color=ok?"#15803d":"#b91c1c"}}
+function initSupabase(){if(window.supabase){onlineDB=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});return true}return false}
+async function ensureSupabase(){if(initSupabase())return true;const urls=["https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2","https://unpkg.com/@supabase/supabase-js@2"];for(const url of urls){try{await new Promise((resolve,reject)=>{const sc=document.createElement("script");sc.src=url;sc.async=false;sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)});if(initSupabase())return true}catch(e){}}return false}
+initSupabase();
+function mins(t){const [h,m]=t.split(":").map(Number);return h*60+m}function dur(a,b){if(a==="00:00"&&b==="00:00")return 0;let x=mins(b)-mins(a);if(x<=0)x+=1440;return x/60}
+const persianFmt=new Intl.DateTimeFormat("en-US-u-ca-persian",{year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"});const jalaliStartCache={};
+function jalaliParts(date){const p=persianFmt.formatToParts(date),o={};p.forEach(x=>{if(x.type!=='literal')o[x.type]=Number(x.value)});return o}
+function jalaliStart(y){if(jalaliStartCache[y])return new Date(jalaliStartCache[y]);const approx=Date.UTC(y+621,2,20,12);for(let i=-10;i<=10;i++){const dt=new Date(approx+i*86400000),p=jalaliParts(dt);if(p.year===y&&p.month===1&&p.day===1){jalaliStartCache[y]=dt.getTime();return dt}}throw new Error("Jalali calendar conversion failed for "+y)}
+function leap(y){const a=jalaliStart(y).getTime(),b=jalaliStart(y+1).getTime();return Math.round((b-a)/86400000)===366}
+function jalaliToDate(y,m,d){let offset=(m<=6?(m-1)*31:(m-1)*30+6)+(d-1);return new Date(jalaliStart(y).getTime()+offset*86400000)}
+function wd(y,m,d){const g=jalaliToDate(y,m,d);return (g.getUTCDay()+1)%7}
+function days(y,m){return m<=6?31:m<=11?30:(leap(y)?30:29)}function friday(y,m,d){return wd(y,m,d)===6}function thursday(y,m,d){return wd(y,m,d)===5}
+function esc(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;",'\'':"&#39;"}[c]))}
+function get(id){return S.find(x=>x[0]===id)||S.find(x=>x[0]==="OFF")}function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.style.display="none",2200)}
+function toggleSide(){document.getElementById("side").classList.toggle("open")}function toggleProfile(){document.getElementById("profileMenu").classList.toggle("open")}document.addEventListener("click",e=>{if(!e.target.closest(".profile"))document.getElementById("profileMenu").classList.remove("open")});
+function goto(id,n){const b=document.querySelectorAll(".nav button")[n-1];page(id,b)}
+const ACCESS={users:false,auto:false,password:false,backup:false};
+function isViewer(){return (currentProfile?.role||"").toLowerCase()==="viewer"}
+function deny(){toast("شما به این منو دسترسی ندارید.");return false}
+function can(action){return !isViewer() || !ACCESS[action]}
+function applyAccess(){
+ const viewer=isViewer();
+ const userBtn=[...document.querySelectorAll('.nav button')].find(x=>(x.textContent||'').includes('مدیریت کاربران'));
+ const autoBtn=document.querySelector('#autoGenerateBtn');
+ const backupBtn=[...document.querySelectorAll('.nav button')].find(x=>(x.textContent||'').includes('پشتیبان‌گیری'));
+ if(viewer){
+   [userBtn,backupBtn].forEach(btn=>{if(btn){btn.classList.add('access-disabled');btn.onclick=e=>{e.preventDefault();return deny()}}});
+   if(autoBtn){
+     autoBtn.disabled=true;
+     autoBtn.classList.add('access-disabled');
+     autoBtn.title='این قابلیت فقط برای مدیر سیستم فعال است.';
+     autoBtn.setAttribute('aria-disabled','true');
+   }
+   const cp=document.querySelector('#profileMenu button[onclick="changePassword()"]');
+   if(cp){cp.classList.add('access-disabled');cp.onclick=e=>{e.preventDefault();return deny()}}
+ } else {
+   if(autoBtn){
+     autoBtn.disabled=false;
+     autoBtn.classList.remove('access-disabled');
+     autoBtn.title='';
+     autoBtn.removeAttribute('aria-disabled');
+   }
+ }
+}
+function page(id,b){
+ if(isViewer() && ['users','backup'].includes(id)) return deny();
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');document.getElementById('title').textContent=b?b.textContent.replace(/[^؀-ۿ\s]+/g,'').trim():'';document.getElementById('side').classList.remove('open');if(id==='reports')renderReport();if(id==='users')renderUserInfo();}
+async function login(){
+ const username=document.getElementById("user").value.trim().toLowerCase();
+ const password=document.getElementById("pass").value;
+ if(!username||!password){setLoginStatus("نام کاربری و رمز عبور را وارد کنید.");return}
+ setLoginStatus("در حال بررسی اتصال و ورود...");
+ try{
+   if(!onlineDB){const ready=await ensureSupabase();if(!ready)throw new Error("SUPABASE_CLIENT_NOT_LOADED")}
+   const {data:emailData,error:lookupError}=await onlineDB.rpc("get_login_email",{p_username:username});
+   if(lookupError)throw new Error("LOGIN_LOOKUP: "+(lookupError.message||"RPC error"));
+   const email=typeof emailData==="string"?emailData:(emailData?.email||emailData?.[0]?.email||"");
+   if(!email)throw new Error("LOGIN_LOOKUP: نام کاربری در سامانه پیدا نشد.");
+   const {data,error}=await onlineDB.auth.signInWithPassword({email,password});
+   if(error)throw new Error("AUTH: "+(error.message||"خطای ورود"));
+   if(!data?.user)throw new Error("AUTH: کاربر از Supabase دریافت نشد.");
+   await openApp(data.user);
+   setLoginStatus("ورود با موفقیت انجام شد.",true);
+ }catch(err){
+   console.error("ShiftMaster login error:",err);
+   const m=String(err?.message||err);
+   if(m.startsWith("SUPABASE_CLIENT_NOT_LOADED"))setLoginStatus("اتصال Supabase برقرار نشد. اینترنت یا بارگذاری کتابخانه Supabase را بررسی کنید.");
+   else if(m.startsWith("LOGIN_LOOKUP"))setLoginStatus("نام کاربری پیدا نشد یا سرویس ورود به Supabase در دسترس نیست.");
+   else if(m.startsWith("AUTH"))setLoginStatus("نام کاربری یا رمز عبور صحیح نیست.");
+   else setLoginStatus("خطا در ورود: "+m);
+ }
+}
+async function logout(){if(onlineDB)await onlineDB.auth.signOut();currentUser=null;currentProfile=null;sessionStorage.removeItem("login");location.reload()}
+async function openApp(user){if(!onlineDB)return;document.getElementById("login").style.display="none";document.getElementById("app").style.display="flex";document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");if(user){currentUser=user;const {data:p,error:pe}=await onlineDB.from("profiles").select("*").eq("id",user.id).maybeSingle();if(pe)console.warn(pe);if(p){currentProfile=p;window.currentProfile=p;document.getElementById("profileName").textContent=p.display_name||p.username||"کاربر"}}await loadOnline();document.getElementById("req").value=reqVal();document.getElementById("days").value=days(+year.value,+month.value);render();applyAccess()}
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.activeElement&&(document.activeElement.id==="user"||document.activeElement.id==="pass"))login()});
+function showProfile(){alert(`نام کاربری: ${currentProfile?.username||"-"}\nنام نمایشی: ${currentProfile?.display_name||"-"}\nنقش: ${currentProfile?.role||"-"}`)}async function changePassword(){if(!can("password"))return deny();const p=prompt("رمز عبور جدید را وارد کنید:");if(!p)return;const {error}=await onlineDB.auth.updateUser({password:p});alert(error?"تغییر رمز ناموفق بود.":"رمز عبور با موفقیت تغییر کرد.")}
+function addEmp(){E.push(["همکار "+(E.length+1),"male",1]);render()}function removeEmp(){if(E.length>1){E.pop();render()}}function delEmp(i){E.splice(i,1);render()}
+function renderEmp(){document.getElementById("empList").innerHTML=E.map((e,i)=>`<div class="row"><input value="${esc(e[0])}" onchange="E[${i}][0]=this.value;save()"><select onchange="E[${i}][1]=this.value;save();render()"><option value="male" ${e[1]==="male"?"selected":""}>آقا</option><option value="female" ${e[1]==="female"?"selected":""}>خانم</option></select><button class="btn danger" onclick="delEmp(${i})">حذف</button><label><input type="checkbox" ${e[2]?"checked":""} onchange="E[${i}][2]=this.checked;save()"> فعال</label></div>`).join("")}
+function importExcel(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const wb=XLSX.read(e.target.result,{type:"array"}),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:""}),keys=Object.keys(rows[0]||{}),nk=keys.find(k=>/نام|name/i.test(k))||keys[0],gk=keys.find(k=>/جنس|gender|sex/i.test(k));E=rows.map(x=>[String(x[nk]||"").trim(),/زن|خانم|female|woman/i.test(String(gk?x[gk]:""))?"female":"male",1]).filter(x=>x[0]);render();toast(E.length+" نیرو وارد شد")}catch(e){alert("فایل Excel نامعتبر است")} };r.readAsArrayBuffer(f);ev.target.value=""}
+function timeOptions(v){const [h,m]=String(v||"00:00").split(":").map(Number);return {h:Number.isFinite(h)?h:0,m:Number.isFinite(m)?m:0}}function setTime(i,kind,v){if(!/^\d{2}:\d{2}$/.test(v))return;if(kind==="start")S[i][2]=v;else S[i][3]=v;renderShifts();save()}
+function renderShifts(){document.getElementById("shiftList").innerHTML=S.map((s,i)=>`<div class="shiftrow"><div><label>کد</label><input value="${esc(s[0])}" ${s[0]==="OFF"?"readonly":""} onchange="S[${i}][0]=this.value;S[${i}][1]=this.value;save();render()"></div><div><label>نام</label><input value="${esc(s[1])}" ${s[0]==="OFF"?"readonly":""} onchange="S[${i}][1]=this.value;save()"></div><div><label>شروع</label><input class="time-input" type="time" step="60" value="${s[2]}" ${s[0]==="OFF"?"disabled":""} onchange="setTime(${i},'start',this.value)"></div><div><label>پایان</label><input class="time-input" type="time" step="60" value="${s[3]}" ${s[0]==="OFF"?"disabled":""} onchange="setTime(${i},'end',this.value)"></div><div><label>مدت</label><input readonly value="${dur(s[2],s[3]).toFixed(2)} ساعت"></div><div><label>مجاز برای</label><select onchange="S[${i}][4]=this.value;save()"><option value="both" ${s[4]==="both"?"selected":""}>همه</option><option value="male" ${s[4]==="male"?"selected":""}>فقط آقایان</option><option value="female" ${s[4]==="female"?"selected":""}>فقط خانم‌ها</option></select></div><label><input type="checkbox" ${s[5]?"checked":""} onchange="S[${i}][5]=this.checked;save()"> فعال</label><button class="btn danger" ${s[0]==="OFF"?"disabled":""} onclick="delShift(${i})">حذف</button></div>`).join("")}
+function addShift(){let n=S.filter(x=>x[0]!=="OFF").length+1;S.splice(S.length-1,0,["S"+n,"S"+n,"08:00","16:00","both",1]);render()}
+function delShift(i){if(S[i][0]!=="OFF"){S.splice(i,1);render()}}
+function resetShifts(){if(!confirm("شیفت‌ها به حالت اولیه برگردند؟"))return;S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];generate();toast("شیفت‌ها به حالت اولیه برگشتند")}
+function saveRules(){R={...R,femaleEnd:+femaleEnd.value,holidayPct:+holidayPct.value,nightMale:+nightMale.value===1,malePriority:+malePriority.value===1,thuAlt:+thuAlt.value===1,maxH:+maxH.value===1,coverageRanges:getCoverageRanges()};save();render()}
+function renderRules(){femaleEnd.value=R.femaleEnd;holidayPct.value=R.holidayPct;nightMale.value=R.nightMale?1:0;malePriority.value=R.malePriority?1:0;thuAlt.value=R.thuAlt?1:0;maxH.value=R.maxH?1:0;renderCoverage()}
+function getCoverageRanges(){return Array.isArray(R.coverageRanges)?R.coverageRanges:[]}
+function addCoverage(){const start=covStart.value,end=covEnd.value,min=Math.max(0,+covMin.value||0),max=Math.max(0,+covMax.value||0);if(!start||!end||max<min){alert("بازه زمانی یا حداقل/حداکثر نیرو صحیح نیست.");return}const r=getCoverageRanges().slice();r.push({start,end,min,max});R.coverageRanges=r;save();renderCoverage();toast("بازه نیرو اضافه شد")}
+function renderCoverage(){const el=document.getElementById("coverageList");if(!el)return;const r=getCoverageRanges();el.innerHTML=r.length?r.map((x,i)=>`<div class="coverage-item"><span>🕒 ${x.start} تا ${x.end} — حداقل ${x.min} / حداکثر ${x.max}</span><button onclick="removeCoverage(${i})">حذف</button></div>`).join(""):"<span class=muted>هنوز بازه‌ای تعریف نشده است.</span>"}
+function removeCoverage(i){const r=getCoverageRanges().slice();r.splice(i,1);R.coverageRanges=r;save();renderCoverage()}
+function interval(a,b){let s=mins(a),e=mins(b);if(e<=s)e+=1440;return [s,e]}
+function coversRange(shift,range){if(shift[0]==="OFF")return false;const [ss,se]=interval(shift[2],shift[3]);const [rs,re]=interval(range.start,range.end);return ss<=rs && se>=re}
+function violatesCoverageMax(scheduleDay,range){return scheduleDay.filter(id=>coversRange(get(id),range)).length >= (+range.max||0)}
+function coverageCount(scheduleDay,range){return scheduleDay.filter(id=>coversRange(get(id),range)).length}
+function shiftAllowedForDay(s,e,y,m,d){if(!s||s[0]==="OFF"||!s[5]||!allowed(s,e))return false;if(friday(y,m,d)&&R.malePriority&&e[1]==="female")return false;return true}
+function scorePick(i,s,hoursArr,workDays,lastWorked){let target=+req.value;let short=Math.max(0,target-hoursArr[i]);let over=Math.max(0,hoursArr[i]-target);let consecutive=lastWorked[i]?1:0;let fairness=(over*22)-(short*4)+(workDays[i]*4)+(consecutive*18);if(R.malePriority)fairness += (E[i][1]==="male" ? -10 : 8);return fairness+Math.random()*8}
+function generate(){if(!can("auto"))return deny();const y=+year.value,m=+month.value,n=days(y,m),activeIdx=E.map((e,i)=>e[2]?i:null).filter(i=>i!==null),ranges=getCoverageRanges();
+  const hard=[];ranges.forEach(r=>{if(r.max<r.min)hard.push(`بازه ${r.start}-${r.end}: حداقل از حداکثر بیشتر است.`);if(r.max>activeIdx.length)r.max=activeIdx.length});
+  if(hard.length){alert(hard.join("\n"));return}
+  let best=null;const trials=140;
+  for(let trial=0;trial<trials;trial++){
+    const GG={},hoursArr=E.map(()=>0),workDays=E.map(()=>0),lastWorked=E.map(()=>false),offRuns=E.map(()=>0);E.forEach((_,i)=>GG[i]=Array(n).fill("OFF"));let feasible=true,totalSoft=0;
+    const fridayDays=Array.from({length:n},(_,k)=>k+1).filter(d=>friday(y,m,d)).length;
+    for(let d=1;d<=n;d++){
+      const dayActive=activeIdx.slice().sort(()=>Math.random()-0.5);const dayLimit=friday(y,m,d)?Math.ceil(activeIdx.length*(+R.holidayPct/100)):activeIdx.length;const selected=new Set();let dayHours=0;
+      // Dynamic daily target: distribute the remaining required hours through the month, while respecting Friday capacity.
+      const remainingDays=n-d+1;const totalTarget=activeIdx.reduce((a,i)=>a+Math.max(0,+req.value-hoursArr[i]),0);const avgRemaining=totalTarget/Math.max(1,remainingDays);let dailyTarget=Math.min(avgRemaining,activeIdx.slice(0,dayLimit).reduce((a,i)=>a+12,0));
+      // Satisfy hard minimum coverage first, choosing shifts that cover the most unmet ranges.
+      for(const r of ranges){
+        while(coverageCount([...selected].map(i=>GG[i][d-1]),r)<r.min){
+          const candidates=[];
+          for(const i of dayActive){if(selected.has(i))continue;if(selected.size>=dayLimit)break;const choices=S.filter(s=>shiftAllowedForDay(s,E[i],y,m,d)&&coversRange(s,r));for(const s of choices){let illegal=false;for(const rr of ranges){const current=[...selected].map(j=>GG[j][d-1]);if(coversRange(s,rr)&&coverageCount(current,rr)>=rr.max){illegal=true;break}}if(illegal)continue;candidates.push({i,s,c:scorePick(i,s,hoursArr,workDays,lastWorked)-ranges.filter(rr=>coversRange(s,rr)&&coverageCount([...selected].map(j=>GG[j][d-1]),rr)<rr.min).length*35});}}
+          if(!candidates.length){feasible=false;break}candidates.sort((a,b)=>a.c-b.c);const pick=candidates[0];GG[pick.i][d-1]=pick.s[0];selected.add(pick.i);hoursArr[pick.i]+=dur(pick.s[2],pick.s[3]);workDays[pick.i]++;lastWorked[pick.i]=true;offRuns[pick.i]=0;dayHours+=dur(pick.s[2],pick.s[3]);
+        }
+        if(!feasible)break;
+      }
+      if(!feasible)break;
+      // Add extra staff to balance monthly hours, but never violate coverage maximums or Friday staffing cap.
+      while(dayHours < dailyTarget && selected.size < dayLimit){
+        const candidates=[];
+        for(const i of dayActive){if(selected.has(i))continue;for(const s of S.filter(s=>shiftAllowedForDay(s,E[i],y,m,d))){let ok=true;for(const r of ranges){const current=[...selected].map(j=>GG[j][d-1]);if(coversRange(s,r)&&coverageCount(current,r)>=r.max){ok=false;break}}if(!ok)continue;const sc=scorePick(i,s,hoursArr,workDays,lastWorked)-dur(s[2],s[3])*1.5;candidates.push({i,s,sc});}}
+        if(!candidates.length)break;candidates.sort((a,b)=>a.sc-b.sc);const pick=candidates[0];GG[pick.i][d-1]=pick.s[0];selected.add(pick.i);const dh=dur(pick.s[2],pick.s[3]);hoursArr[pick.i]+=dh;workDays[pick.i]++;lastWorked[pick.i]=true;offRuns[pick.i]=0;dayHours+=dh;
+      }
+      // Apply OFF streak tracking.
+      E.forEach((_,i)=>{if(!selected.has(i)){lastWorked[i]=false;offRuns[i]++;totalSoft+=offRuns[i]>2?(offRuns[i]-2)*18:0}else{totalSoft+=offRuns[i]>3?(offRuns[i]-3)*10:0}});
+      // Hard post-check for every coverage range.
+      for(const r of ranges){const c=coverageCount(Array.from({length:E.length},(_,i)=>GG[i][d-1]),r);if(c<r.min||c>r.max){feasible=false;break}}
+      if(!feasible)break;
+      // Friday staffing rule is hard when possible.
+      const staffed=E.reduce((a,_,i)=>a+(GG[i][d-1]!=="OFF"?1:0),0);if(staffed>dayLimit){feasible=false;break}
+    }
+    if(!feasible)continue;
+    let balance=0;hoursArr.forEach(h=>{balance+=Math.abs(h-(+req.value));});
+    let spread=0;E.forEach((_,i)=>{let prev=-1;for(let d=0;d<n;d++){if(GG[i][d]!=="OFF"){if(prev>=0){const gap=d-prev-1;if(gap>3)spread+=(gap-3)*8}else if(d>4)spread+=(d-4)*2;prev=d}}});
+    const coveragePenalty=ranges.reduce((acc,r)=>{let p=0;for(let d=1;d<=n;d++){const c=coverageCount(E.map((_,i)=>GG[i][d-1]),r);p+=Math.abs(Math.max(r.min,Math.min(r.max,c))-c)*1000;}return acc+p},0);
+    const score=balance*6+spread+totalSoft+coveragePenalty;
+    if(!best||score<best.score)best={score,GG,hoursArr};
+  }
+  if(!best){alert("برای قوانین و حداقل/حداکثر نیروهای تعریف‌شده، برنامه کاملاً سازگار پیدا نشد. حداقل/حداکثر بازه‌ها، تعداد نیرو و شیفت‌های قابل استفاده را بررسی کنید.");return}
+  G=best.GG;save();render();toast("بهترین برنامه متعادل تولید و کنترل شد")
+}
+function renderTable(id,readonly=false){const y=+year.value,m=+month.value,n=days(y,m),t=document.getElementById(id);let h='<thead><tr><th class="sticky">نام</th><th>جنسیت</th>';for(let d=1;d<=n;d++){const c=friday(y,m,d)?"holiday":thursday(y,m,d)?"thu":"";h+=`<th class="${c}">${d}<br>${W[wd(y,m,d)]}</th>`}h+='<th>ساعات</th></tr></thead><tbody>';E.forEach((e,i)=>{h+=`<tr><td class="sticky"><b>${esc(e[0])}</b></td><td><span class="badge ${e[1]}">${e[1]==="male"?"آقا":"خانم"}</span></td>`;(G[i]||Array(n).fill("OFF")).forEach((id2,d)=>{const s=get(id2),c=id2==="OFF"?"off":friday(y,m,d+1)?"holiday":thursday(y,m,d+1)?"thu":"";if(readonly)h+=`<td class="${c}">${id2==="OFF"?"OFF":esc(s[1])+`<br><small>${s[2]}-${s[3]}</small>`}</td>`;else h+=`<td class="${c}"><select class="shift-select" onchange="G[${i}][${d}]=this.value;save();render()">${S.filter(x=>x[5]).map(x=>`<option value="${x[0]}" ${x[0]===id2?"selected":""}>${esc(x[1])} | ${x[2]}-${x[3]}</option>`).join("")}</select></td>`});h+=`<td><b>${hours(i).toFixed(2)}</b></td></tr>`});t.innerHTML=h+'</tbody>'}
+function validate(){let er=[],wa=[];E.forEach((e,i)=>{const h=hours(i);if(h>+req.value)er.push(`${e[0]}: ${h.toFixed(2)} ساعت، بیشتر از موظفی ${req.value} ساعت.`);if(h<+req.value-8)wa.push(`${e[0]}: ${h.toFixed(2)} ساعت، کمتر از موظفی است.`);(G[i]||[]).forEach(id=>{const s=get(id);if(e[1]==="female"&&!allowed(s,e))er.push(`${e[0]}: شیفت ${s[1]} برای خانم مجاز نیست.`)})});const box=document.getElementById("checkBox");box.className="card "+(er.length?"err":wa.length?"warn":"ok");box.innerHTML=`<h2>کنترل و خطایابی</h2>${er.length?`<b>خطاها (${er.length})</b><ul>${er.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"<p>خطای اصلی شناسایی نشد.</p>"}${wa.length?`<b>هشدارها (${wa.length})</b><ul>${wa.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;return er}
+function renderReport(){renderTable("report",true)}
+function render(){renderEmp();renderShifts();renderRules();renderCoverage();renderTable("table",false);renderReport();const er=validate(),total=Object.values(G).flat().reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0),night=Object.values(G).flat().filter(id=>dur(get(id)[2],get(id)[3])>=11).length;document.getElementById("dashMonth").textContent=M[+month.value-1]+" "+year.value;document.getElementById("sEmp").textContent=E.length;document.getElementById("sReq").textContent=req.value;document.getElementById("sHours").textContent=total.toFixed(2);document.getElementById("sNight").textContent=night;document.getElementById("sErr").textContent=er.length;const ds=document.getElementById("dashStatus");ds.className="card "+(er.length?"err":"ok");ds.innerHTML=er.length?`<b>⚠️ برنامه نیاز به اصلاح دارد.</b><br><span class="muted">${er.length} خطای اصلی شناسایی شده است. از «کنترل و خطایابی» جزئیات را ببینید.</span>`:`<b>✅ وضعیت برنامه: بدون خطای اصلی</b><br><span class="muted">برنامه بر اساس تقویم واقعی، قوانین ثبت‌شده، محدودیت‌های قانون کار، ساعات موظفی و نیاز نیروی هر بازه بررسی شده است.</span>`;document.getElementById("days").value=days(+year.value,+month.value);document.getElementById("calInfo").innerHTML=`روز اول ${M[+month.value-1]} ${year.value}: <b>${W[wd(+year.value,+month.value,1)]}</b><br>تعداد روز: <b>${days(+year.value,+month.value)}</b><br>ساعات موظفی: <b>${req.value}</b> ساعت`}
+function reqVal(){const k=year.value+"-"+month.value,q=JSON.parse(localStorage.getItem("shift_required")||"{}");return q[k]??(String(year.value)==="1405"?REQUIRED_1405[+month.value]:176)}
+async function saveRequired(){
+  try{
+    const q=JSON.parse(localStorage.getItem("shift_required")||"{}");
+    q[year.value+"-"+month.value]=+req.value;
+    localStorage.setItem("shift_required",JSON.stringify(q));
+    await save();
+    toast("ساعات موظفی با موفقیت ذخیره شد.");
+  }catch(e){console.error(e);toast("ذخیره ساعات موظفی انجام نشد.");}
+}
+async function refreshMonth(){
+  try{
+    req.value=reqVal();
+    document.getElementById("days").value=days(+year.value,+month.value);
+    G={};
+    await save();
+    render();
+    toast("ماه و تقویم با موفقیت اعمال شد.");
+  }catch(e){console.error(e);toast("اعمال ماه انجام نشد.");}
+}
+function userStorageKey(){
+  return currentUser ? `shiftmaster_${currentUser.id}` : "shiftmaster_guest";
+}
+function cloneDefaults(){
+  E=[...Array(15)].map((_,i)=>["همکار "+(i+1),i<6?"male":"female",1]);
+  S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];
+  R={femaleEnd:19,holidayPct:60,nightMale:true,malePriority:true,thuAlt:true,maxH:true,coverageRanges:[]};
+  G={};
+  year.value=1405; month.value=6; req.value=reqVal();
+}
+async function save(){
+  const payload={E,S,R,G,year:+year.value,month:+month.value,required:+req.value};
+  localStorage.setItem(userStorageKey(),JSON.stringify(payload));
+  if(onlineDB&&currentUser){
+    try{
+      await onlineDB.from("shift_states").upsert(
+        {user_id:currentUser.id,year:+year.value,month:+month.value,payload,updated_at:new Date().toISOString()},
+        {onConflict:"user_id,year,month"}
+      );
+    }catch(e){console.error("online save",e)}
+  }
+}
+async function loadOnline(){
+  if(!onlineDB||!currentUser){loadLocal();return}
+  const y=+year.value,m=+month.value;
+  const {data,error}=await onlineDB.from("shift_states")
+    .select("payload").eq("user_id",currentUser.id).eq("year",y).eq("month",m).maybeSingle();
+  if(error){console.error("online load",error);}
+  if(data?.payload){applyPayload(data.payload);return}
+  // Never fall back to another user's localStorage state when authenticated online.
+  const local=JSON.parse(localStorage.getItem(userStorageKey())||"null");
+  if(local){applyPayload(local);return}
+  cloneDefaults();
+}
+function loadLocal(){
+  const x=JSON.parse(localStorage.getItem(userStorageKey())||"null");
+  if(x)applyPayload(x); else cloneDefaults();
+}function applyPayload(x){E=x.E||E;S=x.S||S;R={...R,...(x.R||{})};if(!Array.isArray(R.coverageRanges))R.coverageRanges=[];G=x.G||{};year.value=x.year||1405;month.value=x.month||6;req.value=x.required||reqVal()}
+function backup(){const p={version:"1.0",E,S,R,G,year:+year.value,month:+month.value,required:+req.value};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(p,null,2)],{type:"application/json"}));a.download=`ShiftMaster_Backup_${year.value}_${month.value}.json`;a.click()}
+function restore(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const x=JSON.parse(r.result);applyPayload(x);await save();render();goto("builder",6);toast("پشتیبان با موفقیت بازیابی شد و به سازنده شیفت منتقل شدید.")}catch(e){alert("فایل پشتیبان نامعتبر است")}};r.readAsText(f);ev.target.value=""}
+function downloadCSV(){const y=+year.value,m=+month.value,n=days(y,m),rows=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>rows.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||[]).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]} (${s[2]}-${s[3]})`}),hours(i).toFixed(2)]));const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download=`ShiftMaster_${y}_${String(m).padStart(2,"0")}.csv`;a.click()}
+function downloadXLSX(){if(!window.XLSX){alert("کتابخانه Excel در دسترس نیست.");return}const y=+year.value,m=+month.value,n=days(y,m),data=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>data.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||[]).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]}\n${s[2]}-${s[3]}`}),hours(i).toFixed(2)]));const ws=XLSX.utils.aoa_to_sheet(data);ws["!cols"]=data[2].map((_,i)=>({wch:i<2?18:13}));const range=XLSX.utils.decode_range(ws["!ref"]);for(let c=0;c<=range.e.c;c++){const cell=ws[XLSX.utils.encode_cell({r:2,c})];if(cell)cell.s={fill:{patternType:"solid",fgColor:{rgb:"DCEBFF"}},font:{bold:true},alignment:{horizontal:"center",vertical:"center",wrapText:true},border:{bottom:{style:"thin",color:{rgb:"94A3B8"}}}}}for(let r=3;r<=range.e.r;r++){const cell=ws[XLSX.utils.encode_cell({r,c:0})];if(cell)cell.s={font:{bold:true}};for(let c=2;c<range.e.c;c++){const cc=ws[XLSX.utils.encode_cell({r,c})];if(!cc)continue;const day=c-1;const bg=friday(y,m,day)?"FEE2E2":thursday(y,m,day)?"FEF3C7":"FFFFFF";cc.s={fill:{patternType:"solid",fgColor:{rgb:bg}},alignment:{horizontal:"center",vertical:"center",wrapText:true}}}}const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Shift");XLSX.writeFile(wb,`ShiftMaster_${y}_${String(m).padStart(2,"0")}.xlsx`)}
+function printReport(){const y=+year.value,m=+month.value,n=days(y,m),report=document.getElementById("report").outerHTML,w=window.open("","_blank","width=1400,height=900");if(!w){alert("پنجره چاپ توسط مرورگر مسدود شده است.");return}w.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>برنامه شیفت</title><style>body{font-family:Tahoma,Arial;margin:20px;direction:rtl}h2{text-align:center}table{border-collapse:collapse;width:100%;font-size:8px}th,td{border:1px solid #999;padding:4px;text-align:center}th{background:#dbeafe}.holiday{background:#fee2e2}.thu{background:#fef3c7}.off{background:#f1f5f9}.sticky{position:static!important}p{text-align:center;font-size:10px}</style></head><body><h2>برنامه شیفت ${M[m-1]} ${y}</h2>${report}<p>طراح و توسعه‌دهنده: محسن یحیوی<br>تلفن پشتیبانی: 09010227717<br>نسخه ۱.۰</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function renderUserInfo(){const el=document.getElementById("userInfo");if(currentProfile)el.innerHTML=`<b>کاربر فعلی:</b> ${esc(currentProfile.username)}<br><b>نام:</b> ${esc(currentProfile.display_name||"-")}<br><b>نقش:</b> ${esc(currentProfile.role)}<br><br><span class="muted"></span>`}
+function openSupabaseUsers(){window.open("https://supabase.com/dashboard/project/prffpkzkjrktbdfnediz/auth/users","_blank")}
+(async()=>{document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");document.getElementById("req").value=reqVal();document.getElementById("days").value=days(1405,6);if(onlineDB){const {data:{session}}=await onlineDB.auth.getSession();if(session){await openApp(session.user);return}}document.getElementById("login").style.display="grid";document.getElementById("app").style.display="none"})()
+</script>
+<script>
+const _smGenerateOriginal=window.generate;
+window.generate=async function(){
+  const btn=document.getElementById("autoGenerateBtn");
+  if(isViewer()) return deny();
+  if(btn){btn.disabled=true;btn.classList.add("access-disabled");btn.textContent="⏳ در حال تولید...";}
+  try{await _smGenerateOriginal();}catch(err){console.error("generate",err);toast("تولید بهترین برنامه با خطا متوقف شد.");}
+  finally{if(btn && !isViewer()){btn.disabled=false;btn.classList.remove("access-disabled");btn.textContent="🧠 تولید بهترین برنامه";}}
+};
+</script>
+<script id="sm-feedback-listener">
+document.addEventListener("click",function(e){
+ const b=e.target.closest("button"); if(!b||b.id==="autoGenerateBtn") return;
+ const t=(b.textContent||"").trim();
+ const map=[["اعمال ماه","ماه و تقویم اعمال شد."],["ذخیره موظفی","ساعات موظفی ذخیره شد."],["ذخیره قوانین","قوانین شیفت ذخیره شد."],["افزودن بازه","بازه نیرو ذخیره شد."],["افزودن شیفت","شیفت جدید اضافه شد."],["کاهش نیرو","نیرو کاهش یافت."],["افزودن نیرو","نیرو اضافه شد."],["بازگردانی شیفت","شیفت‌ها به حالت اولیه بازگشتند."],["دریافت پشتیبان","پشتیبان دریافت شد."],["CSV","خروجی CSV آماده شد."],["Excel","خروجی Excel آماده شد."],["حذف","مورد حذف شد."]];
+ const hit=map.find(x=>t.includes(x[0])); if(hit) setTimeout(()=>toast(hit[1]),100);
+});
+</script>
+</body></html>
