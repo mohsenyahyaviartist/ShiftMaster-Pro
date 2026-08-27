@@ -1,0 +1,1620 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<link rel="manifest" href="manifest.webmanifest">
+<title>ShiftMaster Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--primary:#2563eb;--primary2:#1d4ed8;--line:#dbe3ef;--danger:#dc2626;--warn:#d97706;--ok:#15803d;--dark:#111827}
+*{box-sizing:border-box}html{overflow-y:scroll}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}
+.login{min-height:100vh;display:grid;place-items:center;padding:16px;background:linear-gradient(135deg,#0f172a,#2563eb)}
+.loginbox{width:min(430px,100%);background:#fff;border-radius:20px;padding:28px;box-shadow:0 24px 70px #0006}.loginbox h1{margin:0 0 8px}.loginbox p{color:var(--muted);font-size:12px}.loginbox label{display:block;font-size:12px;font-weight:700;margin-top:12px}.loginbox input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;margin-top:6px}.login-footer{text-align:center;color:#64748b;font-size:11px;margin-top:24px;line-height:1.9}
+.app{display:none;min-height:100vh}.side{position:fixed;right:0;top:0;bottom:0;width:255px;background:var(--dark);color:#fff;padding:18px;z-index:30;overflow:auto}.brand{font-size:20px;font-weight:800}.brand small{display:block;color:#94a3b8;font-size:10px;margin-top:5px}.nav{margin-top:15px}.nav button{display:block;width:100%;border:0;background:transparent;color:#cbd5e1;text-align:right;padding:11px;border-radius:9px;margin:4px 0}.nav button:hover,.nav button.active{background:#1f2937;color:#fff}.main{margin-right:255px;min-height:100vh}.top{height:64px!important;min-height:64px!important;max-height:64px!important;background:linear-gradient(135deg,#173f8a,#2563eb);color:#fff;border-bottom:1px solid #173f8a;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:fixed;top:0;left:255px;right:0;width:auto!important;box-sizing:border-box;z-index:50;box-shadow:0 3px 14px #0f172a22;overflow:visible}.top-title{font-weight:800;font-size:18px;line-height:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:70vw}.profile{position:relative}.profile-btn{background:#f1f5f9;color:#172033;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:700}.profile-menu{display:none;position:absolute;left:0;top:calc(100% + 6px);width:210px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 15px 40px #0002;padding:6px;z-index:1000}.profile-menu.open{display:block}.profile-menu button{width:100%;border:0;background:#fff;text-align:right;padding:10px;border-radius:8px}.profile-menu button:hover{background:#f1f5f9}.hamb{display:none;border:0;background:#eef2ff;border-radius:8px;padding:7px 10px;margin-left:8px}
+.content{padding:82px 18px 18px;max-width:1800px;margin:auto;min-height:calc(100vh - 64px)}.page{display:none}.page.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:15px;box-shadow:0 4px 18px #0f172a0a}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.field input,.field select{width:100%;min-height:42px;padding:9px;border:1px solid #cbd5e1;border-radius:9px;background:#fff}.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:800}.primary{background:var(--primary);color:#fff}.secondary{background:#e8eefc;color:#1e3a8a}.danger{background:#fee2e2;color:#991b1b}.success{background:#dcfce7;color:#166534}.muted{color:var(--muted);font-size:11px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stat{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:13px}.stat span{font-size:11px;color:var(--muted)}.stat b{display:block;font-size:20px;margin-top:5px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:15px;font-weight:800}.quick:hover{background:#eef4ff}.row{display:grid;grid-template-columns:1fr 120px 70px 70px;gap:7px;align-items:center;margin-bottom:8px}.row input,.row select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.shiftrow{display:grid;grid-template-columns:1.1fr 90px 90px 90px 90px 120px 65px 65px;gap:7px;align-items:end;margin-bottom:8px}.shiftrow input,.shiftrow select{padding:8px;border:1px solid #cbd5e1;border-radius:8px}.timebox{display:flex;gap:5px}.time-input{width:100%;min-width:110px;height:38px;min-height:38px;padding:6px 8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:var(--text);font-size:12px}.time-input::-webkit-calendar-picker-indicator{width:15px;height:15px;cursor:pointer}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:1050px}th,td{padding:7px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;white-space:nowrap;font-size:11px}th{background:#eef3f9;position:sticky;top:0;z-index:3}.sticky{position:sticky;right:0;background:#fff;z-index:4;min-width:145px}.holiday{background:#fff1f2!important;color:#991b1b}.thu{background:#fffbeb!important}.off{background:#f1f5f9!important;color:#64748b}.badge{padding:3px 7px;border-radius:15px;font-size:9px}.male{background:#dbeafe;color:#1e40af}.female{background:#fce7f3;color:#9d174d}.shift-select{padding:5px;border:1px solid #d5dce7;border-radius:6px;font-size:10px}.ok{border-right:4px solid var(--ok);background:#f3fff6}.warn{border-right:4px solid var(--warn);background:#fffaf2}.err{border-right:4px solid var(--danger);background:#fff7f7}.tip{position:relative}.tip:after{content:attr(data-tip);position:absolute;right:0;top:100%;margin-top:7px;width:250px;padding:8px;background:#111827;color:#fff;border-radius:8px;font-size:10px;line-height:1.8;opacity:0;pointer-events:none;z-index:100}.tip:hover:after{opacity:1}.footer{text-align:center;color:var(--muted);font-size:11px;padding:25px;line-height:1.9}.toast{position:fixed;left:18px;bottom:18px;background:#111827;color:#fff;padding:10px 14px;border-radius:9px;display:none;z-index:200}.source-note{font-size:10px;color:#64748b;margin-top:8px}.readonly table select{pointer-events:none;background:transparent;border:0;appearance:none}.hidden{display:none!important}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(3,1fr)}.quick-grid{grid-template-columns:repeat(2,1fr)}.shiftrow{grid-template-columns:1fr 1fr 1fr 1fr}}
+@media(max-width:700px){.top{left:0!important;right:0!important;width:100%!important;height:64px!important;min-height:64px!important;max-height:64px!important;padding:0 10px}.content{padding-top:78px}.side{transform:translateX(110%);transition:.2s;width:275px}.side.open{transform:translateX(0)}.main{margin:0}.hamb{display:inline-block}.top{height:64px;min-height:64px;max-height:64px;padding:0 10px}.top-title{font-size:14px}.content{padding:10px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.quick-grid{grid-template-columns:1fr 1fr}.card{padding:12px}.row{grid-template-columns:1fr 90px 60px 55px}.shiftrow{grid-template-columns:1fr 1fr}.actions .btn{flex:1 1 140px}.profile-btn{font-size:11px;padding:7px 9px}.tip:after{display:none}.footer{padding:18px}}
+@media print{body{background:#fff}.side,.top,.no-print,.footer{display:none!important}.main{margin:0}.content{padding:0}.page{display:none!important}.print-page{display:block!important}.print-page .card{border:0;box-shadow:none}.tablewrap{overflow:visible;border:0}table{min-width:0;font-size:7px}.sticky{position:static}.print-page select{appearance:none;border:0;background:transparent}}
+.sm-about p{line-height:2}.sm-features{display:flex;flex-wrap:wrap;gap:8px}.sm-features span{background:#eef4ff;border:1px solid #dbe7ff;border-radius:10px;padding:7px 10px;font-size:11px}.access-disabled{opacity:.45!important;cursor:not-allowed!important}.access-disabled:disabled{opacity:.45!important;cursor:not-allowed!important}.coverage-item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:9px;border-radius:9px;margin:6px 0}.coverage-item button{border:0;background:#fee2e2;color:#991b1b;border-radius:7px;padding:5px 8px}.top{background:linear-gradient(135deg,#173f8a,#2563eb);color:#fff}.top .profile-btn{background:#fff;color:#172033;border-color:#fff}.top-title{color:#fff}.hamb{background:#eef4ff}.nav button.active,.nav button:hover{background:#2563eb;color:#fff}.top,.top *{flex-shrink:0}.top{box-sizing:border-box}.time-input{accent-color:var(--primary)}
+</style>
+
+<style id="sm-header-stable">
+.top > div:first-child{min-width:0;display:flex;align-items:center;gap:8px}
+.top .profile{flex:0 0 auto}
+@media(min-width:701px){
+  .top{left:255px!important;right:0!important;width:calc(100% - 255px)!important}
+}
+@media(max-width:700px){
+  .top{left:0!important;right:0!important;width:100%!important}
+}
+</style>
+
+<style id="sm-profile-fix">
+.profile{z-index:1001}
+.profile-menu{z-index:1002;max-height:calc(100vh - 80px);overflow:auto}
+.profile-menu button{min-height:42px}
+@media(max-width:700px){
+  .profile-menu{left:auto;right:0;width:205px}
+}
+</style>
+
+<style id="v2-additions">
+:root{
+ --bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--primary:#2563eb;--primary2:#1d4ed8;--line:#dbe3ef;
+ --danger:#dc2626;--warn:#d97706;--ok:#15803d;--dark:#111827;
+}
+body.theme-dark{--bg:#0f172a;--card:#111827;--text:#e5e7eb;--muted:#94a3b8;--line:#263244;--dark:#020617}
+body.theme-dark .field input,body.theme-dark .field select,body.theme-dark .row input,body.theme-dark .row select,
+body.theme-dark .shiftrow input,body.theme-dark .shiftrow select,body.theme-dark .time-input{background:#0b1220;color:#e5e7eb;border-color:#334155}
+body.theme-dark .profile-menu,body.theme-dark .profile-menu button{background:#111827;color:#e5e7eb}
+body.theme-dark .profile-menu button:hover{background:#1f2937}
+body.theme-dark .stat,body.theme-dark .quick{background:#172033;color:#e5e7eb}
+.theme-toggle{border:0;background:#ffffff20;color:#fff;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
+.top-tools{display:flex;align-items:center;gap:8px}
+.top .profile{margin-right:4px}
+.login-links{display:flex;justify-content:space-between;gap:8px;margin-top:10px}
+.link-btn{border:0;background:transparent;color:#2563eb;font-size:12px;font-weight:700;cursor:pointer;padding:5px}
+.auth-extra{margin-top:12px;border-top:1px solid #e5e7eb;padding-top:12px}
+.auth-extra h3{margin:0 0 8px;font-size:15px}
+.auth-extra .btn{width:100%;margin-top:8px}
+.support-fab{position:fixed;left:16px;bottom:16px;width:48px;height:48px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 10px 24px #0003;z-index:210;cursor:pointer}
+.support-panel{position:fixed;left:16px;bottom:76px;width:min(350px,calc(100vw - 32px));height:460px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 60px #0004;display:none;flex-direction:column;overflow:hidden;z-index:209}
+.support-panel.open{display:flex}
+.support-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#2563eb;color:#fff}
+.support-head button{border:0;background:transparent;color:#fff;font-size:24px;cursor:pointer}
+.support-messages{flex:1;overflow:auto;padding:12px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.support-bubble{max-width:85%;padding:9px 11px;border-radius:12px;font-size:12px;line-height:1.7}
+.support-bot{background:#e8eefc;color:#1e3a8a;align-self:flex-start}.support-user{background:#2563eb;color:#fff;align-self:flex-end}
+.support-compose{padding:10px;border-top:1px solid var(--line);display:flex;gap:7px}
+.support-compose textarea{flex:1;resize:none;border:1px solid #cbd5e1;border-radius:9px;padding:8px;background:var(--card);color:var(--text)}
+.tutorial-visual{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--bg);overflow:hidden}
+.gif-demo{display:flex;align-items:center;justify-content:center;gap:12px;min-height:90px}
+.demo-box{padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px;font-weight:800}
+.animated-demo span{font-size:26px;animation:eduPulse 1.2s infinite alternate}
+.animated-demo span:nth-child(2){animation-delay:.2s}.animated-demo span:nth-child(3){animation-delay:.4s}.animated-demo span:nth-child(4){animation-delay:.6s}.animated-demo span:nth-child(5){animation-delay:.8s}
+@keyframes eduPulse{from{transform:scale(.9);opacity:.55}to{transform:scale(1.08);opacity:1}}
+.version-head{display:flex;justify-content:space-between;align-items:center}.version-head b{font-size:18px;color:#1d4ed8}.version-body{margin-top:9px;line-height:1.9;font-size:12px}
+.nav button.access-hidden{display:none!important}
+.processing-overlay{position:fixed;inset:0;background:#0f172a88;backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;z-index:10000}
+.processing-overlay.open{display:flex}
+.processing-card{width:min(360px,calc(100vw - 36px));background:var(--card);color:var(--text);border-radius:18px;padding:28px;text-align:center;box-shadow:0 25px 80px #0006}
+.spinner{width:42px;height:42px;border:4px solid #cbd5e1;border-top-color:#2563eb;border-radius:50%;margin:0 auto 15px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.account-status{display:inline-flex;gap:6px;align-items:center;padding:5px 9px;border-radius:15px;font-size:10px;font-weight:700}.status-pending{background:#fef3c7;color:#92400e}.status-active{background:#dcfce7;color:#166534}
+
+/* v2.0 UI refinement pass — keep version 2.0 */
+html,body{font-family:'Vazirmatn',Tahoma,Arial,sans-serif}
+button,input,select,textarea{font-family:inherit}
+body{background:var(--bg);color:var(--text)}
+/* robust theme palette */
+body.theme-dark{--bg:#07111f;--card:#0f1b2d;--text:#f1f5f9;--muted:#a7b4c5;--line:#28384d;--dark:#050b16}
+body.theme-dark .content,body.theme-dark .main{color:var(--text)}
+body.theme-dark .card,body.theme-dark .stat,body.theme-dark .quick,body.theme-dark .sm-about{background:var(--card)!important;color:var(--text)!important;border-color:var(--line)!important}
+body.theme-dark h1,body.theme-dark h2,body.theme-dark h3,body.theme-dark h4,body.theme-dark p,body.theme-dark label,body.theme-dark span,body.theme-dark td,body.theme-dark th,body.theme-dark .muted{color:var(--text)}
+body.theme-dark .muted{color:var(--muted)!important}
+body.theme-dark .field input,body.theme-dark .field select,body.theme-dark .row input,body.theme-dark .row select,body.theme-dark textarea,body.theme-dark input,body.theme-dark select{background:#0b1422!important;color:var(--text)!important;border-color:#34465e!important}
+body.theme-dark input::placeholder,body.theme-dark textarea::placeholder{color:#8fa1b6!important}
+body.theme-dark .profile-btn{background:#162235!important;color:#f8fafc!important;border-color:#34465e!important}
+body.theme-dark .profile-menu{background:#0f1b2d!important;color:#f8fafc!important;border-color:#34465e!important}
+body.theme-dark .profile-menu button{background:transparent!important;color:#f8fafc!important}.profile-menu button:hover{background:#1c2a3e!important}
+body.theme-dark .nav button{color:#cbd5e1}.nav button:hover,.nav button.active{background:#1b2a3d!important;color:#fff!important}
+body.theme-dark .btn.secondary{background:#1b2a3d!important;color:#e2e8f0!important;border-color:#34465e!important}
+body.theme-dark .tutorial-visual{background:#0b1422!important;border-color:#31445b!important}
+body.theme-dark .version-card .version-body{color:#e5e7eb!important}
+body.theme-dark .version-head b{color:#7fb1ff!important}
+body.theme-dark .footer{color:#9fb0c4!important}
+/* beautiful theme toggle */
+.theme-switch{width:74px!important;height:38px!important;padding:0!important;border:1px solid rgba(255,255,255,.24)!important;background:rgba(255,255,255,.16)!important;border-radius:999px!important;display:inline-flex!important;align-items:center;justify-content:center;box-shadow:inset 0 1px 1px rgba(255,255,255,.2),0 4px 12px rgba(0,0,0,.12);overflow:hidden}
+.theme-track{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 9px;box-sizing:border-box;color:#fff}
+.theme-icon{font-size:15px;opacity:.72;z-index:1;line-height:1}.theme-thumb{position:absolute;left:5px;top:4px;width:28px;height:28px;border-radius:50%;background:#fff;color:#20304a;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 3px 8px rgba(0,0,0,.22);transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s}
+body.theme-dark .theme-thumb{transform:translateX(36px);background:#111c2d;color:#f8fafc}
+body.theme-dark .theme-switch{background:rgba(15,23,42,.65)!important}
+/* status badge */
+.account-status{padding:6px 11px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}.status-active{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}.status-pending{background:#fef3c7;color:#92400e;border:1px solid #fde68a}body.theme-dark .status-active{background:#12351f;color:#bbf7d0;border-color:#245c38}body.theme-dark .status-pending{background:#3a2c0a;color:#fde68a;border-color:#6b5418}
+/* 3D floating support */
+.support-fab-3d{left:18px!important;bottom:18px!important;width:54px!important;height:54px!important;border:0!important;border-radius:18px!important;background:linear-gradient(145deg,#3b82f6,#1d4ed8)!important;box-shadow:7px 9px 18px rgba(0,0,0,.14),inset 2px 2px 5px rgba(255,255,255,.28),inset -3px -4px 8px rgba(8,47,107,.35)!important;animation:supportFloat 3.8s ease-in-out infinite;transform:translateZ(0)}
+.support-fab-face{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:22px;filter:drop-shadow(0 2px 1px rgba(0,0,0,.18));transition:transform .2s}.support-fab-3d:hover .support-fab-face{transform:translateY(-2px) scale(1.04)}
+@keyframes supportFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.support-panel-modern{height:520px!important;border-radius:20px!important;box-shadow:0 18px 45px rgba(15,23,42,.16),0 3px 12px rgba(15,23,42,.08)!important;backdrop-filter:blur(7px)}
+.support-head{border-radius:0!important}.support-head>div{display:flex;flex-direction:column;gap:3px}.support-status{font-size:10px;opacity:.8}
+.support-quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border-bottom:1px solid var(--line);background:var(--card)}
+.support-quick button{border:1px solid var(--line);background:var(--bg);color:var(--text);padding:9px 8px;border-radius:11px;font-size:11px;cursor:pointer;transition:.18s}.support-quick button:hover{transform:translateY(-1px);border-color:#2563eb}
+.support-bubble{box-shadow:0 2px 8px rgba(15,23,42,.06);max-width:88%;padding:10px 12px;border-radius:14px}.support-bot{background:#f1f5f9;color:#1e293b}.support-user{background:#2563eb;color:#fff}
+body.theme-dark .support-bot{background:#1b2a3d!important;color:#e6edf5!important}.support-compose{background:var(--card)}
+/* pending-account UX */
+.pending-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#fff7d6,#fff9e8);border:1px solid #f6dd88;color:#7c5a00;margin-bottom:14px}.pending-banner .pending-actions{display:flex;gap:8px;flex-wrap:wrap}.pending-banner .btn{padding:8px 12px;font-size:11px}
+body.theme-dark .pending-banner{background:linear-gradient(135deg,#33280b,#241e0b);border-color:#66521a;color:#fde68a}
+.access-disabled{opacity:1!important}
+/* History */
+#history .card h2{letter-spacing:-.2px}.version-head{padding-bottom:2px}.version-card{transition:transform .18s,box-shadow .18s}.version-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,42,.08)}
+/* Education/footer */
+#education{padding-bottom:6px}.tutorial-card p{line-height:2}.footer{margin-top:24px;padding:18px 8px 28px;text-align:center;line-height:2;font-size:11px;color:#64748b}
+@media(max-width:700px){.account-status{font-size:9px;padding:5px 8px}.theme-switch{width:68px!important}.support-panel{left:10px!important;right:10px!important;width:auto!important}.support-fab-3d{left:12px!important;bottom:12px!important}.support-quick{grid-template-columns:1fr 1fr}.top{padding:0 10px}}
+</style>
+
+<style id="dicardo-inspired-refinement">
+:root{
+  --primary:#1d4ed8;
+  --primary2:#2563eb;
+  --primarySoft:#eff6ff;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --shadow-soft:0 8px 30px rgba(15,23,42,.07);
+  --shadow-card:0 12px 36px rgba(15,23,42,.06);
+}
+html{font-size:16px}
+body{font-family:'Vazirmatn',Tahoma,Arial,sans-serif;letter-spacing:-.01em;background:var(--bg)}
+button,input,select,textarea{font-family:inherit}
+h1,h2,h3,h4,.top-title,.brand,.profile-btn,.btn,.nav button{letter-spacing:-.02em}
+.top{background:linear-gradient(135deg,#1747b5 0%,#2563eb 100%)!important;box-shadow:0 6px 24px rgba(29,78,216,.18)!important}
+.top-title{font-weight:800;font-size:19px}
+.side{background:#0f172a!important;box-shadow:8px 0 30px rgba(15,23,42,.08)}
+.nav button{border-radius:12px;padding:12px 13px;transition:background .2s,transform .2s,color .2s}
+.nav button:hover{background:rgba(37,99,235,.18)!important;transform:translateX(-2px)}
+.nav button.active{background:#2563eb!important;box-shadow:0 8px 18px rgba(37,99,235,.22)}
+.card{border:1px solid #e7edf5!important;border-radius:18px!important;box-shadow:var(--shadow-card)!important}
+.stat,.quick{border:1px solid #e6ebf3!important;border-radius:15px!important;box-shadow:0 6px 20px rgba(15,23,42,.035)}
+.btn{border-radius:12px!important;min-height:42px;padding:10px 16px!important;transition:transform .18s,box-shadow .18s,background .18s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.08)}
+.primary{background:linear-gradient(135deg,#2563eb,#1d4ed8)!important}
+.field input,.field select,.row input,.row select,.shiftrow input,.shiftrow select,.time-input,.support-compose textarea{border:1px solid #dfe6ef!important;border-radius:11px!important;background:#fff!important;min-height:44px}
+.field input:focus,.field select:focus,.row input:focus,.row select:focus,.shiftrow input:focus,.shiftrow select:focus,.time-input:focus,.support-compose textarea:focus{outline:none;border-color:#76a7ff!important;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+/* Theme toggle: compact pill, same calm blue/white language as the reference site */
+.theme-switch{width:78px!important;height:40px!important;border-radius:999px!important;background:rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.22)!important;box-shadow:inset 0 1px 2px rgba(255,255,255,.12),0 6px 16px rgba(0,0,0,.10)!important;padding:0!important;position:relative}
+.theme-track{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:100%;padding:0 10px}
+.theme-icon{font-size:14px!important;opacity:.92}
+.theme-thumb{left:5px!important;top:5px!important;width:30px!important;height:30px!important;transition:transform .28s cubic-bezier(.22,.8,.2,1),background .25s,box-shadow .25s!important;box-shadow:0 4px 10px rgba(15,23,42,.24)!important}
+body.theme-dark .theme-thumb{transform:translateX(38px)!important;background:#172033!important}
+/* Floating support launcher */
+.support-fab-3d{left:20px!important;bottom:20px!important;width:58px!important;height:58px!important;border-radius:18px!important;background:linear-gradient(145deg,#3b82f6,#1d4ed8)!important;box-shadow:0 12px 26px rgba(29,78,216,.20),inset 2px 2px 4px rgba(255,255,255,.26),inset -3px -4px 9px rgba(8,47,107,.26)!important;animation:supportFloat 4.5s ease-in-out infinite!important}
+.support-fab-3d::after{content:"";position:absolute;inset:4px;border-radius:14px;border:1px solid rgba(255,255,255,.13);pointer-events:none}
+.support-fab-face{font-size:23px!important;filter:drop-shadow(0 2px 1px rgba(0,0,0,.14))}
+/* Chat panel: spacious, rounded, airy, closer to modern storefront support widgets */
+.support-panel-modern{left:20px!important;bottom:90px!important;width:min(390px,calc(100vw - 32px))!important;height:585px!important;border-radius:22px!important;border:1px solid #e3e9f2!important;background:#fff!important;box-shadow:0 24px 70px rgba(15,23,42,.18),0 6px 22px rgba(15,23,42,.07)!important;overflow:hidden!important}
+.support-head{padding:15px 16px!important;background:linear-gradient(135deg,#1747b5,#2563eb)!important;min-height:70px}
+.support-head>div:first-child{display:flex;flex-direction:column;gap:3px}
+.support-head b{font-size:14px;letter-spacing:-.02em}
+.support-status{font-size:10px!important;opacity:.92}
+.support-quick{padding:12px 12px 4px!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;background:#fff!important}
+.support-quick button{border:1px solid #e3eaf4!important;background:#f8fafc!important;color:#1e3a8a!important;border-radius:12px!important;padding:10px 11px!important;font-family:inherit!important;font-size:11px!important;font-weight:700!important;min-height:44px!important;transition:all .18s!important}
+.support-quick button:hover{background:#eef4ff!important;border-color:#cbdcfb!important;transform:translateY(-1px)}
+.support-messages{padding:14px!important;gap:10px!important;background:linear-gradient(180deg,#f8fafc 0%,#f4f7fb 100%)!important}
+.support-bubble{border-radius:16px!important;padding:10px 13px!important;font-size:12px!important;line-height:1.8!important;box-shadow:0 3px 12px rgba(15,23,42,.05)!important}
+.support-bot{background:#fff!important;color:#1e293b!important;border:1px solid #e6ebf2!important;align-self:flex-start;border-bottom-left-radius:7px!important}
+.support-user{background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;color:#fff!important;align-self:flex-end;border-bottom-right-radius:7px!important;box-shadow:0 6px 16px rgba(37,99,235,.18)!important}
+.support-compose{padding:12px!important;background:#fff!important}
+.support-compose textarea{padding:10px 12px!important;min-height:46px!important}
+.support-compose .btn{padding-inline:16px!important}
+/* Account badge feels like storefront status pill */
+.account-status{padding:7px 11px!important;border-radius:999px!important;font-size:10px!important;box-shadow:0 4px 12px rgba(15,23,42,.05)}
+/* Footer is always structurally separated */
+.site-footer{padding:24px 18px 28px!important}
+.footer-inner{max-width:980px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+.footer-inner span,.footer-inner b{font-size:11px}
+/* Dark theme refinements */
+body.theme-dark{--bg:#07111f;--card:#0f1b2d;--text:#f8fafc;--muted:#9fb0c4;--line:#26384d}
+body.theme-dark .card{border-color:#223249!important;box-shadow:0 14px 38px rgba(0,0,0,.22)!important}
+body.theme-dark .stat,body.theme-dark .quick{background:#122038!important;border-color:#26384d!important}
+body.theme-dark .support-panel-modern{background:#0f1b2d!important;border-color:#26384d!important}
+body.theme-dark .support-quick{background:#0f1b2d!important}
+body.theme-dark .support-quick button{background:#122038!important;color:#dbeafe!important;border-color:#2b3e56!important}
+body.theme-dark .support-messages{background:#091423!important}
+body.theme-dark .support-bot{background:#122038!important;color:#e8eef7!important;border-color:#2b3e56!important}
+body.theme-dark .support-compose{background:#0f1b2d!important;border-color:#26384d!important}
+body.theme-dark .support-compose textarea{background:#0b1422!important;color:#f8fafc!important;border-color:#33465f!important}
+body.theme-dark .footer-inner{border-color:#26384d}
+@media(max-width:700px){
+ .support-panel-modern{left:10px!important;bottom:80px!important;width:calc(100vw - 20px)!important;height:min(600px,calc(100vh - 110px))!important}
+ .support-fab-3d{left:14px!important;bottom:14px!important}
+ .support-quick{grid-template-columns:1fr 1fr!important}
+ .footer-inner{flex-direction:column;gap:5px}
+}
+@media(prefers-reduced-motion:reduce){.support-fab-3d{animation:none!important}.theme-thumb,.btn{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+  <div class="loginbox">
+    <h1>ShiftMaster Pro</h1>
+    <p>پنل حرفه‌ای طراحی، مدیریت و کنترل شیفت</p>
+    <label for="user">نام کاربری</label><input id="user" autocomplete="username" placeholder="نام کاربری">
+    <label for="pass">رمز عبور</label><input id="pass" type="password" autocomplete="current-password" placeholder="رمز عبور">
+    <button class="btn primary" style="width:100%;margin-top:12px" onclick="login()">ورود</button>
+    <div class="login-links">
+      <button type="button" class="link-btn" onclick="showSignup()">ساخت حساب کاربری</button>
+      <button type="button" class="link-btn" onclick="showForgotPassword()">رمز عبور را فراموش کرده‌اید؟</button>
+    </div>
+    <div id="authExtra" class="auth-extra hidden"></div>
+    <div id="loginMsg" class="muted" style="margin-top:10px"></div>
+    <div class="login-footer"><b>طراح و توسعه‌دهنده: محسن یحیوی</b><br>تلفن پشتیبانی: 09010227717<br>نسخه ۲.۰</div>
+  </div>
+</div>
+
+<div id="app" class="app">
+<aside id="side" class="side">
+  <div class="brand">ShiftMaster Pro<small>Smart Shift Management</small></div>
+  <div class="nav">
+    <button class="active tip" data-tip="نمای کلی وضعیت برنامه، نیروها، ساعات و خطاهای ماه جاری." onclick="page('dash',this)">🏠 داشبورد</button>
+    <button class="tip" data-tip="افزودن، حذف، ویرایش و ورود نیروها از فایل Excel." onclick="page('emps',this)">👥 مدیریت نیروها</button>
+    <button class="tip" data-tip="انتخاب سال و ماه، مشاهده تقویم واقعی و ساعات موظفی قابل ویرایش." onclick="page('cal',this)">📅 تقویم و موظفی</button>
+    <button class="tip" data-tip="ساخت و ویرایش شیفت با ساعت و دقیقه دلخواه." onclick="page('shifts',this)">⏰ مدیریت شیفت‌ها</button>
+    <button class="tip" data-tip="تنظیم محدودیت‌های جنسیت، تعطیلات، پنجشنبه‌ها و سقف ساعات." onclick="page('rules',this)">🧩 قوانین شیفت</button>
+    <button class="tip" data-tip="تولید خودکار برنامه ماهانه و ویرایش دستی آن." onclick="page('builder',this)">🧠 ساخت هوشمند شیفت</button>
+    <button class="tip" data-tip="نمایش خطاها و هشدارهای برنامه بدون تغییر مستقیم شیفت." onclick="page('check',this)">🔍 کنترل و خطایابی</button>
+    <button class="tip" data-tip="گزارش نهایی فقط‌خواندنی، خروجی Excel/CSV و چاپ PDF." onclick="page('reports',this)">📊 گزارش‌ها</button>
+    <button class="tip" data-tip="دانلود و بازیابی نسخه پشتیبان برنامه." onclick="page('backup',this)">💾 پشتیبان‌گیری</button>
+    <button class="tip" data-tip="آموزش مرحله‌به‌مرحله کار با سامانه، قوانین و گزارش‌ها." onclick="page('education',this)">🎓 آموزش کار با سایت</button>
+    <button class="tip" data-tip="سوابق نسخه‌ها و تغییرات نرم‌افزار." onclick="page('history',this)">📋 تاریخچه نسخه‌ها</button>
+    <button class="tip" data-tip="مدیریت کاربران فقط برای مدیر سیستم." onclick="page('users',this)">👤 مدیریت کاربران</button>
+  </div>
+</aside>
+<div class="main">
+<header class="top"><div><button class="hamb" onclick="toggleSide()">☰</button><span id="title" class="top-title">داشبورد</span></div><div class="top-tools"><div id="accountStatusBadge" class="account-status status-active">🟢 حساب فعال</div><button id="themeToggle" class="theme-toggle theme-switch" type="button" onclick="toggleTheme()" title="تغییر تم"><span class="theme-track"><span class="theme-icon">☀️</span><span class="theme-thumb">●</span><span class="theme-icon">🌙</span></span></button><div class="profile"><button class="profile-btn" onclick="toggleProfile()">👤 <span id="profileName">admin</span> ▾</button><div id="profileMenu" class="profile-menu"><button onclick="showProfile()">👤 پروفایل کاربری</button><button onclick="changePassword()">🔑 تغییر رمز عبور</button><button onclick="logout()">🚪 خروج</button></div></div></div></header>
+<main class="content">
+<section id="dash" class="page active">
+ <div class="card"><h2>داشبورد مدیریت شیفت</h2><p>ماه فعال: <b id="dashMonth"></b></p><div class="stats"><div class="stat"><span>تعداد نیرو</span><b id="sEmp">0</b></div><div class="stat"><span>موظفی</span><b id="sReq">0</b></div><div class="stat"><span>ساعات برنامه</span><b id="sHours">0</b></div><div class="stat"><span>شیفت شب</span><b id="sNight">0</b></div><div class="stat"><span>خطا</span><b id="sErr">0</b></div></div></div>
+ <div id="dashStatus" class="card ok"></div><div class="card sm-about"><h2>درباره ShiftMaster Pro</h2><p>ShiftMaster Pro برای طراحی، مدیریت و کنترل برنامه شیفت ماهانه کارکنان طراحی شده است و قوانین و محدودیت‌های قانون کار و همچنین قوانین و محدودیت‌های تعریف‌شده در برنامه را در طراحی و کنترل شیفت لحاظ می‌کند.</p><div class="sm-features"><span>📅 تقویم شمسی و تشخیص روز هفته</span><span>⏱️ محاسبه ساعات موظفی</span><span>👥 مدیریت نیروها</span><span>⚖️ اعمال قوانین و محدودیت‌های قانون کار در شیفت</span><span>🧠 تولید متعادل برنامه</span><span>📊 Excel / CSV / PDF</span><span>💾 پشتیبان‌گیری</span><span>🔐 سطح دسترسی کاربران</span></div></div>
+ <div class="card"><h3>دسترسی سریع</h3><div class="quick-grid"><button class="quick" onclick="goto('builder',6)">🗓️ ساخت برنامه جدید</button><button class="quick" onclick="goto('emps',2)">👥 مدیریت نیروها</button><button class="quick" onclick="goto('check',7)">🔍 کنترل خطاها</button><button class="quick" onclick="goto('reports',8)">📊 گزارش ماهانه</button></div></div>
+</section>
+
+<section id="emps" class="page"><div class="card"><h2>مدیریت نیروها</h2><div class="actions"><button class="btn primary" onclick="addEmp()">➕ افزودن نیرو</button><button class="btn danger" onclick="removeEmp()">➖ کاهش نیرو</button><label class="btn secondary tip" data-tip="فایل Excel با ستون‌های نام و جنسیت را انتخاب کنید.">📥 ورود از Excel<input id="excel" type="file" accept=".xlsx,.xls,.csv" hidden onchange="importExcel(event)"></label></div></div><div class="card"><div id="empList"></div></div></section>
+
+<section id="cal" class="page"><div class="card"><h2>تقویم و موظفی</h2><div class="grid"><div class="field"><label>سال</label><select id="year"><option>1404</option><option selected>1405</option><option>1406</option><option>1407</option><option>1408</option></select></div><div class="field"><label>ماه</label><select id="month"></select></div><div class="field"><label>تعداد روزهای ماه</label><input id="days" readonly></div><div class="field"><label>ساعات موظفی ماه</label><input id="req" type="number" min="0" step="1"></div></div><div class="actions"><button class="btn primary" onclick="refreshMonth()">🔄 اعمال ماه</button><button class="btn secondary" onclick="saveRequired()">💾 ذخیره موظفی دستی</button></div><div id="calInfo" class="card" style="margin-top:12px"></div><div id="activeMonthBadge" class="ok" style="padding:9px 12px;border-radius:9px;margin-top:8px">ماه فعال: <b>شهریور ۱۴۰۵</b></div><div id="monthApplyStatus" class="muted" style="margin-top:6px">ماه انتخابی هنوز اعمال نشده است.</div><div class="source-note">مقادیر پیش‌فرض ۱۴۰۵ از جدول‌های منتشرشده ساعات موظفی سال ۱۴۰۵ گرفته شده‌اند و مقدار هر ماه قابل ویرایش است.</div></div></section>
+
+<section id="shifts" class="page"><div class="card"><h2>ساخت شیفت</h2><p class="muted">برای هر شیفت ساعت و دقیقه شروع و پایان را از منو انتخاب کنید. شیفت‌های تعریف‌شده قابل ویرایش هستند.</p><button class="btn primary" onclick="addShift()">➕ افزودن شیفت</button></div><div class="card"><div id="shiftList"></div></div></section>
+
+<section id="rules" class="page">
+  <div class="card">
+    <h2>قوانین شیفت</h2>
+    <div class="grid">
+      <div class="field"><label>حداکثر پایان شیفت خانم‌ها</label><input id="femaleEnd" type="number" min="0" max="23"></div>
+      <div class="field"><label>درصد نیرو در جمعه و تعطیل</label><input id="holidayPct" type="number" min="1" max="100"></div>
+      <div class="field"><label>حداکثر موظفی</label><select id="maxH"><option value="1">کنترل شود</option><option value="0">کنترل نشود</option></select></div>
+      <div class="field"><label>شب فقط آقایان</label><select id="nightMale"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div>
+      <div class="field"><label>اولویت حضور در تعطیلات</label><select id="holidayPriority"><option value="male">آقایان</option><option value="female">خانم‌ها</option><option value="none">غیرفعال</option></select></div>
+      <div class="field"><label>پنجشنبه یک‌درمیان خانم‌ها</label><select id="thuAlt"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div>
+      <div class="field"><label>تعطیلات یک در میان خانم‌ها</label><select id="holidayAlt"><option value="1">فعال</option><option value="0">غیرفعال</option></select></div>
+      <div class="field"><label>نحوه چیدن شیفت</label><select id="regularMode">
+        <option value="female">خانم‌ها منظم</option>
+        <option value="male">آقایان منظم</option>
+        <option value="none">غیرفعال</option>
+      </select></div>
+    </div>
+    <button class="btn primary" onclick="saveRules()" style="margin-top:12px">💾 ذخیره قوانین</button>
+  </div>
+  <div class="card">
+    <h3>حداقل و حداکثر نیرو در هر بازه زمانی</h3>
+    <p class="muted">اختیاری است؛ اگر هیچ بازه‌ای تعریف نکنید، سازنده هوشمند بدون این محدودیت کار می‌کند.</p>
+    <div class="grid">
+      <div class="field"><label>از</label><input id="covStart" class="time-input" type="time" value="19:00"></div>
+      <div class="field"><label>تا</label><input id="covEnd" class="time-input" type="time" value="07:00"></div>
+      <div class="field"><label>حداقل نیرو</label><input id="covMin" type="number" min="0" value="1"></div>
+      <div class="field"><label>حداکثر نیرو</label><input id="covMax" type="number" min="0" value="2"></div>
+    </div>
+    <div class="actions"><button class="btn primary" onclick="addCoverage()">➕ افزودن بازه</button></div>
+    <div id="coverageList" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="builder" class="page"><div class="card"><h2>ساخت هوشمند شیفت</h2><p class="muted">برنامه با تقویم واقعی، جنسیت، ساعات موظفی و قوانین تنظیم‌شده ساخته می‌شود.</p><div class="actions"><button id="autoGenerateBtn" class="btn primary" onclick="generate()" title="تولید بهترین برنامه فقط برای مدیر سیستم فعال است.">🧠 تولید بهترین برنامه</button><button class="btn secondary" onclick="resetShifts()">♻️ بازگردانی شیفت‌های اولیه</button></div></div><div class="card"><div class="tablewrap"><table id="table"></table></div></div></section>
+
+<section id="check" class="page"><div id="checkBox" class="card"></div></section>
+
+<section id="reports" class="page"><div class="card"><h2>گزارش‌ها</h2><p class="muted">گزارش نهایی فقط‌خواندنی است و تغییر شیفت در این صفحه امکان‌پذیر نیست.</p><div class="actions"><button class="btn secondary" onclick="downloadCSV()">📄 CSV</button><button class="btn success" onclick="downloadXLSX()">📊 Excel رنگی</button><button class="btn primary" onclick="printReport()">🖨️ چاپ / PDF</button></div></div><div class="card readonly"><div class="tablewrap"><table id="report"></table></div></div></section>
+
+<section id="backup" class="page"><div class="card"><h2>پشتیبان‌گیری</h2><p class="muted">یک نسخه از اطلاعات نیروها، شیفت‌ها، قوانین و برنامه ماهانه ذخیره کنید.</p><div class="actions"><button class="btn success" onclick="backup()">⬇️ دریافت پشتیبان</button><label class="btn secondary">⬆️ بازیابی پشتیبان<input type="file" accept="application/json" hidden onchange="restore(event)"></label></div></div></section>
+
+<section id="users" class="page"><div class="card"><h2>مدیریت کاربران</h2><p class="muted"></p><div class="actions"><button class="btn primary" onclick="openSupabaseUsers()">👥 مدیریت کاربران در Supabase</button></div><div id="userInfo" class="card" style="margin-top:12px"></div></div></section>
+
+
+<section id="education" class="page">
+  <div class="card">
+    <h2>🎓 آموزش کار با سایت</h2>
+    <p class="muted">راهنمای مرحله‌به‌مرحله برای ساخت یک برنامه شیفت حرفه‌ای.</p>
+  </div>
+  <div class="card tutorial-card">
+    <h3>۱. شروع کار</h3>
+    <p>ابتدا ماه موردنظر را در «تقویم و موظفی» انتخاب و روی «اعمال ماه» بزنید.</p>
+    <div class="tutorial-visual"><svg viewBox="0 0 700 180" role="img" aria-label="آموزش اعمال ماه"><rect x="30" y="30" width="640" height="120" rx="18" fill="var(--card)" stroke="var(--line)"/><rect x="55" y="65" width="180" height="45" rx="9" fill="#e8eefc"/><rect x="255" y="65" width="140" height="45" rx="9" fill="#dbeafe"/><rect x="425" y="58" width="180" height="58" rx="12" fill="#2563eb"/><text x="515" y="94" fill="white" text-anchor="middle" font-size="18">اعمال ماه</text><path d="M405 87h20" stroke="#2563eb" stroke-width="4"/><path d="M418 80l10 7-10 7" fill="none" stroke="#2563eb" stroke-width="4"/></svg></div>
+  </div>
+  <div class="card tutorial-card">
+    <h3>۲. مدیریت نیرو و شیفت</h3>
+    <p>برای حساب جدید ابتدا فقط یک آقا، یک خانم و دو کد شیفت پایه در نظر گرفته می‌شود؛ در صورت نیاز با «افزودن نیرو» و «افزودن شیفت» موارد بیشتری اضافه کنید.</p>
+    <div class="tutorial-visual gif-demo"><div class="demo-box">➕ افزودن نیرو</div><div class="demo-arrow">→</div><div class="demo-box">➕ افزودن شیفت</div><div class="demo-arrow">→</div><div class="demo-box">⏰ تنظیم ساعت</div></div>
+  </div>
+  <div class="card tutorial-card">
+    <h3>۳. قوانین شیفت</h3>
+    <p>قوانین را ذخیره کنید؛ تولید هوشمند همه قوانین فعال، تقویم، جنسیت، موظفی و محدودیت‌های پوشش را در نظر می‌گیرد.</p>
+    <div class="tutorial-visual gif-demo animated-demo"><span>⚙️</span><span>➡️</span><span>🧠</span><span>➡️</span><span>✅</span></div>
+  </div>
+  <div class="card tutorial-card">
+    <h3>۴. ساخت هوشمند شیفت</h3>
+    <p>روی «تولید بهترین برنامه» بزنید. هنگام پردازش، پیام «در حال تولید بهترین برنامه، کمی صبر کنید...» نمایش داده می‌شود و بعد از کنترل نهایی برنامه ذخیره می‌شود.</p>
+    <div class="tutorial-visual gif-demo animated-demo"><span>🧠 تولید</span><span>⏳</span><span>📅 برنامه</span><span>✅ کنترل</span></div>
+  </div>
+  <div class="card tutorial-card">
+    <h3>۵. گزارش و خروجی</h3>
+    <p>در «گزارش‌ها» می‌توانید CSV، Excel رنگی و چاپ/PDF را دریافت کنید.</p>
+  </div>
+</section>
+
+<section id="history" class="page">
+  <div class="card"><h2>📋 تاریخچه نسخه‌ها</h2><p class="muted">سوابق انتشار و مهم‌ترین تغییرات ShiftMaster Pro.</p></div>
+  <div class="card version-card"><div class="version-head"><b>نسخه ۲.۰</b><span>۱۴۰۵/۰۶/۰۸</span></div><div class="version-body">ذخیره‌سازی آنلاین در Supabase، تم روشن/تاریک، ثبت‌نام و بازیابی رمز، پشتیبانی تلگرامی، قوانین پیشرفته تعطیلات و چیدمان، بهبود موتور تولید هوشمند، آموزش سایت و بهبود تجربه کاربری.</div></div>
+  <div class="card version-card"><div class="version-head"><b>نسخه ۱.۰</b><span>نسخه اولیه</span></div><div class="version-body">مدیریت نیروها و شیفت‌ها، تقویم و موظفی، قوانین شیفت، تولید هوشمند، کنترل خطا، گزارش، Excel/CSV و پشتیبان‌گیری.</div></div>
+</section>
+<footer class="footer site-footer"><div class="footer-inner"><b>طراح و توسعه‌دهنده: محسن یحیوی</b><span>تلفن پشتیبانی: 09010227717</span><span>نسخه ۲.۰</span></div></footer>
+</main></div></div>
+<button id="supportFab" class="support-fab support-fab-3d" title="پشتیبانی" onclick="toggleSupport()" aria-label="پشتیبانی"><span class="support-fab-face">💬</span></button>
+<div id="supportPanel" class="support-panel support-panel-modern">
+  <div class="support-head"><div><b>💬 پشتیبانی ShiftMaster</b><span id="supportStatus" class="support-status">● آنلاین • پاسخگویی سریع</span></div><button type="button" onclick="toggleSupport()">×</button></div>
+  <div id="supportQuick" class="support-quick"><button onclick="supportQuick('خرید و فعال‌سازی حساب')">💳 خرید و فعال‌سازی</button><button onclick="supportQuick('چطور حسابم را فعال کنم؟')">❓ فعال‌سازی حساب</button><button onclick="supportQuick('چطور بهترین برنامه شیفت را بسازم؟')">🧠 تولید بهترین برنامه</button><button onclick="supportQuick('رمز عبورم را فراموش کرده‌ام.')">🔑 بازیابی رمز</button></div>
+  <div id="supportMessages" class="support-messages"><div class="support-bubble support-bot">سلام! چه کمکی از دستم برمی‌آید؟</div></div>
+  <div class="support-compose"><textarea id="supportText" rows="2" placeholder="پیام خود را بنویسید..."></textarea><button type="button" class="btn primary" onclick="sendSupport()">ارسال ➤</button></div>
+</div>
+<div id="processingOverlay" class="processing-overlay"><div class="processing-card"><div class="spinner"></div><h3 style="margin:0 0 6px">در حال تولید بهترین برنامه</h3><div class="muted">کمی صبر کنید...</div></div></div><div id="toast" class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<script id="supabase-cdn" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>const M=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"],W=["شنبه","یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه"];
+const REQUIRED_1405={1:147,2:191,3:176,4:183,5:169,6:191,7:191,8:183,9:191,10:176,11:169,12:154};
+let E=[...Array(15)].map((_,i)=>["همکار "+(i+1),i<6?"male":"female",1]);
+let activeMonthKey="1405-6";
+let S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];
+let R={femaleEnd:19,holidayPct:60,nightMale:true,malePriority:true,thuAlt:true,maxH:true,coverageRanges:[]},G={},onlineDB=null,currentUser=null,currentProfile=null;
+const SUPABASE_URL="https://prffpkzkjrktbdfnediz.supabase.co",SUPABASE_PUBLISHABLE_KEY="sb_publishable_D_Eg1YgthsNknnwbjHtTyA_APtjmJ2e";
+function setLoginStatus(text,ok=false){const el=document.getElementById("loginMsg");if(el){el.textContent=text;el.style.color=ok?"#15803d":"#b91c1c"}}
+function initSupabase(){if(window.supabase){onlineDB=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});return true}return false}
+async function ensureSupabase(){if(initSupabase())return true;const urls=["https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2","https://unpkg.com/@supabase/supabase-js@2"];for(const url of urls){try{await new Promise((resolve,reject)=>{const sc=document.createElement("script");sc.src=url;sc.async=false;sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)});if(initSupabase())return true}catch(e){}}return false}
+initSupabase();
+function mins(t){const [h,m]=t.split(":").map(Number);return h*60+m}function dur(a,b){if(a==="00:00"&&b==="00:00")return 0;let x=mins(b)-mins(a);if(x<=0)x+=1440;return x/60}
+const persianFmt=new Intl.DateTimeFormat("en-US-u-ca-persian",{year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"});const jalaliStartCache={};
+function jalaliParts(date){const p=persianFmt.formatToParts(date),o={};p.forEach(x=>{if(x.type!=='literal')o[x.type]=Number(x.value)});return o}
+function jalaliStart(y){if(jalaliStartCache[y])return new Date(jalaliStartCache[y]);const approx=Date.UTC(y+621,2,20,12);for(let i=-10;i<=10;i++){const dt=new Date(approx+i*86400000),p=jalaliParts(dt);if(p.year===y&&p.month===1&&p.day===1){jalaliStartCache[y]=dt.getTime();return dt}}throw new Error("Jalali calendar conversion failed for "+y)}
+function leap(y){const a=jalaliStart(y).getTime(),b=jalaliStart(y+1).getTime();return Math.round((b-a)/86400000)===366}
+function jalaliToDate(y,m,d){let offset=(m<=6?(m-1)*31:(m-1)*30+6)+(d-1);return new Date(jalaliStart(y).getTime()+offset*86400000)}
+function wd(y,m,d){const g=jalaliToDate(y,m,d);return (g.getUTCDay()+1)%7}
+function days(y,m){return m<=6?31:m<=11?30:(leap(y)?30:29)}function friday(y,m,d){return wd(y,m,d)===6}function thursday(y,m,d){return wd(y,m,d)===5}
+function esc(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;",'\'':"&#39;"}[c]))}
+function get(id){return S.find(x=>x[0]===id)||S.find(x=>x[0]==="OFF")}
+function hours(i){
+  return (G[i]||[]).reduce((sum,id)=>{
+    const s=get(id);
+    return sum+(s?dur(s[2],s[3]):0);
+  },0);
+}
+function allowed(s,e){
+  if(!s || s[0]==="OFF" || !s[5]) return false;
+  if(!e) return false;
+  if(e[1]==="female" && s[4]==="male") return false;
+  if(e[1]==="male" && s[4]==="female") return false;
+  if(R.nightMale && dur(s[2],s[3])>=11 && e[1]!=="male") return false;
+  if(e[1]==="female"){
+    const endMin=mins(s[3]), startMin=mins(s[2]);
+    if(startMin!==endMin && endMin>startMin && endMin>Number(R.femaleEnd||19)*60) return false;
+  }
+  return true;
+}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.style.display="none",2200)}
+function toggleSide(){document.getElementById("side").classList.toggle("open")}function toggleProfile(){document.getElementById("profileMenu").classList.toggle("open")}document.addEventListener("click",e=>{if(!e.target.closest(".profile"))document.getElementById("profileMenu").classList.remove("open")});
+function goto(id,n){const b=document.querySelectorAll(".nav button")[n-1];page(id,b)}
+const ACCESS={users:false,auto:false,password:false,backup:false};
+function isViewer(){return (currentProfile?.role||"").toLowerCase()==="viewer"}
+function isSupervisor(){return (currentProfile?.role||"").toLowerCase()==="supervisor"}
+function deny(){toast("شما به این منو دسترسی ندارید.");return false}
+function can(action){
+ if(isViewer()) return !ACCESS[action];
+ if(isSupervisor() && action==="users") return false;
+ return true;
+}
+function applyAccess(){
+ const viewer=isViewer();
+ const supervisor=isSupervisor();
+ const userBtn=[...document.querySelectorAll('.nav button')].find(x=>(x.textContent||'').includes('مدیریت کاربران'));
+ const autoBtn=document.querySelector('#autoGenerateBtn');
+ const backupBtn=[...document.querySelectorAll('.nav button')].find(x=>(x.textContent||'').includes('پشتیبان‌گیری'));
+ if(viewer){
+   [userBtn,backupBtn].forEach(btn=>{if(btn){btn.classList.add('access-disabled');btn.onclick=e=>{e.preventDefault();return deny()}}});
+   if(autoBtn){
+     autoBtn.disabled=true;
+     autoBtn.classList.add('access-disabled');
+     autoBtn.title='این قابلیت فقط برای مدیر سیستم فعال است.';
+     autoBtn.setAttribute('aria-disabled','true');
+   }
+   const cp=document.querySelector('#profileMenu button[onclick="changePassword()"]');
+   if(cp){cp.classList.add('access-disabled');cp.onclick=e=>{e.preventDefault();return deny()}}
+ } else {
+   if(autoBtn){
+     autoBtn.disabled=false;
+     autoBtn.classList.remove('access-disabled');
+     autoBtn.title='';
+     autoBtn.removeAttribute('aria-disabled');
+   }
+ }
+ if(supervisor && userBtn){
+   userBtn.classList.add('access-disabled');
+   userBtn.setAttribute('aria-disabled','true');
+   userBtn.onclick=e=>{e.preventDefault();return deny()};
+ }
+}
+function page(id,b){
+ if((isViewer() || isSupervisor()) && id==='users') return deny();
+ if(isViewer() && id==='backup') return deny();
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');document.getElementById('title').textContent=b?b.textContent.replace(/[^؀-ۿ\s]+/g,'').trim():'';document.getElementById('side').classList.remove('open');if(id==='reports')renderReport();if(id==='users')renderUserInfo();}
+async function login(){
+ const username=document.getElementById("user").value.trim().toLowerCase();
+ const password=document.getElementById("pass").value;
+ if(!username||!password){setLoginStatus("نام کاربری و رمز عبور را وارد کنید.");return}
+ setLoginStatus("در حال بررسی اتصال و ورود...");
+ try{
+   if(!onlineDB){const ready=await ensureSupabase();if(!ready)throw new Error("SUPABASE_CLIENT_NOT_LOADED")}
+   const {data:emailData,error:lookupError}=await onlineDB.rpc("get_login_email",{p_username:username});
+   if(lookupError)throw new Error("LOGIN_LOOKUP: "+(lookupError.message||"RPC error"));
+   const email=typeof emailData==="string"?emailData:(emailData?.email||emailData?.[0]?.email||"");
+   if(!email)throw new Error("LOGIN_LOOKUP: نام کاربری در سامانه پیدا نشد.");
+   const {data,error}=await onlineDB.auth.signInWithPassword({email,password});
+   if(error)throw new Error("AUTH: "+(error.message||"خطای ورود"));
+   if(!data?.user)throw new Error("AUTH: کاربر از Supabase دریافت نشد.");
+   await openApp(data.user);
+   setLoginStatus("ورود با موفقیت انجام شد.",true);
+ }catch(err){
+   console.error("ShiftMaster login error:",err);
+   const m=String(err?.message||err);
+   if(m.startsWith("SUPABASE_CLIENT_NOT_LOADED"))setLoginStatus("اتصال Supabase برقرار نشد. اینترنت یا بارگذاری کتابخانه Supabase را بررسی کنید.");
+   else if(m.startsWith("LOGIN_LOOKUP"))setLoginStatus("نام کاربری پیدا نشد یا سرویس ورود به Supabase در دسترس نیست.");
+   else if(m.startsWith("AUTH")){
+      const raw=String(err?.message||"").toLowerCase();
+      if(raw.includes("email not confirmed"))setLoginStatus("ایمیل حساب هنوز تأیید نشده است. لطفاً ایمیل تأیید Supabase را باز کنید.");
+      else setLoginStatus("نام کاربری یا رمز عبور صحیح نیست.");
+    }
+   else setLoginStatus("خطا در ورود: "+m);
+ }
+}
+async function logout(){if(onlineDB)await onlineDB.auth.signOut();currentUser=null;currentProfile=null;sessionStorage.removeItem("login");location.reload()}
+async function openApp(user){if(!onlineDB)return;document.getElementById("login").style.display="none";document.getElementById("app").style.display="flex";document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");if(user){currentUser=user;const {data:p,error:pe}=await onlineDB.from("profiles").select("*").eq("id",user.id).maybeSingle();if(pe)console.warn(pe);if(p){currentProfile=p;window.currentProfile=p;document.getElementById("profileName").textContent=p.display_name||p.username||"کاربر"}}await loadOnline();document.getElementById("req").value=reqVal();document.getElementById("days").value=days(+year.value,+month.value);render();applyAccess()}
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.activeElement&&(document.activeElement.id==="user"||document.activeElement.id==="pass"))login()});
+function showProfile(){alert(`نام کاربری: ${currentProfile?.username||"-"}\nنام نمایشی: ${currentProfile?.display_name||"-"}\nنقش: ${currentProfile?.role||"-"}`)}async function changePassword(){if(!can("password"))return deny();const p=prompt("رمز عبور جدید را وارد کنید:");if(!p)return;const {error}=await onlineDB.auth.updateUser({password:p});alert(error?"تغییر رمز ناموفق بود.":"رمز عبور با موفقیت تغییر کرد.")}
+function addEmp(){E.push(["همکار "+(E.length+1),"male",1]);render()}function removeEmp(){if(E.length>1){E.pop();render()}}function delEmp(i){E.splice(i,1);render()}
+function renderEmp(){document.getElementById("empList").innerHTML=E.map((e,i)=>`<div class="row"><input value="${esc(e[0])}" onchange="E[${i}][0]=this.value;save()"><select onchange="E[${i}][1]=this.value;save();render()"><option value="male" ${e[1]==="male"?"selected":""}>آقا</option><option value="female" ${e[1]==="female"?"selected":""}>خانم</option></select><button class="btn danger" onclick="delEmp(${i})">حذف</button><label><input type="checkbox" ${e[2]?"checked":""} onchange="E[${i}][2]=this.checked;save()"> فعال</label></div>`).join("")}
+function importExcel(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const wb=XLSX.read(e.target.result,{type:"array"}),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:""}),keys=Object.keys(rows[0]||{}),nk=keys.find(k=>/نام|name/i.test(k))||keys[0],gk=keys.find(k=>/جنس|gender|sex/i.test(k));E=rows.map(x=>[String(x[nk]||"").trim(),/زن|خانم|female|woman/i.test(String(gk?x[gk]:""))?"female":"male",1]).filter(x=>x[0]);render();toast(E.length+" نیرو وارد شد")}catch(e){alert("فایل Excel نامعتبر است")} };r.readAsArrayBuffer(f);ev.target.value=""}
+function timeOptions(v){const [h,m]=String(v||"00:00").split(":").map(Number);return {h:Number.isFinite(h)?h:0,m:Number.isFinite(m)?m:0}}async function setTime(i,kind,v){
+  if(!/^\d{2}:\d{2}$/.test(v))return;
+  if(kind==="start")S[i][2]=v;else S[i][3]=v;
+  renderShifts();
+  await save();
+  toast("ساعت شیفت ذخیره شد.");
+}
+function renderShifts(){document.getElementById("shiftList").innerHTML=S.map((s,i)=>`<div class="shiftrow"><div><label>کد</label><input value="${esc(s[0])}" ${s[0]==="OFF"?"readonly":""} onchange="S[${i}][0]=this.value;S[${i}][1]=this.value;save();render()"></div><div><label>نام</label><input value="${esc(s[1])}" ${s[0]==="OFF"?"readonly":""} onchange="S[${i}][1]=this.value;save()"></div><div><label>شروع</label><input class="time-input" type="time" step="60" value="${s[2]}" ${s[0]==="OFF"?"disabled":""} onchange="setTime(${i},'start',this.value)"></div><div><label>پایان</label><input class="time-input" type="time" step="60" value="${s[3]}" ${s[0]==="OFF"?"disabled":""} onchange="setTime(${i},'end',this.value)"></div><div><label>مدت</label><input readonly value="${dur(s[2],s[3]).toFixed(2)} ساعت"></div><div><label>مجاز برای</label><select onchange="S[${i}][4]=this.value;save()"><option value="both" ${s[4]==="both"?"selected":""}>همه</option><option value="male" ${s[4]==="male"?"selected":""}>فقط آقایان</option><option value="female" ${s[4]==="female"?"selected":""}>فقط خانم‌ها</option></select></div><label><input type="checkbox" ${s[5]?"checked":""} onchange="S[${i}][5]=this.checked;save()"> فعال</label><button class="btn danger" ${s[0]==="OFF"?"disabled":""} onclick="delShift(${i})">حذف</button></div>`).join("")}
+function addShift(){let n=S.filter(x=>x[0]!=="OFF").length+1;S.splice(S.length-1,0,["S"+n,"S"+n,"08:00","16:00","both",1]);render()}
+function delShift(i){if(S[i][0]!=="OFF"){S.splice(i,1);render()}}
+function resetShifts(){if(!can("auto"))return deny();if(!confirm("شیفت‌ها به حالت اولیه برگردند؟"))return;S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];generate();toast("شیفت‌ها به حالت اولیه برگشتند")}
+function saveRules(){R={...R,femaleEnd:+femaleEnd.value,holidayPct:+holidayPct.value,nightMale:+nightMale.value===1,malePriority:+malePriority.value===1,thuAlt:+thuAlt.value===1,maxH:+maxH.value===1,coverageRanges:getCoverageRanges()};save();render()}
+function renderRules(){femaleEnd.value=R.femaleEnd;holidayPct.value=R.holidayPct;nightMale.value=R.nightMale?1:0;malePriority.value=R.malePriority?1:0;thuAlt.value=R.thuAlt?1:0;maxH.value=R.maxH?1:0;renderCoverage()}
+function getCoverageRanges(){return Array.isArray(R.coverageRanges)?R.coverageRanges:[]}
+function addCoverage(){const start=covStart.value,end=covEnd.value,min=Math.max(0,+covMin.value||0),max=Math.max(0,+covMax.value||0);if(!start||!end||max<min){alert("بازه زمانی یا حداقل/حداکثر نیرو صحیح نیست.");return}const r=getCoverageRanges().slice();r.push({start,end,min,max});R.coverageRanges=r;save();renderCoverage();toast("بازه نیرو اضافه شد")}
+function renderCoverage(){const el=document.getElementById("coverageList");if(!el)return;const r=getCoverageRanges();el.innerHTML=r.length?r.map((x,i)=>`<div class="coverage-item"><span>🕒 ${x.start} تا ${x.end} — حداقل ${x.min} / حداکثر ${x.max}</span><button onclick="removeCoverage(${i})">حذف</button></div>`).join(""):"<span class=muted>هنوز بازه‌ای تعریف نشده است.</span>"}
+function removeCoverage(i){const r=getCoverageRanges().slice();r.splice(i,1);R.coverageRanges=r;save();renderCoverage()}
+function interval(a,b){let s=mins(a),e=mins(b);if(e<=s)e+=1440;return [s,e]}
+function coversRange(shift,range){if(shift[0]==="OFF")return false;const [ss,se]=interval(shift[2],shift[3]);const [rs,re]=interval(range.start,range.end);return ss<=rs && se>=re}
+function violatesCoverageMax(scheduleDay,range){return scheduleDay.filter(id=>coversRange(get(id),range)).length >= (+range.max||0)}
+function coverageCount(scheduleDay,range){return scheduleDay.filter(id=>coversRange(get(id),range)).length}
+function shiftAllowedForDay(s,e,y,m,d){if(!s||s[0]==="OFF"||!s[5]||!allowed(s,e))return false;if(friday(y,m,d)&&R.malePriority&&e[1]==="female")return false;return true}
+function scorePick(i,s,hoursArr,workDays,lastWorked){let target=+req.value;let short=Math.max(0,target-hoursArr[i]);let over=Math.max(0,hoursArr[i]-target);let consecutive=lastWorked[i]?1:0;let fairness=(over*22)-(short*4)+(workDays[i]*4)+(consecutive*18);if(R.malePriority)fairness += (E[i][1]==="male" ? -10 : 8);return fairness+Math.random()*8}
+async function generate(){
+  if(!can("auto")) return deny();
+  const btn=document.getElementById("autoGenerateBtn");
+  const setBusy=(busy)=>{
+    if(!btn) return;
+    btn.disabled=busy;
+    btn.classList.toggle("access-disabled",busy);
+    btn.textContent=busy?"⏳ در حال تولید بهترین برنامه...":"🧠 تولید بهترین برنامه";
+  };
+  setBusy(true);
+
+  const monthSnapshot={y:+year.value,m:+month.value,n:days(+year.value,+month.value)};
+  const getRange=(r)=>({startMin:mins(r.start),endMin:mins(r.end)});
+  const activeRanges=()=>Array.isArray(R.coverageRanges)?R.coverageRanges:[];
+
+  const wouldExceedMax=(dayAssignments, shiftId)=>{
+    const next=[...Object.values(dayAssignments),shiftId];
+    return activeRanges().some(r=>{
+      const max=Number(r.max||999);
+      if(max<0) return false;
+      return coverageCount(next,r)>max;
+    });
+  };
+
+  try{
+    const y=monthSnapshot.y, m=monthSnapshot.m, n=monthSnapshot.n;
+    if(!y||!m||!n) throw new Error("MONTH_INVALID");
+
+    const key=y+"-"+m;
+    if(typeof activeMonthKey!=="undefined" && activeMonthKey!==key){
+      await refreshMonth();
+    }
+
+    const employees=E.map((e,i)=>({i,name:e[0],gender:e[1],active:!!e[2]})).filter(e=>e.active);
+    if(!employees.length) throw new Error("NO_EMPLOYEES");
+
+    const activeShifts=S.filter(s=>s[5] && s[0]!=="OFF");
+    if(!activeShifts.length) throw new Error("NO_SHIFTS");
+
+    const ranges=activeRanges();
+
+    // Validate coverage definitions before generation.
+    for(const r of ranges){
+      const min=Number(r.min||0), max=Number(r.max||0);
+      if(max<min) throw new Error("BAD_COVERAGE_RANGE");
+      const rs=getRange(r);
+      const eligible=activeShifts.filter(s=>coversRange(s,r) && employees.some(e=>allowed(s,E[e.i])));
+      if(min>0 && !eligible.length) throw new Error(`COVERAGE_UNAVAILABLE:${r.start}-${r.end}`);
+    }
+
+    // Candidate selection helper. Hard max is enforced here, not only in scoring.
+    const chooseShift=(i, preferredRange)=>{
+      let choices=activeShifts.filter(s=>allowed(s,E[i]));
+      if(preferredRange) choices=choices.filter(s=>coversRange(s,preferredRange));
+      if(!choices.length) return null;
+      // Night ranges strongly prefer a real overnight shift.
+      if(preferredRange && (mins(preferredRange.start)>=18*60 || mins(preferredRange.end)<=8*60)){
+        choices.sort((a,b)=>(dur(b[2],b[3])>=11?0:1)-(dur(a[2],a[3])>=11?0:1));
+      }else{
+        choices.sort((a,b)=>Math.abs((+req.value)-hours(i)-dur(a[2],a[3]))-Math.abs((+req.value)-hours(i)-dur(b[2],b[3])));
+      }
+      return choices[0] || null;
+    };
+
+    let best=null;
+    const attempts=180;
+
+    for(let attempt=0;attempt<attempts;attempt++){
+      const candidate={};
+      const hourTotal=Object.fromEntries(employees.map(e=>[e.i,0]));
+      const workCount=Object.fromEntries(employees.map(e=>[e.i,0]));
+      employees.forEach(e=>candidate[e.i]=Array(n).fill("OFF"));
+
+      for(let d=1;d<=n;d++){
+        const assignments={};
+
+        const pool=employees.map(e=>e.i).sort((a,b)=>{
+          const h=(hourTotal[a]-hourTotal[b]);
+          if(h!==0) return h;
+          const w=workCount[a]-workCount[b];
+          if(w!==0) return w;
+          return Math.random()-0.5;
+        });
+
+        // Hard minimum coverage for every range.
+        for(const r of ranges){
+          const min=Number(r.min||0);
+          for(let k=0;k<min;k++){
+            const eligible=pool.filter(i=>{
+              if(assignments[i]) return false;
+              const e=E[i];
+              if(friday(y,m,d) && R.malePriority && e[1]==="female") return false;
+              if(thursday(y,m,d) && R.thuAlt && e[1]==="female" && (i%2===(d%2))) return false;
+              const s=chooseShift(i,r);
+              return !!s && !wouldExceedMax(assignments,s[0]);
+            });
+            if(!eligible.length) continue;
+
+            eligible.sort((a,b)=>{
+              const as=chooseShift(a,r), bs=chooseShift(b,r);
+              return (hourTotal[a]+(as?dur(as[2],as[3]):999))-(hourTotal[b]+(bs?dur(bs[2],bs[3]):999));
+            });
+
+            const i=eligible[0];
+            const s=chooseShift(i,r);
+            if(!s) continue;
+            if(R.maxH && hourTotal[i]+dur(s[2],s[3])>Number(req.value||0)) continue;
+
+            assignments[i]=s[0];
+            hourTotal[i]+=dur(s[2],s[3]);
+            workCount[i]++;
+          }
+        }
+
+        // Fill remaining demand while respecting ALL maximums.
+        const baseTarget=friday(y,m,d)
+          ? Math.max(1,Math.ceil(employees.length*(Number(R.holidayPct||60)/100)))
+          : Math.max(1,Math.ceil(employees.length*0.5));
+        let target=Math.max(baseTarget, ...ranges.map(r=>Number(r.min||0)), 0);
+
+        for(const i of pool){
+          if(Object.keys(assignments).length>=target) break;
+          if(assignments[i]) continue;
+
+          const e=E[i];
+          if(friday(y,m,d) && R.malePriority && e[1]==="female") continue;
+          if(thursday(y,m,d) && R.thuAlt && e[1]==="female" && (i%2===(d%2))) continue;
+
+          let choices=activeShifts.filter(s=>allowed(s,e));
+          choices=choices.filter(s=>!wouldExceedMax(assignments,s[0]));
+          if(!choices.length) continue;
+
+          choices.sort((a,b)=>{
+            const ah=hourTotal[i]+dur(a[2],a[3]), bh=hourTotal[i]+dur(b[2],b[3]);
+            return Math.abs((+req.value||0)-ah)-Math.abs((+req.value||0)-bh);
+          });
+          const s=choices[0];
+          if(R.maxH && hourTotal[i]+dur(s[2],s[3])>Number(req.value||0)) continue;
+
+          assignments[i]=s[0];
+          hourTotal[i]+=dur(s[2],s[3]);
+          workCount[i]++;
+        }
+
+        Object.entries(assignments).forEach(([i,sid])=>candidate[i][d-1]=sid);
+      }
+
+      // Score the complete candidate.
+      let score=0;
+      const oldG=G;
+      G=candidate;
+
+      for(let d=1;d<=n;d++){
+        const dayIds=employees.map(e=>candidate[e.i][d-1]);
+
+        for(const r of ranges){
+          const c=coverageCount(dayIds,r);
+          const min=Number(r.min||0), max=Number(r.max||999);
+          if(c<min) score+=(min-c)*200000;
+          if(c>max) score+=(c-max)*200000;
+        }
+
+        if(friday(y,m,d)){
+          const target=Math.max(1,Math.ceil(employees.length*(Number(R.holidayPct||60)/100)));
+          const active=dayIds.filter(x=>x!=="OFF").length;
+          score+=Math.abs(active-target)*5000;
+        }
+      }
+
+      for(const e of employees){
+        const h=hours(e.i);
+        score+=Math.abs((+req.value||0)-h)*5;
+
+        // Strongly penalize long consecutive work strings and end-of-month OFF pileups.
+        const arr=candidate[e.i];
+        let tailOff=0;
+        for(let k=arr.length-1;k>=0 && arr[k]==="OFF";k--) tailOff++;
+        score+=tailOff*250;
+
+        let run=0;
+        for(const sid of arr){
+          if(sid==="OFF") run=0;
+          else {run++; if(run>2)score+=(run-2)*70;}
+        }
+      }
+
+      // Restore old global before deciding.
+      G=oldG;
+
+      if(!best || score<best.score) best={score,G:JSON.parse(JSON.stringify(candidate))};
+    }
+
+    if(!best) throw new Error("NO_PLAN");
+
+    G=best.G;
+    const errors=validate();
+
+    // Final explicit coverage validation.
+    const coverageErrors=[];
+    for(let d=1;d<=n;d++){
+      const dayIds=employees.map(e=>G[e.i][d-1]);
+      for(const r of ranges){
+        const c=coverageCount(dayIds,r);
+        if(c<Number(r.min||0)) coverageErrors.push(`${d}: ${r.start}-${r.end}`);
+        if(c>Number(r.max||999)) coverageErrors.push(`${d}: ${r.start}-${r.end} MAX`);
+      }
+    }
+
+    if(errors.length||coverageErrors.length){
+      toast("برنامه تولید شد اما کنترل نهایی خطا دارد؛ بخش کنترل و خطایابی را بررسی کنید.");
+    }else{
+      toast("بهترین برنامه با موفقیت تولید و کنترل شد.");
+    }
+
+    await save();
+    render();
+  }catch(err){
+    console.error("best schedule generation:",err);
+    const msg=String(err.message||err);
+    if(msg.startsWith("COVERAGE_UNAVAILABLE:")) toast("برای یکی از بازه‌ها شیفت پوشش‌دهنده تعریف نشده است.");
+    else if(msg==="BAD_COVERAGE_RANGE") toast("حداکثر نیرو نمی‌تواند کمتر از حداقل نیرو باشد.");
+    else if(msg==="NO_EMPLOYEES") toast("ابتدا حداقل یک نیروی فعال تعریف کنید.");
+    else if(msg==="NO_SHIFTS") toast("ابتدا حداقل یک شیفت فعال تعریف کنید.");
+    else if(msg==="MONTH_INVALID") toast("سال یا ماه انتخاب‌شده معتبر نیست.");
+    else if(msg==="NO_PLAN") toast("برنامه قابل تولید نیست؛ قوانین یا محدودیت‌های نیرو را بررسی کنید.");
+    else { console.error("Smart scheduler runtime error", err); toast("خطای فنی در موتور تولید برنامه؛ جزئیات در کنسول مرورگر ثبت شد."); }
+  }finally{
+    setBusy(false);
+  }
+}
+function renderTable(id,readonly=false){const y=+year.value,m=+month.value,n=days(y,m),t=document.getElementById(id);let h='<thead><tr><th class="sticky">نام</th><th>جنسیت</th>';for(let d=1;d<=n;d++){const c=friday(y,m,d)?"holiday":thursday(y,m,d)?"thu":"";h+=`<th class="${c}">${d}<br>${W[wd(y,m,d)]}</th>`}h+='<th>ساعات</th></tr></thead><tbody>';E.forEach((e,i)=>{h+=`<tr><td class="sticky"><b>${esc(e[0])}</b></td><td><span class="badge ${e[1]}">${e[1]==="male"?"آقا":"خانم"}</span></td>`;(G[i]||Array(n).fill("OFF")).forEach((id2,d)=>{const s=get(id2),c=id2==="OFF"?"off":friday(y,m,d+1)?"holiday":thursday(y,m,d+1)?"thu":"";if(readonly)h+=`<td class="${c}">${id2==="OFF"?"OFF":esc(s[1])+`<br><small>${s[2]}-${s[3]}</small>`}</td>`;else h+=`<td class="${c}"><select class="shift-select" onchange="G[${i}][${d}]=this.value;save();render()">${S.filter(x=>x[5]).map(x=>`<option value="${x[0]}" ${x[0]===id2?"selected":""}>${esc(x[1])} | ${x[2]}-${x[3]}</option>`).join("")}</select></td>`});h+=`<td><b>${hours(i).toFixed(2)}</b></td></tr>`});t.innerHTML=h+'</tbody>'}
+function validate(){let er=[],wa=[];E.forEach((e,i)=>{const h=hours(i);if(h>+req.value)er.push(`${e[0]}: ${h.toFixed(2)} ساعت، بیشتر از موظفی ${req.value} ساعت.`);if(h<+req.value-8)wa.push(`${e[0]}: ${h.toFixed(2)} ساعت، کمتر از موظفی است.`);(G[i]||[]).forEach(id=>{const s=get(id);if(s && s[0]!=="OFF" && e[1]==="female"&&!allowed(s,e))er.push(`${e[0]}: شیفت ${s[1]} برای خانم مجاز نیست.`)})});const box=document.getElementById("checkBox");box.className="card "+(er.length?"err":wa.length?"warn":"ok");box.innerHTML=`<h2>کنترل و خطایابی</h2>${er.length?`<b>خطاها (${er.length})</b><ul>${er.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"<p>خطای اصلی شناسایی نشد.</p>"}${wa.length?`<b>هشدارها (${wa.length})</b><ul>${wa.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;return er}
+function renderReport(){renderTable("report",true)}
+function render(){renderEmp();renderShifts();renderRules();renderCoverage();renderTable("table",false);renderReport();const er=validate(),total=Object.values(G).flat().reduce((a,id)=>a+dur(get(id)[2],get(id)[3]),0),night=Object.values(G).flat().filter(id=>dur(get(id)[2],get(id)[3])>=11).length;document.getElementById("dashMonth").textContent=M[+month.value-1]+" "+year.value;document.getElementById("sEmp").textContent=E.length;document.getElementById("sReq").textContent=req.value;document.getElementById("sHours").textContent=total.toFixed(2);document.getElementById("sNight").textContent=night;document.getElementById("sErr").textContent=er.length;const ds=document.getElementById("dashStatus");ds.className="card "+(er.length?"err":"ok");ds.innerHTML=er.length?`<b>⚠️ شیفت نیاز به اصلاح دارد.</b><br><span class="muted">${er.length} خطای اصلی شناسایی شده است. از «کنترل و خطایابی» جزئیات را ببینید.</span>`:`<b>✅ وضعیت برنامه: بدون خطای اصلی</b><br><span class="muted">برنامه بر اساس تقویم واقعی، قوانین ثبت‌شده، محدودیت‌های قانون کار، ساعات موظفی و نیاز نیروی هر بازه بررسی شده است.</span>`;document.getElementById("days").value=days(+year.value,+month.value);document.getElementById("activeMonthBadge").innerHTML=`ماه فعال: <b>${M[+month.value-1]} ${year.value}</b>`;document.getElementById("calInfo").innerHTML=`روز اول ${M[+month.value-1]} ${year.value}: <b>${W[wd(+year.value,+month.value,1)]}</b><br>تعداد روز: <b>${days(+year.value,+month.value)}</b><br>ساعات موظفی: <b>${req.value}</b> ساعت`}
+function reqVal(){const k=year.value+"-"+month.value,q=JSON.parse(localStorage.getItem("shift_required")||"{}");return q[k]??(String(year.value)==="1405"?REQUIRED_1405[+month.value]:176)}
+async function saveRequired(){
+  try{
+    const q=JSON.parse(localStorage.getItem("shift_required")||"{}");
+    q[year.value+"-"+month.value]=+req.value;
+    localStorage.setItem("shift_required",JSON.stringify(q));
+    await save();
+    toast("ساعات موظفی با موفقیت ذخیره شد.");
+  }catch(e){console.error(e);toast("ذخیره ساعات موظفی انجام نشد.");}
+}
+async function refreshMonth(){
+  const selectedYear=Number(document.getElementById("year").value);
+  const selectedMonth=Number(document.getElementById("month").value);
+  if(!selectedYear || !selectedMonth){
+    toast("سال یا ماه انتخاب نشده است.");
+    return;
+  }
+
+  activeMonthKey=selectedYear+"-"+selectedMonth;
+  const newReq=reqVal();
+  const newDays=days(selectedYear,selectedMonth);
+
+  // Reset only the monthly schedule; keep employees, shifts and rules.
+  G={};
+  req.value=newReq;
+  document.getElementById("days").value=newDays;
+
+  // Update the calendar section immediately, without requiring other pages to render.
+  const badge=document.getElementById("activeMonthBadge");
+  if(badge) badge.innerHTML=`ماه فعال: <b>${M[selectedMonth-1]} ${selectedYear}</b>`;const applyStatus=document.getElementById("monthApplyStatus");if(applyStatus)applyStatus.textContent="در حال اعمال ماه...";
+  const info=document.getElementById("calInfo");
+  if(info){
+    info.innerHTML=`روز اول ${M[selectedMonth-1]} ${selectedYear}: <b>${W[wd(selectedYear,selectedMonth,1)]}</b><br>تعداد روز: <b>${newDays}</b><br>ساعات موظفی: <b>${newReq}</b> ساعت`;
+  }
+
+  try{
+    await save();
+    // Refresh only safe summary/table elements; failures here must not undo the apply.
+    try{ renderTable("table",false); }catch(e){ console.warn("render table",e); }
+    try{ renderReport(); }catch(e){ console.warn("render report",e); }
+    try{
+      const dashMonth=document.getElementById("dashMonth");
+      if(dashMonth) dashMonth.textContent=M[selectedMonth-1]+" "+selectedYear;
+      const sReq=document.getElementById("sReq");
+      if(sReq) sReq.textContent=newReq;
+    }catch(e){ console.warn("render summary",e); }
+
+    if(applyStatus)applyStatus.textContent="ماه انتخاب‌شده با موفقیت اعمال شد.";toast(`ماه ${M[selectedMonth-1]} ${selectedYear} با موفقیت اعمال شد.`);
+  }catch(e){
+    console.error("refreshMonth save error",e);
+    if(applyStatus)applyStatus.textContent="ماه اعمال شد، اما ذخیره آنلاین انجام نشد.";toast("ماه اعمال شد، اما ذخیره آنلاین انجام نشد.");
+  }
+}function userStorageKey(){
+  return currentUser ? `shiftmaster_${currentUser.id}` : "shiftmaster_guest";
+}
+function cloneDefaults(){
+  E=[...Array(15)].map((_,i)=>["همکار "+(i+1),i<6?"male":"female",1]);
+  S=[["A","A","07:00","15:00","both",1],["B","B","08:00","16:00","both",1],["C","C","10:00","18:00","both",1],["D","D","11:00","19:00","male",1],["E","E","17:00","01:00","male",1],["N","N","19:00","07:00","male",1],["OFF","OFF","00:00","00:00","both",1]];
+  R={femaleEnd:19,holidayPct:60,nightMale:true,malePriority:true,thuAlt:true,maxH:true,coverageRanges:[]};
+  G={};
+  year.value=1405; month.value=6; req.value=reqVal();
+}
+async function save(){
+  const payload={E,S,R,G,year:+year.value,month:+month.value,required:+req.value};
+  if(!onlineDB||!currentUser)return;
+  const {error}=await onlineDB.from("shift_states").upsert(
+    {user_id:currentUser.id,year:+year.value,month:+month.value,payload,updated_at:new Date().toISOString()},
+    {onConflict:"user_id,year,month"}
+  );
+  if(error)console.error("online save",error);
+}
+async function loadOnline(){
+  if(!onlineDB||!currentUser){loadLocal();return}
+  const y=+year.value,m=+month.value;
+  activeMonthKey=y+"-"+m;
+  const {data,error}=await onlineDB.from("shift_states")
+    .select("payload").eq("user_id",currentUser.id).eq("year",y).eq("month",m).maybeSingle();
+  if(error){console.error("online load",error);}
+  if(data?.payload){applyPayload(data.payload);return}
+  // Never fall back to another user's localStorage state when authenticated online.
+  const local=JSON.parse(localStorage.getItem(userStorageKey())||"null");
+  if(local){applyPayload(local);return}
+  cloneDefaults();
+}
+function loadLocal(){
+  const x=JSON.parse(localStorage.getItem(userStorageKey())||"null");
+  if(x)applyPayload(x); else cloneDefaults();
+}function applyPayload(x){
+  E=x.E||E;
+  S=x.S||S;
+  R={...R,...(x.R||{})};
+  if(!Array.isArray(R.coverageRanges))R.coverageRanges=[];
+  G=x.G||{};
+  year.value=x.year||1405;
+  month.value=x.month||6;
+  activeMonthKey=(+year.value)+"-"+(+month.value);
+  req.value=x.required||reqVal();
+}
+function backup(){const p={version:"2.0",E,S,R,G,year:+year.value,month:+month.value,required:+req.value};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(p,null,2)],{type:"application/json"}));a.download=`ShiftMaster_Backup_${year.value}_${month.value}.json`;a.click()}
+function restore(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const x=JSON.parse(r.result);applyPayload(x);await save();render();goto("builder",6);toast("پشتیبان با موفقیت بازیابی شد و به سازنده شیفت منتقل شدید.")}catch(e){alert("فایل پشتیبان نامعتبر است")}};r.readAsText(f);ev.target.value=""}
+function downloadCSV(){const y=+year.value,m=+month.value,n=days(y,m),rows=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>rows.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||[]).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]} (${s[2]}-${s[3]})`}),hours(i).toFixed(2)]));const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download=`ShiftMaster_${y}_${String(m).padStart(2,"0")}.csv`;a.click()}
+function downloadXLSX(){if(!window.XLSX){alert("کتابخانه Excel در دسترس نیست.");return}const y=+year.value,m=+month.value,n=days(y,m),data=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];E.forEach((e,i)=>data.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||[]).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]}\n${s[2]}-${s[3]}`}),hours(i).toFixed(2)]));const ws=XLSX.utils.aoa_to_sheet(data);ws["!cols"]=data[2].map((_,i)=>({wch:i<2?18:13}));const range=XLSX.utils.decode_range(ws["!ref"]);for(let c=0;c<=range.e.c;c++){const cell=ws[XLSX.utils.encode_cell({r:2,c})];if(cell)cell.s={fill:{patternType:"solid",fgColor:{rgb:"DCEBFF"}},font:{bold:true},alignment:{horizontal:"center",vertical:"center",wrapText:true},border:{bottom:{style:"thin",color:{rgb:"94A3B8"}}}}}for(let r=3;r<=range.e.r;r++){const cell=ws[XLSX.utils.encode_cell({r,c:0})];if(cell)cell.s={font:{bold:true}};for(let c=2;c<range.e.c;c++){const cc=ws[XLSX.utils.encode_cell({r,c})];if(!cc)continue;const day=c-1;const bg=friday(y,m,day)?"FEE2E2":thursday(y,m,day)?"FEF3C7":"FFFFFF";cc.s={fill:{patternType:"solid",fgColor:{rgb:bg}},alignment:{horizontal:"center",vertical:"center",wrapText:true}}}}const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Shift");XLSX.writeFile(wb,`ShiftMaster_${y}_${String(m).padStart(2,"0")}.xlsx`)}
+function printReport(){const y=+year.value,m=+month.value,n=days(y,m),report=document.getElementById("report").outerHTML,w=window.open("","_blank","width=1400,height=900");if(!w){alert("پنجره چاپ توسط مرورگر مسدود شده است.");return}w.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>برنامه شیفت</title><style>body{font-family:Tahoma,Arial;margin:20px;direction:rtl}h2{text-align:center}table{border-collapse:collapse;width:100%;font-size:8px}th,td{border:1px solid #999;padding:4px;text-align:center}th{background:#dbeafe}.holiday{background:#fee2e2}.thu{background:#fef3c7}.off{background:#f1f5f9}.sticky{position:static!important}p{text-align:center;font-size:10px}</style></head><body><h2>برنامه شیفت ${M[m-1]} ${y}</h2>${report}<p>طراح و توسعه‌دهنده: محسن یحیوی<br>تلفن پشتیبانی: 09010227717<br>نسخه ۲.۰</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function renderUserInfo(){const el=document.getElementById("userInfo");if(currentProfile)el.innerHTML=`<b>کاربر فعلی:</b> ${esc(currentProfile.username)}<br><b>نام:</b> ${esc(currentProfile.display_name||"-")}<br><b>نقش:</b> ${esc(currentProfile.role)}<br><br><span class="muted"></span>`}
+function openSupabaseUsers(){window.open("https://supabase.com/dashboard/project/prffpkzkjrktbdfnediz/auth/users","_blank")}
+(async()=>{document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");document.getElementById("req").value=reqVal();document.getElementById("days").value=days(+year.value,+month.value);activeMonthKey=(+year.value)+"-"+(+month.value);if(onlineDB){const {data:{session}}=await onlineDB.auth.getSession();if(session){await openApp(session.user);return}}document.getElementById("login").style.display="grid";document.getElementById("app").style.display="none"})()
+</script>
+<script id="sm-feedback-listener">
+document.addEventListener("click",function(e){
+ const b=e.target.closest("button"); if(!b||b.id==="autoGenerateBtn") return;
+ const t=(b.textContent||"").trim();
+ const map=[["اعمال ماه","ماه و تقویم اعمال شد."],["ذخیره موظفی","ساعات موظفی ذخیره شد."],["ذخیره قوانین","قوانین شیفت ذخیره شد."],["افزودن بازه","بازه نیرو ذخیره شد."],["افزودن شیفت","شیفت جدید اضافه شد."],["کاهش نیرو","نیرو کاهش یافت."],["افزودن نیرو","نیرو اضافه شد."],["بازگردانی شیفت","شیفت‌ها به حالت اولیه بازگشتند."],["دریافت پشتیبان","پشتیبان دریافت شد."],["CSV","خروجی CSV آماده شد."],["Excel","خروجی Excel آماده شد."],["حذف","مورد حذف شد."]];
+ const hit=map.find(x=>t.includes(x[0])); if(hit) setTimeout(()=>toast(hit[1]),100);
+});
+</script>
+</body></html>
+
+<script id="v2-overrides">
+(() => {
+  // ---------- constants / state ----------
+  const V2="2.0";
+  const HOLIDAYS_1405={
+    1:[1,2,3,4,12,13,24],
+    2:[],
+    3:[3,6,14,15],
+    4:[3,4,13,14,15],
+    5:[13,21,22,30],
+    6:[8],
+    7:[],
+    8:[22],
+    9:[],
+    10:[2,16],
+    11:[4,22],
+    12:[9,19,20]
+  };
+  window.__v2={
+    signup:false, recovery:false, theme:localStorage.getItem("shift_theme")||"light"
+  };
+
+  // ---------- Theme ----------
+  window.toggleTheme=function(){
+    const dark=document.body.classList.toggle("theme-dark");
+    localStorage.setItem("shift_theme",dark?"dark":"light");
+    const b=document.getElementById("themeToggle"); if(b)b.setAttribute("aria-pressed",dark?"true":"false");
+  };
+  function initTheme(){
+    const dark=window.__v2.theme==="dark";
+    document.body.classList.toggle("theme-dark",dark);
+    const b=document.getElementById("themeToggle");if(b)b.setAttribute("aria-pressed",dark?"true":"false");
+  }
+  initTheme();
+
+  // ---------- Holidays ----------
+  window.isOfficialHoliday=function(y,m,d){
+    return (HOLIDAYS_1405[y===1405?m:0]||[]).includes(d);
+  };
+  window.isFridayOrHoliday=function(y,m,d){return friday(y,m,d)||isOfficialHoliday(y,m,d)};
+  window.isReductionDay=function(y,m,d){return isFridayOrHoliday(y,m,d)};
+
+  // ---------- Initial defaults for NEW account only ----------
+  window.cloneDefaults=function(){
+    E=[["همکار آقا","male",1],["همکار خانم","female",1]];
+    S=[
+      ["A","A","07:00","15:00","both",1],
+      ["B","B","08:00","16:00","both",1],
+      ["OFF","OFF","00:00","00:00","both",1]
+    ];
+    R={femaleEnd:19,holidayPct:60,nightMale:true,malePriority:"male",holidayPriority:"male",thuAlt:true,holidayAlt:true,regularMode:"none",maxH:true,coverageRanges:[]};
+    G={};year.value=1405;month.value=6;req.value=REQUIRED_1405[6]||191;
+  };
+
+  // ---------- Supabase-only program persistence ----------
+  window.reqVal=function(){
+    const y=+year.value,m=+month.value;
+    return (String(y)==="1405"?REQUIRED_1405[m]:176)||176;
+  };
+  window.save=async function(){
+    const payload={E,S,R,G,year:+year.value,month:+month.value,required:+req.value};
+    if(!onlineDB||!currentUser) throw new Error("NO_ONLINE_SESSION");
+    const {error}=await onlineDB.from("shift_states").upsert(
+      {user_id:currentUser.id,year:+year.value,month:+month.value,payload,updated_at:new Date().toISOString()},
+      {onConflict:"user_id,year,month"}
+    );
+    if(error) throw error;
+  };
+  window.loadLocal=function(){ cloneDefaults(); };
+  window.loadOnline=async function(){
+    if(!onlineDB||!currentUser) throw new Error("NO_ONLINE_SESSION");
+    const y=+year.value,m=+month.value;
+    activeMonthKey=y+"-"+m;
+    const {data,error}=await onlineDB.from("shift_states").select("payload")
+      .eq("user_id",currentUser.id).eq("year",y).eq("month",m).maybeSingle();
+    if(error) throw error;
+    if(data?.payload){applyPayload(data.payload);return false;}
+    cloneDefaults();
+    return true;
+  };
+
+  // ---------- Access / account status ----------
+  window.isViewer=function(){return (currentProfile?.role||"").toLowerCase()==="viewer"};
+  window.isSupervisor=function(){return (currentProfile?.role||"").toLowerCase()==="supervisor"};
+  window.isAdmin=function(){return (currentProfile?.role||"").toLowerCase()==="admin"};
+  window.isPendingUser=function(){return String(currentProfile?.status||currentProfile?.account_status||"").toLowerCase()==="pending" || (currentProfile?.role||"").toLowerCase()==="user" && String(currentProfile?.status||"").toLowerCase()!=="active"};
+  window.can=function(action){
+    if(isAdmin()) return true;
+    if(isViewer()) return false;
+    if(isSupervisor() && action==="users") return false;
+    if(isPendingUser() && ["emps","cal","shifts","rules","builder","check","reports","backup"].includes(action)) return false;
+    return action!=="users";
+  };
+  window.deny=function(){toast(isPendingUser()?"برای خرید و فعال‌سازی دسترسی، لطفاً با پشتیبانی تماس بگیرید.":"شما به این منو دسترسی ندارید.");return false};
+
+  // ---------- Hide User Management for everyone except ADMIN ----------
+  window.applyAccess=function(){
+    const role=(currentProfile?.role||"").toLowerCase();
+    const pending=isPendingUser();
+    document.querySelectorAll(".nav button").forEach(b=>{
+      const txt=(b.textContent||"");
+      if(txt.includes("مدیریت کاربران")) b.classList.toggle("access-hidden",role!=="admin");
+      if(pending && ["مدیریت نیروها","تقویم و موظفی","مدیریت شیفت‌ها","قوانین شیفت","ساخت هوشمند شیفت","کنترل و خطایابی","گزارش‌ها","پشتیبان‌گیری"].some(x=>txt.includes(x))){
+        b.classList.add("access-disabled");
+      }
+    });
+    const auto=document.getElementById("autoGenerateBtn"); if(auto){auto.disabled=pending || !can("builder");auto.classList.toggle("access-disabled",auto.disabled)}
+    const fab=document.getElementById("supportFab"); if(fab) fab.style.display="flex";
+    const name=document.getElementById("profileName"); if(name) name.textContent=currentProfile?.display_name||currentProfile?.username||"کاربر";
+  };
+
+  window.page=function(id,b){
+    const protectedPages=["emps","cal","shifts","rules","builder","check","reports","backup"];
+    if(id==="users"&&!isAdmin()) return deny();
+    if(protectedPages.includes(id)&&!can(id)) return deny();
+    document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+    const target=document.getElementById(id);if(!target)return deny();
+    target.classList.add("active");
+    document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+    if(b)b.classList.add("active");
+    const title=b?(b.textContent||"").replace(/[^؀-ۿ\s]+/g,"").trim():(
+      id==="education"?"آموزش کار با سایت":id==="history"?"تاریخچه نسخه‌ها":""
+    );
+    document.getElementById("title").textContent=title;
+    document.getElementById("side").classList.remove("open");
+    if(id==="reports")renderReport();
+    if(id==="users")renderUserInfo();
+  };
+  window.goto=function(id){ page(id, null); };
+
+  // ---------- Open app: Supabase only ----------
+  window.openApp=async function(user){
+    if(!onlineDB) return;
+    document.getElementById("login").style.display="none";
+    document.getElementById("app").style.display="flex";
+    document.getElementById("month").innerHTML=M.map((x,i)=>`<option value="${i+1}" ${i===5?"selected":""}>${x}</option>`).join("");
+    currentUser=user;
+    const {data:p,error:pe}=await onlineDB.from("profiles").select("*").eq("id",user.id).maybeSingle();
+    if(pe)console.warn(pe);
+    currentProfile=p||{id:user.id,username:user.email,role:"user",status:"pending"};
+    window.currentProfile=currentProfile;
+    document.getElementById("profileName").textContent=currentProfile.display_name||currentProfile.username||"کاربر";
+    try{
+      const isNew=await loadOnline();
+      if(isNew) await save(); // persist new-account defaults in Supabase
+    }catch(e){
+      console.error("online load",e);
+      cloneDefaults();
+      try{await save()}catch(x){console.error("initial save",x)}
+    }
+    req.value=(window.__v2.manualRequired?.[year.value+"-"+month.value]??(G && Object.keys(G).length?req.value:reqVal()));
+    days.value=days(+year.value,+month.value);
+    render();applyAccess();
+  };
+
+  // ---------- Signup ----------
+  window.showSignup=function(){
+    const box=document.getElementById("authExtra"); if(!box)return;
+    box.classList.remove("hidden");
+    box.innerHTML=`<h3>ساخت حساب کاربری</h3>
+      <label>نام و نام خانوادگی</label><input id="suName" placeholder="نام و نام خانوادگی">
+      <label>ایمیل</label><input id="suEmail" type="email" placeholder="example@gmail.com">
+      <label>نام کاربری</label><input id="suUser" placeholder="نام کاربری">
+      <label>رمز عبور</label><input id="suPass" type="password" placeholder="حداقل ۶ کاراکتر">
+      <button class="btn primary" type="button" onclick="signupUser()">ایجاد حساب</button>
+      <button class="link-btn" type="button" onclick="hideAuthExtra()">انصراف</button>`;
+  };
+  window.hideAuthExtra=function(){const b=document.getElementById("authExtra");if(b){b.classList.add("hidden");b.innerHTML=""}};
+  window.signupUser=async function(){
+    if(!onlineDB){await ensureSupabase();} if(!onlineDB){setLoginStatus("اتصال به سامانه برقرار نشد.");return;}
+    const name=document.getElementById("suName")?.value.trim(),email=document.getElementById("suEmail")?.value.trim().toLowerCase(),username=document.getElementById("suUser")?.value.trim().toLowerCase(),password=document.getElementById("suPass")?.value;
+    if(!name||!email||!username||!password){setLoginStatus("همه اطلاعات ثبت‌نام را وارد کنید.");return}
+    if(password.length<6){setLoginStatus("رمز عبور باید حداقل ۶ کاراکتر باشد.");return}
+    try{
+      const {data,error}=await onlineDB.auth.signUp({
+        email,
+        password,
+        options:{
+          data:{username,display_name:name,role:"user",status:"pending"}
+        }
+      });
+      if(error)throw error;
+      if(!data?.user)throw new Error("SIGNUP_NO_USER");
+      // Profile creation is handled by a Supabase trigger on auth.users so email confirmation
+      // does not prevent the initial pending profile from being created.
+      // If confirmation is disabled and a session exists, also verify the profile is present.
+      if(data?.session){
+        const {error:pe}=await onlineDB.from("profiles").select("id").eq("id",data.user.id).maybeSingle();
+        if(pe) console.warn("profile check",pe);
+      }
+      setLoginStatus("حساب شما ساخته شد. برای خرید و فعال‌سازی دسترسی، با پشتیبانی تماس بگیرید.",true);
+      hideAuthExtra();
+    }catch(e){
+      console.error("signup error",e);
+      const msg=String(e?.message||e||"");
+      if(msg.includes("already registered")||msg.includes("already exists")) setLoginStatus("این ایمیل قبلاً ثبت شده است.");
+      else if(msg.includes("rate limit")||msg.includes("rate_limit")) setLoginStatus("تعداد ثبت‌نام‌ها در مدت کوتاه زیاد شده است؛ کمی بعد دوباره امتحان کنید.");
+      else if(msg.includes("email")) setLoginStatus("ایمیل واردشده معتبر نیست یا تنظیمات ایمیل Supabase اجازه ثبت‌نام نمی‌دهد.");
+      else setLoginStatus("ساخت حساب انجام نشد: "+msg);
+    }
+  };
+
+  // ---------- Forgot password ----------
+  window.showForgotPassword=function(){
+    const box=document.getElementById("authExtra"); if(!box)return;
+    box.classList.remove("hidden");
+    box.innerHTML=`<h3>بازیابی رمز عبور</h3>
+      <label>ایمیل حساب</label><input id="fpEmail" type="email" placeholder="ایمیل حساب خود را وارد کنید">
+      <button class="btn primary" type="button" onclick="sendResetLink()">ارسال لینک بازیابی</button>
+      <button class="link-btn" type="button" onclick="hideAuthExtra()">انصراف</button>`;
+  };
+  window.sendResetLink=async function(){
+    const email=document.getElementById("fpEmail")?.value.trim(); if(!email)return;
+    if(!onlineDB){await ensureSupabase()} if(!onlineDB){setLoginStatus("اتصال به سامانه برقرار نشد.");return}
+    try{
+      const {error}=await onlineDB.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+      if(error)throw error;
+      setLoginStatus("لینک بازیابی رمز عبور به ایمیل شما ارسال شد.",true);hideAuthExtra();
+    }catch(e){console.error(e);setLoginStatus("ارسال لینک بازیابی انجام نشد.")}
+  };
+
+  // ---------- Password recovery session ----------
+  if(onlineDB?.auth) {
+    onlineDB.auth.onAuthStateChange((event,session)=>{
+      if(event==="PASSWORD_RECOVERY" && session){
+        const newPass=prompt("رمز عبور جدید را وارد کنید:");
+        if(newPass) onlineDB.auth.updateUser({password:newPass}).then(({error})=>alert(error?"تغییر رمز ناموفق بود.":"رمز عبور با موفقیت تغییر کرد."));
+      }
+    });
+  }
+
+  // ---------- Rules ----------
+  window.saveRules=function(){
+    R={...R,
+      femaleEnd:+femaleEnd.value,
+      holidayPct:+holidayPct.value,
+      nightMale:+nightMale.value===1,
+      malePriority:holidayPriority.value==="male",
+      holidayPriority:holidayPriority.value,
+      thuAlt:+thuAlt.value===1,
+      holidayAlt:+holidayAlt.value===1,
+      regularMode:regularMode.value,
+      maxH:+maxH.value===1,
+      coverageRanges:getCoverageRanges()
+    };
+    save().then(()=>{render();toast("قوانین شیفت با موفقیت ذخیره شد.")}).catch(e=>{console.error(e);toast("ذخیره قوانین انجام نشد.")});
+  };
+  window.renderRules=function(){
+    femaleEnd.value=R.femaleEnd??19;holidayPct.value=R.holidayPct??60;
+    nightMale.value=R.nightMale?1:0;holidayPriority.value=R.holidayPriority||(R.malePriority?"male":"none");
+    thuAlt.value=R.thuAlt?1:0;holidayAlt.value=R.holidayAlt===false?0:1;regularMode.value=R.regularMode||"none";maxH.value=R.maxH===false?0:1;
+    renderCoverage();
+  };
+
+  // ---------- Month / required hours ----------
+  window.saveRequired=async function(){
+    const y=+year.value,m=+month.value,v=+req.value;
+    if(!Number.isFinite(v)||v<0){toast("ساعات موظفی معتبر نیست.");return}
+    window.__v2.manualRequired=window.__v2.manualRequired||{};
+    window.__v2.manualRequired[y+"-"+m]=v;
+    await save();
+    toast("ساعات موظفی با موفقیت ذخیره شد.");
+  };
+  window.refreshMonth=async function(){
+    const y=+year.value,m=+month.value;
+    activeMonthKey=y+"-"+m; G={}; req.value=(window.__v2.manualRequired?.[activeMonthKey]??reqVal());
+    days.value=days(y,m);
+    const badge=document.getElementById("activeMonthBadge");if(badge)badge.innerHTML=`ماه فعال: <b>${M[m-1]} ${y}</b>`;
+    const st=document.getElementById("monthApplyStatus");if(st)st.textContent="در حال اعمال ماه...";
+    try{await save();if(st)st.textContent="ماه انتخاب‌شده با موفقیت اعمال شد.";render();toast("ماه و تقویم با موفقیت اعمال شد.");}
+    catch(e){console.error(e);if(st)st.textContent="ذخیره ماه انجام نشد.";toast("اعمال ماه انجام نشد.");}
+  };
+
+  // ---------- Smart scheduler helpers ----------
+  function isNightShift(s){return !!s && s[0]!=="OFF" && (dur(s[2],s[3])>=11 || (mins(s[2])>=18*60 && mins(s[3])<8*60))}
+  function isRegularCandidate(s,e){
+    if(!s||!allowed(s,e))return false;
+    return !isNightShift(s);
+  }
+  function dayIsHoliday(y,m,d){return isFridayOrHoliday(y,m,d)}
+  function holidayCycleDates(y,m,n){
+    const dates=[];for(let d=1;d<=n;d++)if(dayIsHoliday(y,m,d))dates.push(d);
+    if(R.holidayAlt && dates.length%2===1) dates.pop(); // one extra holiday does not flip the alternating cycle
+    return dates;
+  }
+  function priorHolidayWorked(i,y,m,d,candidate){
+    if(d<=1)return false;
+    return candidate[i][d-2] && candidate[i][d-2]!=="OFF";
+  }
+  function getRegularShiftFor(i,candidate){
+    const e=E[i],mode=R.regularMode;
+    if(mode==="none")return null;
+    if(mode==="female"&&e[1]!=="female")return null;
+    if(mode==="male"&&e[1]!=="male")return null;
+    for(let d=candidate[i].length-1;d>=0;d--){
+      const sid=candidate[i][d],s=get(sid);
+      if(sid!=="OFF" && isRegularCandidate(s,e))return sid;
+    }
+    return null;
+  }
+  function mainMaleScore(s){
+    if(!s)return -999;
+    const h=dur(s[2],s[3]);
+    if(s[0]==="N" || isNightShift(s))return 100;
+    if(mins(s[2])>=17*60 || (mins(s[2])>=16*60 && h>=7))return 80;
+    if(mins(s[2])>=11*60)return 60;
+    return 20;
+  }
+  window.generate=async function(){
+    if(!can("builder"))return deny();
+    const btn=document.getElementById("autoGenerateBtn"),ov=document.getElementById("processingOverlay");
+    if(btn)btn.disabled=true;if(ov)ov.classList.add("open");
+    // Give browser a frame to render the overlay before heavy scheduling.
+    await new Promise(r=>requestAnimationFrame(()=>setTimeout(r,20)));
+    try{
+      const y=+year.value,m=+month.value,n=days(y,m),targetReq=+req.value||0;
+      const active=E.map((e,i)=>({i,e})).filter(x=>x.e[2]);
+      const shifts=S.filter(s=>s[5]&&s[0]!=="OFF");
+      if(!active.length)throw new Error("NO_EMPLOYEES");
+      if(!shifts.length)throw new Error("NO_SHIFTS");
+      const ranges=getCoverageRanges();
+      for(const r of ranges){
+        const mn=+r.min||0,mx=+r.max||999;
+        if(mx<mn)throw new Error("BAD_COVERAGE_RANGE");
+        if(mn>0&&!shifts.some(s=>coversRange(s,r)&&active.some(x=>allowed(s,x.e))))throw new Error(`COVERAGE_UNAVAILABLE:${r.start}-${r.end}`);
+      }
+
+      // Need roughly  targetReq hours per employee. This is a target when maxH is off; hard cap when on.
+      const avgShift=shifts.reduce((a,s)=>a+dur(s[2],s[3]),0)/Math.max(1,shifts.length);
+      const desiredWorkDays=Math.max(1,Math.round(targetReq/Math.max(4,avgShift)));
+      const minDailyNormal=Math.max(1,Math.ceil(active.length*0.55));
+      const holidayTarget=Math.max(1,Math.ceil(active.length*((+R.holidayPct||60)/100)));
+
+      let best=null;
+      for(let attempt=0;attempt<35;attempt++){
+        const candidate={};active.forEach(x=>candidate[x.i]=Array(n).fill("OFF"));
+        const hourTotal=Object.fromEntries(active.map(x=>[x.i,0]));
+        const workCount=Object.fromEntries(active.map(x=>[x.i,0]));
+        const nights=Object.fromEntries(active.map(x=>[x.i,0]));
+        const lastRegular=Object.fromEntries(active.map(x=>[x.i],null));
+        let failed=false;
+
+        for(let d=1;d<=n;d++){
+          const assignments={};
+          const dayPeople=()=>Object.keys(assignments).map(Number);
+          const holiday=dayIsHoliday(y,m,d);
+          const nightPeopleAllowed=R.nightMale!==false;
+          const cycleHolidays=holidayCycleDates(y,m,n);
+          const holidayCycleIndex=cycleHolidays.indexOf(d);
+          const forceFemaleOffByHoliday = R.holidayAlt && holidayCycleIndex>=0;
+
+          // Mandatory OFF after previous night; and Thu->Friday when both rules apply.
+          for(const x of active){
+            const i=x.i,e=x.e;
+            const prev=candidate[i][d-2]||"OFF";
+            if(prev!=="OFF"){
+              const ps=get(prev);
+              if(isNightShift(ps))assignments[i]="OFF";
+            }
+            if(d>1 && friday(y,m,d) && R.thuAlt && R.holidayAlt && thursday(y,m,d-1)){
+              const th=candidate[i][d-2]||"OFF";
+              if(th!=="OFF")assignments[i]="OFF";
+            }
+            if(holiday && forceFemaleOffByHoliday && e[1]==="female"){
+              // Alternate female groups; group 0/1 by stable employee index.
+              const group=(i%2); const offGroup=(holidayCycleIndex%2);
+              if(group===offGroup)assignments[i]="OFF";
+            }
+          }
+
+          // First satisfy minimum coverage, only if ranges exist.
+          for(const r of ranges){
+            for(let k=0;k<(+r.min||0);k++){
+              const people=active.filter(x=>!assignments[x.i]).filter(x=>{
+                const e=x.e; if(holiday && R.holidayPriority==="male" && e[1]==="female")return false;
+                if(thursday(y,m,d)&&R.thuAlt&&e[1]==="female"&&(x.i%2===d%2))return false;
+                const regular=getRegularShiftFor(x.i,candidate);
+                let ss=regular?get(regular):null;
+                if(!ss) ss=shifts.filter(s=>allowed(s,e)&&coversRange(s,r)).sort((a,b)=>mainMaleScore(b)-mainMaleScore(a))[0];
+                return !!ss && !ranges.some(rr=>coverageCount([...dayPeople(),ss[0]],rr)>(+rr.max||999));
+              });
+              if(!people.length){failed=true;break;}
+              people.sort((a,b)=>(targetReq-hourTotal[b.i])-(targetReq-hourTotal[a.i]));
+              const x=people[0], e=x.e;
+              let choices=shifts.filter(s=>allowed(s,e)&&coversRange(s,r));
+              choices=choices.filter(s=>!(R.maxH&&hourTotal[x.i]+dur(s[2],s[3])>targetReq));
+              choices=choices.filter(s=>!ranges.some(rr=>coverageCount([...dayPeople(),s[0]],rr)>(+rr.max||999)));
+              if(!choices.length){failed=true;break;}
+              choices.sort((a,b)=>{
+                const aN=isNightShift(a),bN=isNightShift(b);
+                if(nightPeopleAllowed && (mins(r.start)>=18*60 || mins(r.end)<=8*60))return (bN?1:0)-(aN?1:0);
+                return (Math.abs((targetReq-hourTotal[x.i])-dur(a[2],a[3]))-Math.abs((targetReq-hourTotal[x.i])-dur(b[2],b[3])));
+              });
+              const s=choices[0];assignments[x.i]=s[0];hourTotal[x.i]+=dur(s[2],s[3]);workCount[x.i]++;if(isNightShift(s))nights[x.i]++;
+            }
+            if(failed)break;
+          }
+          if(failed)break;
+
+          // Determine daily target.
+          let target=holiday?holidayTarget:minDailyNormal;
+          if(d===n || d>=n-2)target=Math.max(target,Math.ceil(active.length*0.45)); // protect end of month
+          target=Math.min(target,active.length);
+
+          // Priority in holidays: fill males/females to target first, then fall back to opposite group.
+          const pool=active.filter(x=>!assignments[x.i]).sort((a,b)=>{
+            const ah=hourTotal[a.i],bh=hourTotal[b.i];
+            return (targetReq-ah)-(targetReq-bh) || workCount[a.i]-workCount[b.i] || Math.random()-.5;
+          });
+          while(Object.keys(assignments).length<target){
+            const unassigned=pool.filter(x=>!assignments[x.i]);
+            if(!unassigned.length)break;
+            let eligible=unassigned.filter(x=>{
+              if(holiday&&R.holidayPriority==="male"&&x.e[1]==="female")return false;
+              if(holiday&&R.holidayPriority==="female"&&x.e[1]==="male")return false;
+              if(thursday(y,m,d)&&R.thuAlt&&x.e[1]==="female"&&(x.i%2===d%2))return false;
+              const prev=candidate[x.i][d-2]||"OFF"; if(prev!=="OFF"&&isNightShift(get(prev)))return false;
+              return true;
+            });
+            // If holiday priority group is exhausted, fallback to the other group.
+            if(!eligible.length)eligible=unassigned.filter(x=>{
+              if(thursday(y,m,d)&&R.thuAlt&&x.e[1]==="female"&&(x.i%2===d%2))return false;
+              return true;
+            });
+            if(!eligible.length)break;
+
+            eligible.sort((a,b)=>{
+              const ar=getRegularShiftFor(a.i,candidate),br=getRegularShiftFor(b.i,candidate);
+              const ad=(targetReq-hourTotal[a.i]),bd=(targetReq-hourTotal[b.i]);
+              return bd-ad;
+            });
+            const x=eligible[0],e=x.e;
+            let choices=shifts.filter(s=>allowed(s,e));
+            // If holiday male priority, prefer core male shifts: evening/night first.
+            if(holiday&&R.holidayPriority==="male"&&e[1]==="male"){
+              choices.sort((a,b)=>mainMaleScore(b)-mainMaleScore(a));
+            }else if((R.regularMode==="female"&&e[1]==="female")||(R.regularMode==="male"&&e[1]==="male")){
+              const reg=getRegularShiftFor(x.i,candidate);
+              if(reg)choices.sort((a,b)=>(a[0]===reg?-1:0)-(b[0]===reg?-1:0));
+            }else{
+              choices.sort((a,b)=>Math.abs((targetReq-hourTotal[x.i])-dur(a[2],a[3]))-Math.abs((targetReq-hourTotal[x.i])-dur(b[2],b[3])));
+            }
+            choices=choices.filter(s=>!ranges.some(rr=>coverageCount([...dayPeople(),s[0]],rr)>(+rr.max||999)));
+            choices=choices.filter(s=>!(R.maxH&&hourTotal[x.i]+dur(s[2],s[3])>targetReq));
+            if(!choices.length){
+              // maxH off: still allow over target; maxH on: choose only candidates within cap.
+              choices=shifts.filter(s=>allowed(s,e)&&!ranges.some(rr=>coverageCount([...dayPeople(),s[0]],rr)>(+rr.max||999)));
+            }
+            if(!choices.length)break;
+
+            // Night rotation and rest.
+            if(nightPeopleAllowed){
+              const nightly=choices.filter(isNightShift);
+              if(nightly.length){
+                const men=eligible.filter(x=>x.e[1]==="male"&&!(candidate[x.i][d-2] && isNightShift(get(candidate[x.i][d-2]))));
+                if(holiday && R.holidayPriority==="male" && men.length && Object.keys(assignments).length<target){
+                  // Keep real night choice available but don't force every male to night.
+                }
+              }
+            }
+            const s=choices[0];
+            // Avoid two night shifts in a row explicitly.
+            if(isNightShift(s) && candidate[x.i][d-2] && isNightShift(get(candidate[x.i][d-2]))){continue;}
+            assignments[x.i]=s[0];hourTotal[x.i]+=dur(s[2],s[3]);workCount[x.i]++;if(isNightShift(s))nights[x.i]++;
+          }
+          Object.entries(assignments).forEach(([i,sid])=>candidate[i][d-1]=sid);
+        }
+
+        if(failed)continue;
+
+        // Fill deficits after day-by-day pass, preferring days with no assignment and avoiding consecutive OFF.
+        for(const x of active){
+          const i=x.i;
+          while(hourTotal[i]<targetReq){
+            let placed=false;
+            for(let d=1;d<=n;d++){
+              if(candidate[i][d-1]!=="OFF")continue;
+              const prev=d>1?candidate[i][d-2]:"OFF",next=d<n?candidate[i][d]:"OFF";
+              if(prev!=="OFF" && isNightShift(get(prev)))continue;
+              if(prev==="OFF" && next==="OFF" && d<n && next!=="OFF")continue;
+              const holiday=dayIsHoliday(y,m,d);
+              if(holiday&&R.holidayPriority==="male"&&e[1]==="female")continue;
+              if(holiday&&R.holidayPriority==="female"&&e[1]==="male")continue;
+              if(R.thuAlt&&thursday(y,m,d)&&e[1]==="female"&&(i%2===d%2))continue;
+              if(d>1&&friday(y,m,d)&&R.thuAlt&&R.holidayAlt&&thursday(y,m,d-1)&&candidate[i][d-2]!=="OFF")continue;
+              let choices=shifts.filter(s=>allowed(s,e)&&!isNightShift(s));
+              const reg=getRegularShiftFor(i,candidate);
+              if(reg)choices.sort((a,b)=>(a[0]===reg?-1:0)-(b[0]===reg?-1:0));
+              choices=choices.filter(s=>!(R.maxH&&hourTotal[i]+dur(s[2],s[3])>targetReq));
+              if(!choices.length && !R.maxH)choices=shifts.filter(s=>allowed(s,e)&&!isNightShift(s));
+              if(!choices.length)continue;
+              candidate[i][d-1]=choices[0][0];hourTotal[i]+=dur(choices[0][2],choices[0][3]);workCount[i]++;placed=true;break;
+            }
+            if(!placed)break;
+          }
+        }
+
+        // Ensure every night has mandatory next-day OFF and no back-to-back night.
+        for(const x of active){
+          const i=x.i;
+          for(let d=0;d<n;d++){
+            const sid=candidate[i][d]; if(!isNightShift(get(sid)))continue;
+            if(d<n-1)candidate[i][d+1]="OFF";
+            if(d<n-1&&isNightShift(get(candidate[i][d+1])))candidate[i][d+1]="OFF";
+          }
+        }
+
+        const old=G;G=candidate;
+        const errs=validate();
+        let hard=errs.length;
+        // Explicit hard checks.
+        for(const x of active){
+          const i=x.i,arr=candidate[i];
+          for(let d=0;d<n-1;d++){
+            if(isNightShift(get(arr[d]))&&arr[d+1]!=="OFF")hard+=10;
+            if(isNightShift(get(arr[d]))&&isNightShift(get(arr[d+1])))hard+=20;
+          }
+        }
+        G=old;
+        if(hard)continue;
+
+        let score=0;
+        for(const x of active){
+          const i=x.i,h=hourTotal[i];
+          score += R.maxH ? Math.max(0,h-targetReq)*100 : Math.abs(h-targetReq)*4;
+          if(!R.maxH) score += Math.max(0,targetReq-h)*25;
+          const arr=candidate[i];
+          for(let d=0;d<n-1;d++){
+            if(arr[d]==="OFF"&&arr[d+1]==="OFF")score+=180;
+            if(isNightShift(get(arr[d])))score+=(d<n-1&&arr[d+1]==="OFF"?0:1000);
+          }
+          const tail=arr.slice(Math.max(0,n-3)).filter(x=>x==="OFF").length;score+=tail*25;
+        }
+        for(let d=1;d<=n;d++){
+          const count=active.filter(x=>candidate[x.i][d-1]!=="OFF").length;
+          const target=dayIsHoliday(y,m,d)?holidayTarget:minDailyNormal;
+          score+=Math.abs(count-target)*6;
+        }
+        if(!best||score<best.score)best={score,G:JSON.parse(JSON.stringify(candidate))};
+      }
+
+      if(!best)throw new Error("NO_PLAN");
+      G=best.G;
+      const errs=validate();
+      if(errs.length)throw new Error("FINAL_VALIDATION_FAILED");
+      await save();
+      render();
+      toast("بهترین برنامه با موفقیت تولید و کنترل شد.");
+    }catch(e){
+      console.error("v2 generate",e);
+      const msg=String(e.message||e);
+      if(msg==="NO_EMPLOYEES")toast("ابتدا حداقل یک نیروی فعال تعریف کنید.");
+      else if(msg==="NO_SHIFTS")toast("ابتدا حداقل یک شیفت فعال تعریف کنید.");
+      else if(msg==="BAD_COVERAGE_RANGE")toast("حداکثر نیرو نمی‌تواند کمتر از حداقل نیرو باشد.");
+      else if(msg.startsWith("COVERAGE_UNAVAILABLE:"))toast("یکی از بازه‌های تعریف‌شده پوشش قابل اجرا ندارد.");
+      else if(msg==="NO_PLAN")toast("برنامه قابل تولید نیست؛ قوانین یا محدودیت‌های نیرو را بررسی کنید.");
+      else toast("تولید بهترین برنامه با خطا متوقف شد.");
+    }finally{
+      if(btn)btn.disabled=!can("builder");
+      if(ov)ov.classList.remove("open");
+    }
+  };
+
+  // ---------- Validator ----------
+  window.validate=function(){
+    let er=[],wa=[];
+    const y=+year.value,m=+month.value,n=days(y,m),reqv=+req.value||0;
+    E.forEach((e,i)=>{
+      const h=hours(i);
+      if(R.maxH && h>reqv)er.push(`${e[0]}: ${h.toFixed(2)} ساعت، بیشتر از موظفی ${reqv} ساعت.`);
+      if(h<reqv-8)wa.push(`${e[0]}: ${h.toFixed(2)} ساعت، کمتر از موظفی است.`);
+      const arr=G[i]||[];
+      arr.forEach((id,d)=>{
+        const s=get(id);
+        if(!s||s[0]==="OFF")return;
+        if(!allowed(s,e))er.push(`${e[0]}: شیفت ${s[1]} برای این نیرو مجاز نیست.`);
+        if(isNightShift(s)&&d<n-1&&arr[d+1]!=="OFF")er.push(`${e[0]}: روز بعد از شبکاری باید OFF باشد.`);
+        if(isNightShift(s)&&d<n-1&&isNightShift(get(arr[d+1])))er.push(`${e[0]}: دو شیفت شب پشت سر هم مجاز نیست.`);
+        if(d>0&&arr[d-1]==="OFF"&&d<n-1&&arr[d+1]==="OFF")wa.push(`${e[0]}: دو OFF پشت سر هم.`);
+      });
+      if(R.regularMode!=="none" && ((R.regularMode==="female"&&e[1]==="female")||(R.regularMode==="male"&&e[1]==="male"))){
+        const regulars=arr.filter(id=>id!=="OFF"&&!isNightShift(get(id))).map(id=>id);
+        if(new Set(regulars).size>1)wa.push(`${e[0]}: شیفت‌های عادی منظم نیستند.`);
+      }
+    });
+    const ranges=getCoverageRanges();
+    for(let d=1;d<=n;d++){
+      const ids=E.map((_,i)=>(G[i]||[])[d-1]||"OFF");
+      for(const r of ranges){
+        const c=coverageCount(ids,r);
+        if(c<+r.min)er.push(`روز ${d}: پوشش ${r.start}-${r.end} کمتر از حداقل است.`);
+        if(c>+r.max)er.push(`روز ${d}: پوشش ${r.start}-${r.end} بیشتر از حداکثر است.`);
+      }
+    }
+    const box=document.getElementById("checkBox");
+    box.className="card "+(er.length?"err":wa.length?"warn":"ok");
+    box.innerHTML=`<h2>کنترل و خطایابی</h2>${er.length?`<b>خطاها (${er.length})</b><ul>${er.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"<p>خطای اصلی شناسایی نشد.</p>"}${wa.length?`<b>هشدارها (${wa.length})</b><ul>${wa.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`;
+    return er;
+  };
+
+  // ---------- Reports ----------
+  window.downloadCSV=function(){
+    try{
+      const y=+year.value,m=+month.value,n=days(y,m);
+      const rows=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];
+      E.forEach((e,i)=>rows.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||Array(n).fill("OFF")).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]} (${s[2]}-${s[3]})`}),hours(i).toFixed(2)]));
+      const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n");
+      const url=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));
+      const a=document.createElement("a");a.href=url;a.download=`ShiftMaster_${y}_${String(m).padStart(2,"0")}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("فایل CSV آماده شد.");
+    }catch(e){console.error(e);toast("خروجی CSV ایجاد نشد.")}
+  };
+  window.downloadXLSX=function(){
+    try{
+      if(!window.XLSX){toast("کتابخانه Excel در دسترس نیست.");return}
+      const y=+year.value,m=+month.value,n=days(y,m),data=[["برنامه شیفت",M[m-1]+" "+y],[],["نام","جنسیت",...Array.from({length:n},(_,i)=>`${i+1} ${W[wd(y,m,i+1)]}`),"ساعات"]];
+      E.forEach((e,i)=>data.push([e[0],e[1]==="male"?"آقا":"خانم",...(G[i]||[]).map(id=>{const s=get(id);return id==="OFF"?"OFF":`${s[1]}\n${s[2]}-${s[3]}`}),hours(i).toFixed(2)]));
+      const ws=XLSX.utils.aoa_to_sheet(data);ws["!cols"]=data[2].map((_,i)=>({wch:i<2?18:13}));
+      const range=XLSX.utils.decode_range(ws["!ref"]);
+      for(let c=0;c<=range.e.c;c++){const cell=ws[XLSX.utils.encode_cell({r:2,c})];if(cell)cell.s={fill:{patternType:"solid",fgColor:{rgb:"DCEBFF"}},font:{bold:true},alignment:{horizontal:"center",vertical:"center",wrapText:true}}}
+      for(let r=3;r<=range.e.r;r++){for(let c=2;c<range.e.c;c++){const cc=ws[XLSX.utils.encode_cell({r,c})];if(!cc)continue;const d=c-1,bg=isFridayOrHoliday(y,m,d)?"FEE2E2":thursday(y,m,d)?"FEF3C7":"FFFFFF";cc.s={fill:{patternType:"solid",fgColor:{rgb:bg}},alignment:{horizontal:"center",vertical:"center",wrapText:true}}}}
+      const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Shift");XLSX.writeFile(wb,`ShiftMaster_${y}_${String(m).padStart(2,"0")}.xlsx`);toast("فایل Excel رنگی آماده شد.");
+    }catch(e){console.error(e);toast("خروجی Excel ایجاد نشد.")}
+  };
+  window.printReport=function(){
+    const report=document.getElementById("report");if(!report){toast("گزارش برای چاپ پیدا نشد.");return}
+    const y=+year.value,m=+month.value,w=window.open("","_blank","width=1400,height=900");if(!w){toast("پنجره چاپ توسط مرورگر مسدود شده است.");return}
+    w.document.write(`<html dir="rtl"><head><meta charset="utf-8"><title>برنامه شیفت</title><style>body{font-family:Tahoma,Arial;margin:20px;direction:rtl}h2{text-align:center}table{border-collapse:collapse;width:100%;font-size:8px}th,td{border:1px solid #999;padding:4px;text-align:center}th{background:#dbeafe}.holiday{background:#fee2e2}.thu{background:#fef3c7}.off{background:#f1f5f9}</style></head><body><h2>برنامه شیفت ${M[m-1]} ${y}</h2>${report.outerHTML}<p style="text-align:center;font-size:10px">طراح و توسعه‌دهنده: محسن یحیوی<br>نسخه ۲.۰</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close();
+  };
+
+  // ---------- Support / Telegram ----------
+  window.toggleSupport=function(){const p=document.getElementById("supportPanel"); if(!p)return; p.classList.toggle("open"); if(p.classList.contains("open")) window.startSupportPolling?.();};
+  window.sendSupport=async function(){
+    const el=document.getElementById("supportText"),text=el?.value.trim();if(!text)return;
+    const box=document.getElementById("supportMessages");
+    box.insertAdjacentHTML("beforeend",`<div class="support-bubble support-user">${esc(text)}</div>`);
+    el.value="";
+    try{
+      const fn=SUPABASE_URL+"/functions/v1/telegram-support";
+      const payload={message:text,username:currentProfile?.username||"",displayName:currentProfile?.display_name||"",page:document.getElementById("title")?.textContent||"داشبورد"};
+      const res=await fetch(fn,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_PUBLISHABLE_KEY,"Authorization":"Bearer "+(currentUser?.access_token||"")},body:JSON.stringify(payload)});
+      if(!res.ok)throw new Error(await res.text());
+      box.insertAdjacentHTML("beforeend",`<div class="support-bubble support-bot">پیام شما با موفقیت ارسال شد.</div>`);
+    }catch(e){console.error(e);box.insertAdjacentHTML("beforeend",`<div class="support-bubble support-bot">ارسال پیام انجام نشد. لطفاً دوباره تلاش کنید.</div>`)}
+    box.scrollTop=box.scrollHeight;
+  };
+
+  // ---------- History / profile ----------
+  window.showProfile=function(){alert(`نام کاربری: ${currentProfile?.username||"-"}\nنام نمایشی: ${currentProfile?.display_name||"-"}\nنقش: ${currentProfile?.role||"-"}\nوضعیت: ${currentProfile?.status||"فعال"}`)};
+  window.changePassword=async function(){
+    const p=prompt("رمز عبور جدید را وارد کنید:");if(!p)return;if(!onlineDB)return;const {error}=await onlineDB.auth.updateUser({password:p});alert(error?"تغییر رمز ناموفق بود.":"رمز عبور با موفقیت تغییر کرد.")
+  };
+
+  // ---------- Remove reset shifts from smart builder (keep old restore only if explicitly desired) ----------
+  // Existing resetShifts remains because it is the original "بازگردانی شیفت‌های اولیه"; user only removed smart reset.
+
+  // ---------- Make button messages reliable ----------
+  document.addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b||b.id==="autoGenerateBtn")return;
+    const t=(b.textContent||"").trim();
+    const map=[["اعمال ماه","ماه و تقویم با موفقیت اعمال شد."],["ذخیره موظفی","ساعات موظفی با موفقیت ذخیره شد."],["ذخیره قوانین","قوانین شیفت با موفقیت ذخیره شد."],["افزودن بازه","بازه نیرو با موفقیت ذخیره شد."],["افزودن شیفت","شیفت جدید اضافه شد."],["کاهش نیرو","نیرو کاهش یافت."],["افزودن نیرو","نیرو اضافه شد."],["دریافت پشتیبان","پشتیبان با موفقیت دریافت شد."],["CSV","خروجی CSV آماده شد."],["Excel","خروجی Excel آماده شد."],["حذف","مورد حذف شد."]];
+    const hit=map.find(x=>t.includes(x[0]));if(hit)setTimeout(()=>toast(hit[1]),150);
+  });
+})();
+</script>
+
+<script id="v2-ui-fixes">
+(function(){
+  const originalDeny = window.deny;
+  window.isPendingAccount=function(){return currentProfile && (String(currentProfile.role||'').toLowerCase()==='viewer') && currentProfile.is_active===false};
+  window.can=function(action){
+    if((currentProfile?.role||'').toLowerCase()==='admin') return true;
+    if(action==='users') return false;
+    if(isPendingAccount() && ['emps','cal','shifts','rules','builder','check','reports','backup'].includes(action)) return false;
+    if(isSupervisor() && action==='users') return false;
+    if(isViewer() && ['auto','password'].includes(action)) return false;
+    return true;
+  };
+  window.deny=function(){
+    if(isPendingAccount()){
+      toast('این قابلیت هنوز برای حساب شما فعال نشده است. برای خرید و فعال‌سازی با پشتیبانی در ارتباط باشید.');
+      if(document.getElementById('supportPanel') && !document.getElementById('supportPanel').classList.contains('open')) toggleSupport();
+      return false;
+    }
+    return originalDeny?originalDeny():false;
+  };
+  window.updateAccountStatusUI=function(){
+    const el=document.getElementById('accountStatusBadge');if(!el)return;
+    const pending=isPendingAccount();
+    el.className='account-status '+(pending?'status-pending':'status-active');
+    el.textContent=pending?'🟡 در انتظار فعال‌سازی':'🟢 حساب فعال';
+  };
+  window.applyAccess=function(){
+    const role=(currentProfile?.role||'').toLowerCase();
+    document.querySelectorAll('.nav button').forEach(b=>{const txt=b.textContent||'';if(txt.includes('مدیریت کاربران'))b.style.display=role==='admin'?'':'none';});
+    const pending=isPendingAccount();
+    const labels=['مدیریت نیروها','تقویم و موظفی','مدیریت شیفت‌ها','قوانین شیفت','ساخت هوشمند شیفت','کنترل و خطایابی','گزارش‌ها','پشتیبان‌گیری'];
+    document.querySelectorAll('.nav button').forEach(b=>{if(pending&&labels.some(x=>(b.textContent||'').includes(x)))b.classList.add('access-disabled');else b.classList.remove('access-disabled')});
+    const auto=document.getElementById('autoGenerateBtn'); if(auto){auto.disabled=pending || (role==='viewer' && !ACCESS.auto);}
+    updateAccountStatusUI();
+    renderPendingBanner();
+  };
+  window.renderPendingBanner=function(){
+    const dash=document.getElementById('dash');if(!dash)return;
+    const old=document.getElementById('pendingBanner');if(old)old.remove();
+    if(!isPendingAccount())return;
+    const host=dash.querySelector('.card');if(!host)return;
+    const d=document.createElement('div');d.id='pendingBanner';d.className='pending-banner';
+    d.innerHTML='<div><b>🔒 حساب شما هنوز فعال نشده است.</b><div style="font-size:11px;margin-top:4px">برای استفاده از امکانات کامل ShiftMaster، حساب خود را خرید و فعال کنید.</div></div><div class="pending-actions"><button class="btn primary" onclick="openPurchaseChat()">💳 خرید و فعال‌سازی</button><button class="btn secondary" onclick="toggleSupport()">💬 پشتیبانی</button></div>';
+    host.parentNode.insertBefore(d,host);
+  };
+  window.openPurchaseChat=function(){toggleSupport();setTimeout(()=>supportQuick('خرید و فعال‌سازی حساب'),80)};
+  window.supportQuick=function(text){
+    const input=document.getElementById('supportText'); if(input)input.value=text;
+    sendSupport(true);
+  };
+  window.sendSupport=async function(fromQuick=false){
+    const el=document.getElementById('supportText'),text=(el?.value||'').trim();if(!text)return;
+    const box=document.getElementById('supportMessages');
+    box.insertAdjacentHTML('beforeend','<div class="support-bubble support-user">'+esc(text)+'</div>');
+    if(el)el.value='';box.scrollTop=box.scrollHeight;
+    try{
+      const fn=SUPABASE_URL+'/functions/v1/telegram-support';
+      const payload={message:text,username:currentProfile?.username||'',displayName:currentProfile?.display_name||'',userId:currentUser?.id||'',page:document.getElementById('title')?.textContent||'داشبورد',isPurchase:text.includes('خرید')};
+      const res=await fetch(fn,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':'Bearer '+(currentUser?.access_token||'')},body:JSON.stringify(payload)});
+      if(!res.ok)throw new Error(await res.text());
+      box.insertAdjacentHTML('beforeend','<div class="support-bubble support-bot">پیام شما با موفقیت ارسال شد. منتظر پاسخ پشتیبانی باشید.</div>');
+    }catch(e){console.error(e);box.insertAdjacentHTML('beforeend','<div class="support-bubble support-bot">ارسال پیام انجام نشد. لطفاً دوباره تلاش کنید.</div>')}
+    box.scrollTop=box.scrollHeight;
+  };
+  // Bidirectional chat hook: polls support_messages if the backend/webhook populates it.
+  let supportPoll=null,lastSupportId=null;
+  window.startSupportPolling=function(){
+    if(supportPoll)clearInterval(supportPoll);
+    if(!onlineDB||!currentUser)return;
+    const pull=async()=>{
+      try{
+        let q=onlineDB.from('support_messages').select('id,message,sender,created_at').eq('user_id',currentUser.id).eq('sender','support').order('created_at',{ascending:true}).limit(100);
+        const {data,error}=await q;if(error)return;
+        if(!data?.length)return;
+        const box=document.getElementById('supportMessages');
+        data.forEach(row=>{if(String(row.id)===String(lastSupportId))return; if(lastSupportId!==null && Array.from(box.querySelectorAll('[data-msg-id]')).some(x=>String(x.dataset.msgId)===String(row.id)))return; const d=document.createElement('div');d.className='support-bubble support-bot';d.dataset.msgId=row.id;d.textContent=row.message;box.appendChild(d);lastSupportId=row.id;});
+        box.scrollTop=box.scrollHeight;
+      }catch(e){console.debug('support poll',e)}
+    };
+    pull();supportPoll=setInterval(pull,5000);
+  };
+  const originalOpenApp=window.openApp;
+  window.openApp=async function(user){await originalOpenApp(user);updateAccountStatusUI();applyAccess();startSupportPolling();};
+  const originalToggleTheme=window.toggleTheme;
+  window.toggleTheme=function(){originalToggleTheme();const b=document.getElementById('themeToggle');if(b)b.setAttribute('aria-pressed',document.body.classList.contains('theme-dark')?'true':'false');};
+  // Fix page title for icon menus and prevent run-together headers.
+  const originalPage=window.page;
+  window.page=function(id,b){
+    const out=originalPage(id,b);
+    if(id==='history')document.getElementById('title').textContent='تاریخچه نسخه‌ها';
+    if(id==='education')document.getElementById('title').textContent='آموزش کار با سایت';
+    return out;
+  };
+  document.addEventListener('DOMContentLoaded',()=>{updateAccountStatusUI();renderPendingBanner();});
+})();
+</script>
